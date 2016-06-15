@@ -12,7 +12,7 @@ docker run -d --net vcfmongo --net-alias mongo --name mongo mongo:3.3.6
 
 Create a python dev instance (from the vcfmongo directory). After this container is created you can connect to it again using docker attach.
 ```
-docker run -it --net vcfmongo --name vcfmongo -v `pwd`/src:/app -v `cd ../../sampledata; pwd`:/data -w /app python:3.4.4 bash
+docker run -it --net vcfmongo --name vcfmongo -v `pwd`/src:/app -v `cd ../../sampledata; pwd`:/data -w /app python:3.5.1 bash
 ```
 
 Attach to your container again
