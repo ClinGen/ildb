@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    image: python:3.4.4
+    working_dir: /app
+    volumes:
+      - ./src:/app
+    networks:
+      - vnet
+  db:
+    image: mongo:3.3.6
+    networks:
+      vnet:
+        aliases:
+          - mongo
+networks:
+  vnet:
