@@ -21,6 +21,13 @@ export class BeaconQuery {
       <label>bases: </label>
       <input [(ngModel)]="beaconQuery.bases">
     </div>
+    <div *ngIf="beaconQuery.position == 15118 && beaconQuery.chrom == 'chr1'">
+      <div>
+        <label>clinic 1</label>
+      </div><div>
+        <label>clinic 2</label>
+      </div>
+    </div>
     `
 })
 

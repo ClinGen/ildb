@@ -13,6 +13,7 @@ auth_controllers = Blueprint('auth_controllers', __name__)
 @auth_controllers.route('/login')
 def login():
     """ handle oidc reponse """
+    # TODO: read settings from configuration
     client = Client("5228375a-4339-47ec-ab4d-98f5efa78724")
 
     #response = client.parse_response(AuthorizationResponse,

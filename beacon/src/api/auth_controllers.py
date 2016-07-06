@@ -6,13 +6,14 @@ from flask import Blueprint, jsonify, redirect, request
 from oic import rndstr
 from oic.oic import Client
 from oic.oic.message import AuthorizationResponse
-from . import app
 
 auth_controllers = Blueprint('auth_controllers', __name__)
 
 @auth_controllers.route('/login')
 def login():
-    """ handle oidc reponse """
+    """
+    handle oidc reponse
+    """
     client = Client("5228375a-4339-47ec-ab4d-98f5efa78724")
 
     #response = client.parse_response(AuthorizationResponse,
