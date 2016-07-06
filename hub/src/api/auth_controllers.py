@@ -37,7 +37,7 @@ def make_authentication_request():
     # Client Id
     client = Client("5228375a-4339-47ec-ab4d-98f5efa78724")
 
-    auth_req = client.construct_AuthorizationRequest(request_args=request_args)
+    auth_req = client.construct_AuthorizationRequest(request_args = request_args)
     login_url = auth_req.request("https://login.windows.net/common/oauth2/authorize")
 
     print(login_url)

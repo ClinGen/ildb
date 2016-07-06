@@ -32,9 +32,9 @@ def import_vcf():
 
         filename = secure_filename(file.filename)
 
-        test = file.read()
-
-        vcf_reader = vcf.Reader(io.StringIO(test.decode("utf-8")))
+        # load data from the stream into memory for processing
+        data = file.read()
+        vcf_reader = vcf.Reader(io.StringIO(data.decode("utf-8")))
 
         variants = list()
         for record in vcf_reader:
