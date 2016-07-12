@@ -3,9 +3,12 @@ from flask import send_from_directory
 from api import app
 
 client = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
+output = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".tmp")
 
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
+    if os.path.isfile(os.path.join(output, path)):
+        return send_from_directory(output, path)
     return send_from_directory(client, path)
 
 @app.route('/', methods=['GET'])
