@@ -39,12 +39,17 @@ def import_vcf():
         variants = list()
         for record in vcf_reader:
             
-            #TODO we are just working wiht the first sample in the file
+            #TODO accept multiple samples in a vcf file
             sample = record.samples[0]
 
             #TODO - there are better ways to handle this
                 # Do we need to store the reference for this query
-            alleles = sample.gt_bases.split('/')
+            allleles = []
+            if sample.gt_bases is not None:
+                alleles = sample.gt_bases.split('/')
+                # remove duplicates
+                alleles = set(alleles)
+
             for allele in alleles:
                 variants.append(record.CHROM + '_' + str(record.POS) + '_' + allele)
 
