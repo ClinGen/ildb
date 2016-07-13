@@ -52,3 +52,16 @@ class DataAccess:
       genome_data = db['genome']
 
       genome_data.insert_one(data)
+
+  def get_samples_list(self):
+    """
+    Get a list of all the genome samples
+    """
+
+    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+      db = mclient.clinbeacon
+      genome_data = db['genome']
+
+      cursor = genome_data.find({},{})
+
+      return list({"id":str(o["_id"])} for o in cursor)

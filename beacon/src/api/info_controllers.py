@@ -13,4 +13,4 @@ def version():
     """
     
     # return this from environment variables set by container
-    return jsonify({"version":2})
+    return jsonify({'version':1})

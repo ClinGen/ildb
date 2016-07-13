@@ -30,11 +30,12 @@ def import_vcf():
             flash('No selected file')
             return jsonify({'error':'no file'})
 
+        # this is used to ensure we can safely use the filename sent to us
         filename = secure_filename(file.filename)
 
         # load data from the stream into memory for processing
         data = file.read()
-        vcf_reader = vcf.Reader(io.StringIO(data.decode("utf-8")))
+        vcf_reader = vcf.Reader(io.StringIO(data.decode('utf-8')))
 
         variants = list()
         for record in vcf_reader:
@@ -56,4 +57,5 @@ def import_vcf():
         DataAccess().import_vcf({'build':'GRCh38', 'variants': variants})
         print (variants)
 
+    # TODO: change this to return stats
     return jsonify({'result':'ok'})

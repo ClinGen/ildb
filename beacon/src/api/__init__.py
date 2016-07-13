@@ -11,10 +11,14 @@ app.register_blueprint(query_controllers, url_prefix='/api/query')
 from api.import_controllers import import_controllers
 app.register_blueprint(import_controllers, url_prefix='/api/import')
 
-# Add the authentication controllers to the flask application
+# Authentication controllers to the flask application
 from api.auth_controllers import auth_controllers
 app.register_blueprint(auth_controllers, url_prefix='/api/auth')
 
-# Add the authentication controllers to the flask application
+# System information controllers to the flask application
 from api.info_controllers import info_controllers
 app.register_blueprint(info_controllers, url_prefix='/api/info')
+
+# Data management information controllers to the flask application
+from api.manage_controllers import manage_controllers
+app.register_blueprint(manage_controllers, url_prefix='/api/manage')
