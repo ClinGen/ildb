@@ -8,6 +8,7 @@ from api.database import DataAccess
 from api import app
 import vcf
 import io
+import re
 
 import_controllers = Blueprint('import_controllers', __name__)
 
@@ -47,14 +48,14 @@ def import_vcf():
                 # Do we need to store the reference for this query
             allleles = []
             if sample.gt_bases is not None:
-                alleles = sample.gt_bases.split('/')
+                alleles = re.split(r'[\\/|]', sample.gt_bases)
                 # remove duplicates
                 alleles = set(alleles)
 
             for allele in alleles:
                 variants.append(record.CHROM + '_' + str(record.POS) + '_' + allele)
 
-        DataAccess().import_vcf({'build':'GRCh38', 'variants': variants})
+        DataAccess().import_vcf({'variants': variants})
         print (variants)
 
     # TODO: change this to return stats
