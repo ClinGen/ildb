@@ -1,5 +1,5 @@
 {
-  "name": "clinbeacon hub",
+  "name": "clinbeacon-hub",
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
