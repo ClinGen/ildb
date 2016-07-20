@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES }  from '@angular/router';
 
-export class BeaconQuery {
-  build: string;
-  chrom: string;
-  position: number;
-  allele: string;
-}
-
 @Component({
   selector: 'my-app',
   directives: [ROUTER_DIRECTIVES],
@@ -18,7 +11,12 @@ export class BeaconQuery {
     `
 })
 
-// Set default query
 export class AppComponent {
-  title = 'Beacon Search Test';
+
+}
+
+export class BeaconQuery {
+  chrom: string;
+  position: number;
+  allele: string;
 }

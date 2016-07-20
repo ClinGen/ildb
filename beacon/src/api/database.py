@@ -4,6 +4,7 @@ Data access API
 """
 
 import pymongo
+from bson.objectid import ObjectId
 
 class DataAccess:
   """Implements data access layer"""
@@ -65,3 +66,27 @@ class DataAccess:
       cursor = genome_data.find({},{})
 
       return list({"id":str(o["_id"])} for o in cursor)
+
+  def delete_sample(self, id):
+    """
+    Delete  a sample from the database
+    """
+
+    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+      db = mclient.clinbeacon
+      genome_data = db['genome']
+
+      genome_data.delete_one({'_id': ObjectId(id)})
+      
+  def get_user(self, id):
+    """
+    Get a user by id which will be the email address
+    """
+
+    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+      db = mclient.clinbeacon
+      user_data = db['users']
+
+      user = user_data.find_one({'_id': id})
+
+      return user

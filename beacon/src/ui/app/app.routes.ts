@@ -4,12 +4,12 @@ import {HomeComponent} from './home.component';
 
 const routes: RouterConfig = [
   {
-    path: 'import',
-    component: ImportComponent
-  },
-  {
     path:'',
     component: HomeComponent
+  },
+  {
+    path: 'import',
+    component: ImportComponent
   }
 ];
 

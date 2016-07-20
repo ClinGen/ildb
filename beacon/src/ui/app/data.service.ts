@@ -34,6 +34,10 @@ export class DataService {
   }
   
   private handleError(error: any) {
+    // move this to the user auth component
+    if (error.status = 401) {
+      window.location.href = "/api/auth/getauthrequest"
+    }
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }

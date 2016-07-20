@@ -1,7 +1,11 @@
-from flask import Flask
+from flask import Flask, request
 
 # Define a new flask application
 app = Flask(__name__)
+
+@app.before_request
+def before_request():
+  print(request.path)
 
 # Add the Query controllers to the flask application
 from api.query_controllers import query_controllers

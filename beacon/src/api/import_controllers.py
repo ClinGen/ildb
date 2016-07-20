@@ -5,6 +5,7 @@ Data import controllers
 from flask import Blueprint, jsonify, Flask, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from api.database import DataAccess
+from api.auth import requires_auth
 from api import app
 import vcf
 import io
@@ -13,6 +14,7 @@ import re
 import_controllers = Blueprint('import_controllers', __name__)
 
 @import_controllers.route('/vcf', methods=['GET', 'POST'])
+@requires_auth
 def import_vcf():
     """
     VCF file upload operation
@@ -41,7 +43,7 @@ def import_vcf():
         variants = list()
         for record in vcf_reader:
             
-            #TODO accept multiple samples in a vcf file
+            #TODO process multiple samples in a vcf file
             sample = record.samples[0]
 
             #TODO - there are better ways to handle this
@@ -53,7 +55,11 @@ def import_vcf():
                 alleles = set(alleles)
 
             for allele in alleles:
-                variants.append(record.CHROM + '_' + str(record.POS) + '_' + allele)
+                chrom = record.CHROM
+                # remove preceeding chr if exists
+                if (re.match('chr', chrom, re.I)):
+                    chrom = chrom[3:]
+                variants.append(chrom + '_' + str(record.POS) + '_' + allele)
 
         DataAccess().import_vcf({'variants': variants})
         print (variants)
