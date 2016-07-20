@@ -20,13 +20,16 @@ def query1(chrom, position, allele, reference):
     
     beacons = DataAccess().get_beacons()
 
+    print(beacons)
+
     # TODO: These can run in parallel
     # TODO: Validate the response from these calls
     # TODO: Make this async message based
     # TODO: The hub query API will be made meta-data defined
     results = []
     for beacon in beacons:
-        resp = requests.get(beacon.endpoint + request.path).json()
-        results.append( {'beacon': beacon.name, 'result':resp} )
+        print(beacon['endpoint'] + request.path)
+        resp = requests.get(beacon['endpoint'] + request.path).json()
+        results.append( {'beacon': beacon['name'], 'result':resp} )
 
     return jsonify(results)

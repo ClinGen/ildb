@@ -7,9 +7,6 @@ def requires_auth(func):
   @wraps(func)
   def func_wrapper(*args, **kwargs):
     
-    # REMOVE
-    return func(*args, **kwargs)
-
     # decode the session cookie
     try:
       session_id = request.cookies['session_id']

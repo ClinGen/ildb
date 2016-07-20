@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {QueryService} from './query.service';
 
 export class BeaconQuery {
   build: string;
@@ -20,16 +21,34 @@ export class BeaconQuery {
       <input [(ngModel)]="beaconQuery.position">
       <label>allele: </label>
       <input [(ngModel)]="beaconQuery.allele">
+      <button type="button" (click)="find()">Query</button> 
     </div>
-    `
+    <div *ngFor="let item of queryResults">
+    {{item.beacon}} - {{item.result.count}}
+    </div>`,
+  providers:[QueryService]
 })
 
 // Set default query
 export class AppComponent {
-  title = 'Beacon Search Test';
+  title = 'Beacon Search Hub';
+
+  queryResults: any[];
+
+  constructor (
+    private queryService: QueryService){
+
+    }
+
+  find(){
+    this.queryService.queryBeacons(this.beaconQuery.chrom, this.beaconQuery.position, this.beaconQuery.allele)
+    .then(queryResults => this.queryResults = queryResults)
+    .catch(error => console.log(error))
+  }
+
   beaconQuery: BeaconQuery = {
     build: "GRCh37",
-    chrom: 'chr1',
+    chrom: '1',
     position: 15118,
     allele: "G"
   };

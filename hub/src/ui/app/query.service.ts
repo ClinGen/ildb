@@ -3,14 +3,14 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class HeroService {
+export class QueryService {
   
   constructor(private http: Http) { }
 
-  getBeaconQuery(build: string, gene: string, position: number, mutation : string) {
-    return this.http.get("/api/query/beacon")
+  queryBeacons(chrom:string, position:number, allele:string) {
+    return this.http.get("/api/query/1/" + chrom + "/" + position + "/" + allele)
                .toPromise()
-               .then(response => response.json().data)
+               .then(response => response.json())
                .catch(this.handleError);
   }
 
