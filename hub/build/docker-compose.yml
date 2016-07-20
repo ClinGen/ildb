@@ -1,0 +1,26 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: bash
+    ports:
+      - "5001:80"
+    volumes:
+      - ../src:/app
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    networks:
+      - beacon
+  mongo:
+    image: mongo:3.3.9
+    ports:
+      - "27027:27017"
+    networks:
+      beacon:
+        aliases:
+          - mongohub
+networks:
+  beacon:
