@@ -36,6 +36,7 @@ def login():
 
     # verify the token is a valid user in the system
     # we can improve on this by checking status as well
+    # maybe we will change this to check the tenant/role attributes instead
     username = DataAccess().get_user(user_jwt['preferred_username'])
     if(username is None):
         # TODO log this and display a proper exception

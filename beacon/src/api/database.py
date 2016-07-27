@@ -6,6 +6,8 @@ Data access API
 import pymongo
 from bson.objectid import ObjectId
 
+DB_NAME = "clinbeacon"
+
 class DataAccess:
   """Implements data access layer"""
 
@@ -23,7 +25,7 @@ class DataAccess:
     """
     # TODO Pass confgiuration in on the constructor
     with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
-      db = mclient.clinbeacon
+      db = mclient[DB_NAME]
 
       # TODO parameter validation
 
@@ -49,7 +51,7 @@ class DataAccess:
     # TODO Pass confgiuration in on the constructor
     with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
 
-      db = mclient.clinbeacon
+      db = mclient[DB_NAME]
       genome_data = db['genome']
 
       genome_data.insert_one(data)
@@ -60,7 +62,7 @@ class DataAccess:
     """
 
     with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
-      db = mclient.clinbeacon
+      db = mclient[DB_NAME]
       genome_data = db['genome']
 
       cursor = genome_data.find({},{})
@@ -73,7 +75,7 @@ class DataAccess:
     """
 
     with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
-      db = mclient.clinbeacon
+      db = mclient[DB_NAME]
       genome_data = db['genome']
 
       genome_data.delete_one({'_id': ObjectId(id)})
@@ -84,7 +86,7 @@ class DataAccess:
     """
 
     with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
-      db = mclient.clinbeacon
+      db = mclient[DB_NAME]
       user_data = db['users']
 
       user = user_data.find_one({'_id': id})
