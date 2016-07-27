@@ -2,7 +2,7 @@
 @package api
 Data import controllers
 """
-from flask import Blueprint, jsonify, redirect, request, make_response
+from flask import Blueprint, jsonify, redirect, request, make_response, abort
 from api.database import DataAccess
 from oic import rndstr
 from oic.oic import Client
@@ -62,8 +62,8 @@ def make_authentication_request():
         "response_mode": "form_post",
         "state": state,
         "nonce": nounce,
-        "redirect_uri": "http://localhost:5000/api/auth/login",
-        "scope":"openid email profile"
+        "redirect_uri": "http://localhost:5001/api/auth/login",
+        "scope":"openid profile"
     }
 
     # Client Id

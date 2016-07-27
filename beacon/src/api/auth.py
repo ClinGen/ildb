@@ -15,7 +15,7 @@ def requires_auth(func):
       session_id = jwt.decode(session_id, 'secret', algorithms=['HS256'])
       # TODO: Validate the claims and token expiration
     except:
-      print('could not decode session')
+      print('unable to decode session')
       print(sys.exc_info()[0])
       abort(401)
 
