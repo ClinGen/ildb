@@ -11,7 +11,7 @@ import { DataService } from './data.service';
           <i class="material-icons mdl-list__item-avatar">person</i>
           <span>{{item.id}}</span>
         </span>
-        <a class="mdl-list__item-secondary-action" href="#" (click)="onSelect(item)"><i class="material-icons">delete</i></a>
+        <a class="mdl-list__item-secondary-action" href="#" (click)="delete(item.id)"><i class="material-icons">delete</i></a>
       </div>
     </div>
     `,
@@ -29,6 +29,12 @@ export class HomeComponent implements OnInit {
   getSamples() {
     this.dataService.getSamples()
       .then(samples => this.samples = samples)
+      .catch(error => console.log(error))
+  }
+
+  delete(id: string) {
+    this.dataService.delete(id)
+      .then(data => this.getSamples())
       .catch(error => console.log(error))
   }
 
