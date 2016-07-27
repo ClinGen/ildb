@@ -38,10 +38,11 @@ def login():
     # we can improve on this by checking status as well
     # maybe we will change this to check the tenant/role attributes instead
     username = DataAccess().get_user(user_jwt['preferred_username'])
+    """ TODO: REFACTORING AUTHN AGAIN
     if(username is None):
         # TODO log this and display a proper exception
         abort(401)
-
+    """
     encoded = jwt.encode({'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
 
     # set the session token in a cookie
