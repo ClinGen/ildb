@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AuthService {
-  // This class is responsible for authentication as well as token management and injection
+  // This class is responsible for authentication and token management
   
   private appAuthUrl = '/api/auth';
 

@@ -4,11 +4,7 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
 @Component({
   selector: 'my-app',
   directives: [ROUTER_DIRECTIVES],
-  template: `
-    <div>
-      <router-outlet></router-outlet>
-    </div>
-    `
+  templateUrl: '/app/app.component.html'
 })
 
 export class AppComponent {

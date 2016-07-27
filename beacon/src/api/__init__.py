@@ -1,5 +1,4 @@
 from flask import Flask, request
-from ..settings import settings
 
 # Define a new flask application
 app = Flask(__name__)
