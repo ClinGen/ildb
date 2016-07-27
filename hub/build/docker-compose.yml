@@ -3,10 +3,10 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: dev.dockerfile
     command: bash
     ports:
-      - "5001:80"
+      - "5005:80"
     volumes:
       - ../src:/app
     tty: true
