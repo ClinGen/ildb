@@ -7,12 +7,13 @@ The projects rely on an OIDC provider for Authentication and Authorization.  Azu
 https://apps.dev.microsoft.com
 
 ## Hub
-see readme in hub folder in this repository
+The [Hub Project](https://github.com/ClinGen/clinbeacon/tree/master/hub) is responsible for performing fan-out queries across registered beacons. The hub project is also responsible for managing the tenants and beacons in the system.
 
 ## Beacon
-see readme in beacon folder in this repository
+The [Beacon Project](https://github.com/ClinGen/clinbeacon/tree/master/beacon) is responsible for managing the data and performing queries for a tenant.
 
 ## sample data
+The sample data directory currently contains a random collection of smaple VCF samples used for development
 
 ## spikes
-
+The spikes folder contains experimental projects developed more as a POC to explore various technologies and approaches.
