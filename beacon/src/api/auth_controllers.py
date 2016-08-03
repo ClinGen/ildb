@@ -23,7 +23,7 @@ def login():
 
     print(request.form['id_token'])
     print (user_jwt)
-    # TODO Fix the token validation
+    # TODO Update token validation to retrieve certificate
     """
     auth_response = client.parse_response(AuthorizationResponse,
         info = request.form,
@@ -31,19 +31,21 @@ def login():
         verify = False)
     """
 
-    # TODO validate the token
-
     response = make_response(redirect('/'))
 
     # verify the token is a valid user in the system
     # we can improve on this by checking status as well
     # maybe we will change this to check the tenant/role attributes instead
     username = DataAccess().get_user(user_jwt['preferred_username'])
-    """ TODO: REFACTORING AUTHN AGAIN
+
+    # we keep a list of valide users in the database
+    # ideally we would just check roles from the provider
+    #      but there are some challenges managing the group and role claims in the provider right now
+    #      and we may want to consider a simple authorization service or working out the claims
     if(username is None):
-        # TODO log this and display a proper exception
+        # TODO log this and display a proper exception see if we can shift the authorization to role/group claims from the provider
         abort(401)
-    """
+
     encoded = jwt.encode({'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
 
     # set the session token in a cookie

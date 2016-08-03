@@ -1,11 +1,27 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
+import {AuthService} from './auth.service';
+import {HomeComponent} from './home.component';
+import {LoginComponent} from './login.component';
+import {ManageComponent} from './manage.component';
 
 const routes: RouterConfig = [
   {
-    path: '/about'
+    path:'',
+    component: HomeComponent,
+    canActivate: [AuthService]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'settings',
+    component: ManageComponent,
+    canActivate: [AuthService]
   }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes)
+  provideRouter(routes),
+  AuthService
 ];

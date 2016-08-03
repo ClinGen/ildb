@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { DataService } from './data.service';
 import { Router } from '@angular/router';
 
+// TODO: Consider merging create with edit and handling the 'new' id
 @Component({
   template: `
     <h2>Add Patient</h2>

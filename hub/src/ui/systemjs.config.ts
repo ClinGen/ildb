@@ -4,15 +4,19 @@
     'app':                        'app', // 'dist',
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    'rxjs':                       'node_modules/rxjs',
     'symbol-observable':          'node_modules/symbol-observable',
-    'rxjs':                       'node_modules/rxjs'
+    'angular2-cookie':            'node_modules/angular2-cookie',
+    'angular2-jwt':               'node_modules/angular2-jwt'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
+    'angular2-cookie':            { main: 'core.js',  defaultExtension: 'js' },
+    'angular2-jwt':               { main: 'angular2-jwt.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
-    'symbol-observable': { main: 'index.js', defaultExtension: 'js' }
+    'symbol-observable': { main: 'index.js', defaultExtension: 'js' },
   };
   var ngPackageNames = [
     'common',
