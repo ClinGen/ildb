@@ -25,7 +25,8 @@ export class BeaconQuery {
     </div>
     <div *ngFor="let item of queryResults">
     {{item.beacon}} - {{item.result.count}}
-    </div>`
+    </div>`,
+    providers: [QueryService]
 })
 
 export class HomeComponent {
