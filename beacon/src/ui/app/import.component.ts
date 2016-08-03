@@ -16,7 +16,7 @@ import { Http, Response } from '@angular/http';
         </div>
         <div class="form-group">        
         <div class="text-center">
-            <button type="button" (click)="upload()">Upload</button>             
+            <button disabled="true" type="button" (click)="upload()">Upload</button>             
         </div>
         </div>
   </form>

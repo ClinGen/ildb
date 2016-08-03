@@ -3,6 +3,7 @@ database.py
 Data access logic
 """
 
+import datetime
 import pymongo
 from bson.objectid import ObjectId
 from api.settings import Settings
@@ -93,3 +94,62 @@ class DataAccess:
       user = user_data.find_one({'_id': id})
 
       return user
+
+  def get_user_roles(self, id):
+    """
+    Get a users roles by id
+    """
+    user = self.get_user(id)
+
+    return user.roles
+
+  def get_patients(self):
+    """
+    Get a list of patients
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      patients_collection = db['patients']
+
+      cursor = patients_collection.find({},{})
+
+      return list({"id":str(o["_id"])} for o in cursor)
+  
+  def add_patient(self, document):
+    """
+    Add a new patient
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      patients_collection = db['patients']
+
+      document['created'] = datetime.datetime.utcnow()
+
+      result = patients_collection.insert_one(document)
+
+      return str(result.inserted_id)
+ 
+  def delete_patient(self, id):
+    """
+    Delete a patient
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      patients_collection = db['patients']
+
+      #TODO - Delete all related samples
+
+      patients_collection.delete_one({'_id': ObjectId(id)})
+
+  def get_patient_samples(self, id):
+    """
+    Get a list of all the genome samples
+    """
+
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      genome_data = db['genome']
+
+      cursor = genome_data.find({'patientId':id},{})
+
+      return list({"id":str(o["_id"])} for o in cursor)
