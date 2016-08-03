@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
     `
 })
 
-export class AuthComponent {
-
+export class LoginComponent {
   title = 'Login';
 }

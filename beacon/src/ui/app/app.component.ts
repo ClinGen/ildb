@@ -11,9 +11,3 @@ import {UserComponent} from './user.component';
 export class AppComponent {
 
 }
-
-export class BeaconQuery {
-  chrom: string;
-  position: number;
-  allele: string;
-}

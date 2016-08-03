@@ -1,10 +1,11 @@
 """
-@package api
-Data access API
+database.py
+Data access logic
 """
 
 import pymongo
 from bson.objectid import ObjectId
+from api.settings import Settings
 
 DB_NAME = "clinbeacon"
 
@@ -24,7 +25,7 @@ class DataAccess:
     @param reference
     """
     # TODO Pass confgiuration in on the constructor
-    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
 
       # TODO parameter validation
@@ -49,7 +50,7 @@ class DataAccess:
     @param document
     """
     # TODO Pass confgiuration in on the constructor
-    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
 
       db = mclient[DB_NAME]
       genome_data = db['genome']
@@ -61,7 +62,7 @@ class DataAccess:
     Get a list of all the genome samples
     """
 
-    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
       genome_data = db['genome']
 
@@ -74,7 +75,7 @@ class DataAccess:
     Delete  a sample from the database
     """
 
-    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
       genome_data = db['genome']
 
@@ -85,7 +86,7 @@ class DataAccess:
     Get a user by id which will be the email address
     """
 
-    with pymongo.MongoClient(host='mongodb://mongo:27017') as mclient:
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
       user_data = db['users']
 

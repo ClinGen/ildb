@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {CookieService} from 'angular2-cookie/core';
+import {AuthService} from './auth.service';
 
 @Component({
   selector: 'user-info',
   template: `
-    <div>{{username}}</div><a (click)="logout()">Logout</a>
+    <div>{{username()}}</div><a href="#" (click)="logout()" [hidden]="username()==''">Logout</a>
     `,
   providers: [CookieService]
 })
 
-export class UserComponent implements OnInit {
+export class UserComponent {
 
-  constructor(private cookieService:CookieService){}
+  constructor(private cookieService:CookieService, private authService:AuthService){}
 
   title = 'Login';
-  username = '';
   isAuth = false;
 
-  ngOnInit() {
-    let session = this.cookieService.get('session_id');
-    if (session) {
-      this.username = 'test@fs180.onmicrosoft.com';
-    }
+  username() {
+    return this.authService.getUserName();
   }
 
   logout() {

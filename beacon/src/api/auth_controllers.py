@@ -7,6 +7,7 @@ from api.database import DataAccess
 from oic import rndstr
 from oic.oic import Client
 from oic.oic.message import AuthorizationResponse
+from api.settings import Settings
 import jwt
 
 auth_controllers = Blueprint('auth_controllers', __name__)
@@ -16,7 +17,7 @@ def login():
     """
     handle oidc reponse
     """
-    client = Client("f123a339-be25-420f-a843-ecad0938a050")
+    client = Client(Settings.auth_client_id)
 
     user_jwt = jwt.decode(request.form['id_token'], verify=False)
 
@@ -55,6 +56,7 @@ def login():
 
 @auth_controllers.route('/getauthrequest', methods=['GET'])
 def make_authentication_request():
+    print ('create authentication request')
     # consider storing a hash in state
     # what to hash in state might include cookie data, time, salt, etc...
     state = rndstr()
@@ -64,15 +66,21 @@ def make_authentication_request():
         "response_mode": "form_post",
         "state": state,
         "nonce": nounce,
-        "redirect_uri": "http://localhost:5001/api/auth/login",
+        "redirect_uri": Settings.auth_redirect_url,
         "scope":"openid profile"
     }
 
-    # Client Id
-    client = Client("f123a339-be25-420f-a843-ecad0938a050")
+    print (Settings.auth_client_id)
 
-    auth_req = client.construct_AuthorizationRequest(request_args=request_args)
-    login_url = auth_req.request("https://login.microsoftonline.com/fs180.onmicrosoft.com/oauth2/v2.0/authorize")
+    client = Client(Settings.auth_client_id)
+
+    auth_req = client.construct_AuthorizationRequest(request_args = request_args)
+
+    provider_url = Settings.auth_provider_url
+    if Settings.auth_tenant is not None:
+        provider_url = provider_url.replace("{{tenant}}", Settings.auth_tenant)
+
+    login_url = auth_req.request(provider_url)
 
     print(login_url)
 
