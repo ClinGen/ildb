@@ -7,7 +7,6 @@ import {UserComponent} from './user.component';
   directives: [ROUTER_DIRECTIVES, UserComponent],
   templateUrl: '/app/app.component.html'
 })
-
 export class AppComponent {
 
 }

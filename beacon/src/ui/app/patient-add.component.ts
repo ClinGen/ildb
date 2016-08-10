@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from './data.service';
 import { Router } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
     </div>
     <div>
       reference
-      <input type="text" [(ngModel)]="reference">
+      <input type="text" [(ngModel)]="reference" />
     </div>
     <div>
       <button (click)="add()">add</button>

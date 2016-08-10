@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class DataService {
   //TODO: break this out in to multiple
-  
+
   private samplesUrl = '/api/manage/samples';
   private patientUrl = '/api/patient';
 
@@ -14,9 +14,9 @@ export class DataService {
   //return all samples
   getSamples(): Promise<any[]> {
     return this.http.get(this.samplesUrl)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
   // delete a sample from the data store
@@ -25,9 +25,9 @@ export class DataService {
     headers.append('Content-Type', 'application/json');
     let url = `${this.samplesUrl}/${sampleId}`;
     return this.http
-               .delete(url, headers)
-               .toPromise()
-               .catch(this.handleError);
+      .delete(url, headers)
+      .toPromise()
+      .catch(this.handleError);
   }
 
   // Upload a vcf file
@@ -49,23 +49,23 @@ export class DataService {
       let formData = new FormData();
 
       formData.append("file", file, 'vcfimport');
-      
+
       xhr.send(formData);
     });
   }
 
   getPatientList(): Promise<any[]> {
     return this.http.get(this.patientUrl)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
-  addPatient(patient : any): Promise<any> {
+  addPatient(patient: any): Promise<any> {
     return this.http.post(this.patientUrl, patient)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
 
   deletePatient(patientId: string) {
@@ -73,19 +73,19 @@ export class DataService {
     headers.append('Content-Type', 'application/json');
     let url = `${this.patientUrl}/${patientId}`;
     return this.http
-               .delete(url, headers)
-               .toPromise()
-               .catch(this.handleError);
+      .delete(url, headers)
+      .toPromise()
+      .catch(this.handleError);
   }
 
-  getPatientSamples(patientId:string) : Promise<any> {
-    
+  getPatientSamples(patientId: string): Promise<any> {
+
     return this.http.get(`${this.patientUrl}/${patientId}/sample`)
-               .toPromise()
-               .then(response => response.json())
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
   }
-  
+
   private handleError(error: any) {
     // move this to the user auth component
     if (error.status == 401) {
