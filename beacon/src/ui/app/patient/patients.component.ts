@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
-import { DataService } from './data.service';
+import { DataService } from '../data.service';
 
 @Component({
-  directives: [ROUTER_DIRECTIVES, PatientsComponent],
   template: `
     <h2>Patient List</h2>
     <div class="demo-list-action mdl-list" style="width:400px">

@@ -21,3 +21,4 @@ def requires_auth(func):
 
     return func(*args, **kwargs)
   return func_wrapper
+

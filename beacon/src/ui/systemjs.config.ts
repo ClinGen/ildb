@@ -3,6 +3,8 @@
   var map = {
     'app':                        'app', // 'dist',
     '@angular':                   'node_modules/@angular',
+    '@angular/router':            'node_modules/@angular/router',
+    '@angular/forms':            'node_modules/@angular/forms',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs':                       'node_modules/rxjs',
     'symbol-observable':          'node_modules/symbol-observable',

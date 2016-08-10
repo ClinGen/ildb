@@ -1,14 +1,12 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes, RouterModule }  from '@angular/router';
 import {ImportComponent} from './import.component';
 import {HomeComponent} from './home.component';
 import {LoginComponent} from './login.component';
-import {PatientsComponent} from './patients.component';
-import {PatientDetailsComponent} from './patient-detail.component';
-import {PatientAddComponent} from './patient-add.component';
+import {PatientsComponent, PatientDetailsComponent, PatientAddComponent} from './patient/index';
 import {SettingsComponent} from './settings.component';
 import {AuthService} from './auth.service';
 
-const routes: RouterConfig = [
+const appRoutes: Routes = [
   {
     path:'',
     component: HomeComponent,
@@ -45,7 +43,4 @@ const routes: RouterConfig = [
   }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes),
-  AuthService
-];
+export const routing = RouterModule.forRoot(appRoutes);

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # configure development environment settings
 # run this script to set development environment settings

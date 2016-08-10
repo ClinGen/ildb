@@ -1,17 +1,17 @@
-<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
-  <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+<div style="min-height:1200px;" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+  <header class="beacon-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title"></span>
       <div class="mdl-layout-spacer"></div>
     </div>
   </header>
-  <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
-    <header class="demo-drawer-header">
+  <div class="beacon-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+    <header class="beacon-drawer-header">
       <div>
         <user-info></user-info>
       </div>
     </header>
-    <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+    <nav class="beacon-navigation mdl-navigation mdl-color--blue-grey-800">
       <a class="mdl-navigation__link" routerLink="/"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
       <a class="mdl-navigation__link" routerLink="/patient"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Patients</a>
       <a class="mdl-navigation__link" routerLink="/import"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Import</a>
@@ -20,7 +20,7 @@
     </nav>
   </div>
   <main class="mdl-layout__content mdl-color--grey-100">
-    <div style="height:1000px">
+    <div class="page-content">
       <router-outlet></router-outlet>
     </div>
   </main>
