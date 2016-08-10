@@ -14,8 +14,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { JwtHelper } from 'angular2-jwt';
 import { CookieService } from 'angular2-cookie/core';
 
-import {UserComponent} from './user.component';
-import {AuthService} from './auth.service';
+import {UserComponent} from './account/user.component';
+import {AuthService} from './account/auth.service';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import {AuthService} from './auth.service';
   ],
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -20,7 +20,7 @@ export class UserComponent {
   username() {
     return this.authService.getUserName();
   }
-
+  
   logout() {
     this.cookieService.remove('session_id');
     window.location.href = '/';

@@ -22,7 +22,7 @@ export class AuthService implements CanActivate {
   canActivate() {
 
     // read token from the cookie
-
+    
     let token = this.cookieService.get('session_id');
 
     if (token == null) {
