@@ -16,11 +16,6 @@ open a terminal window in the beacon directory and type `bash up.sh`
 3. type `npm run setup` to install client npm modules and server pip modules
 4. type `npm start` to start the applicatio for debug
 
-
-4. type `cd ./ui && npm install && npm start &`
-5. type `source dev-settings.sh` to export application environment settings for development
-5. then use `python run.py&` to bring up development instance on background job
-
 ### shutdown/cleanup
 shutdown and cleanup the development enviornment using `bash down.sh`  not that base images pulled by docker will remain on your system and can be cleaned up using standard docker commands `docker rmi`.
 
