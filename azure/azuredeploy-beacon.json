@@ -202,7 +202,7 @@
             "settings": {
               "compose": {
                 "clingenhub": {
-                  "image": "trentmswanson/clingenbeacon:v3",
+                  "image": "trentmswanson/beacon:v3",
                   "ports": [
                     "80:80"
                   ],
