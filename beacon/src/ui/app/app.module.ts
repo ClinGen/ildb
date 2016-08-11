@@ -18,6 +18,7 @@ import {UserComponent} from './account/user.component';
 import {AuthService} from './account/auth.service';
 import {HomeComponent} from './home/home.component';
 import {SettingsComponent} from './settings/settings.component';
+import {Mdl} from './app.utilities';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import {SettingsComponent} from './settings/settings.component';
   declarations: [
     AppComponent,
     UserComponent,
-    HomeComponent
+    HomeComponent,
+    Mdl
   ],
   bootstrap: [AppComponent],
   providers: [

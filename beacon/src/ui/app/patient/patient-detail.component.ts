@@ -21,9 +21,9 @@ import { DataService } from '../data.service';
     <div>
         <input type="file" accept="vcf" (change)="fileChangeEvent($event)" placeholder="Upload file..." />                         
     </div>
-    <div>
+    <div mdl>
     <button [disabled]="uploading" (click)="import()">import</button>
-    <span [hidden]="!uploading" >uploading...</span>
+    <div mdl [hidden]="!uploading" id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
     </div>
     `,
     providers:[DataService]

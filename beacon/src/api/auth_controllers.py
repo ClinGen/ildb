@@ -30,7 +30,7 @@ def login():
         sformat = "dict",
         verify = False)
     """
-
+    
     response = make_response(redirect('/'))
 
     # verify the token is a valid user in the system
