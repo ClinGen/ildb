@@ -21,6 +21,7 @@ def main():
     if(connection_string == None):
       print ('export settings first using the following command')
       print ('source dev-settings.sh')
+      return
 
     userid = sys.argv[2]
 
@@ -40,6 +41,7 @@ def main():
     if(connection_string == None):
       print ('export settings first using the following command')
       print ('source dev-settings.sh')
+      return
 
     tenant = sys.argv[2]
     endpoint = sys.argv[3]
