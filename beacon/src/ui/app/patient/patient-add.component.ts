@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { PatientService } from './patient.services';
 
 // TODO: Consider merging create with edit and handling the 'new' id
 @Component({
@@ -18,14 +18,14 @@ import { Router } from '@angular/router';
       <button (click)="add()">add</button>
     </div>
     `,
-    providers:[DataService]
+    providers:[PatientService]
 })
 
 export class PatientAddComponent {
   
   reference = "";
 
-  constructor(private dataService:DataService, private router: Router) {
+  constructor(private dataService:PatientService, private router: Router) {
     
   }
 

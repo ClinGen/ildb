@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { PatientService } from './patient.services';
 
 @Component({
   template: `
@@ -17,7 +17,7 @@ import { DataService } from '../data.service';
     </div>
     <a href="#" routerLink="/patient/new">add patient</a>
     `,
-    providers:[DataService]
+    providers:[PatientService]
 })
 
 export class PatientsComponent implements OnInit {
@@ -25,7 +25,7 @@ export class PatientsComponent implements OnInit {
   patients = [];
 
   constructor (
-    private dataService: DataService) {
+    private dataService: PatientService) {
   }
 
   ngOnInit() {

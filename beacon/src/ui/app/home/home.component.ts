@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'vcf-import',
@@ -8,8 +7,7 @@ import { DataService } from '../data.service';
     <div class="demo-list-action mdl-list" style="width:400px">
       Home page and dashboard to display notifications and metrics
     </div>
-    `,
-    providers:[DataService]
+    `
 })
 
 export class HomeComponent {

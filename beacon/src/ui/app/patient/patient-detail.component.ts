@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { DataService } from '../data.service';
+import { PatientService } from './patient.services';
 
 @Component({
   template: `
@@ -26,13 +26,13 @@ import { DataService } from '../data.service';
     <div mdl [hidden]="!uploading" id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
     </div>
     `,
-    providers:[DataService]
+    providers:[PatientService]
 })
 
 export class PatientDetailsComponent implements OnInit {
   patientId = "";
   samples=[];
-  constructor(route: ActivatedRoute, private dataService : DataService) {
+  constructor(route: ActivatedRoute, private dataService : PatientService) {
     this.patientId = route.snapshot.params['id'];
   }
 
