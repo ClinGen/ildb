@@ -13,10 +13,10 @@ open a terminal window in the beacon directory and type `bash up.sh`
 
 1. the first time may take a few minutes
 2. it may appear to hang at the end, after you see *Creating beacon_mongo_1*  hit the __enter__ key to get to the command prompt
-3. type `pip install -r requirements.txt` to install application pip modules
-4. type `cd ./ui && npm install && npm start &`
+3. type `npm run setup` to install application pip modules
+4. copy `dev-settings.sh.tmpl` to `dev-settings.sh` and modify the configure as necessary
 5. type `source dev-settings.sh` to export application environment settings for development
-6. then use `python run.py&` to bring up development instance on background job
+6. type `npm start` to run the application
 
 ### shutdown/cleanup
 shutdown and cleanup the development enviornment using `bash down.sh`  not that base images pulled by docker will remain on your system and can be cleaned up using standard docker commands `docker rmi`.

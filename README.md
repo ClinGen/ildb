@@ -6,6 +6,8 @@ The projects rely on an OIDC provider for Authentication and Authorization.  Azu
 
 https://apps.dev.microsoft.com
 
+__document identity setup__
+
 ## Hub
 The [Hub Project](https://github.com/ClinGen/clinbeacon/tree/master/hub) is responsible for performing fan-out queries across registered beacons. The hub project is also responsible for managing the tenants and beacons in the system.
 

@@ -6,7 +6,9 @@ services:
       dockerfile: dev.dockerfile
     command: bash
     ports:
-      - "5005:80"
+      - "5051:5051"
+      - "5052:5052"
+      - "5053:5053"
     volumes:
       - ../src:/app
     tty: true
