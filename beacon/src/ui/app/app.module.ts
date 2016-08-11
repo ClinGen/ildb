@@ -17,6 +17,7 @@ import { CookieService } from 'angular2-cookie/core';
 import {UserComponent} from './account/user.component';
 import {AuthService} from './account/auth.service';
 import {HomeComponent} from './home/home.component';
+import {SettingsComponent} from './settings/settings.component';
 
 @NgModule({
   imports: [
