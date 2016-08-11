@@ -181,7 +181,7 @@
             "type": "CustomScriptForLinux",
             "typeHandlerVersion": "1.4",
             "settings": {
-              "fileUris": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/shared_scripts/ubuntu/vm-disk-utils-0.1.sh",
+              "fileUris": ["https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/shared_scripts/ubuntu/vm-disk-utils-0.1.sh"],
               "commandToExecute": "bash vm-disk-utils-0.1.sh"
             }
           }
@@ -192,7 +192,7 @@
           "apiVersion": "2015-05-01-preview",
           "location": "[resourceGroup().location]",
           "dependsOn": [
-            "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+            "[resourceId('Microsoft.Compute/virtualMachines', variables('vmName'))]"
           ],
           "properties": {
             "publisher": "Microsoft.Azure.Extensions",
@@ -204,7 +204,8 @@
                 "clingenhub": {
                   "image": "trentmswanson/beacon:v3",
                   "ports": [
-                    "80:80"
+                    "80:80",
+                    "443:443"
                   ],
                   "links": [
                     "mongodb:mongodb"
