@@ -4,7 +4,6 @@
 node_modules
 typings
 __pycache__
-dev-settings.sh
 
 # explicitly add files starting with a dot
 .*

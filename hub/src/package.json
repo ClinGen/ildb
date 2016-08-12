@@ -2,7 +2,7 @@
   "name": "clingen-hub",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy\"  ",
+    "start": "/usr/bin/env $(cat dev.env) && concurrently \"npm run client\" \"npm run server\" \"npm run proxy\"  ",
     "client": "tsc -w -p ui",
     "server": "./dev-settings.sh && nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app",
     "proxy": "browser-sync start --proxy localhost:80 --port 5051 --files 'ui' &",
