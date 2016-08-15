@@ -46,9 +46,11 @@ def login():
         # TODO log this and display a proper exception see if we can shift the authorization to role/group claims from the provider
         abort(401)
 
+    # TODO Add expiration to the jwt and support a refresh
     encoded = jwt.encode({'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
 
     # set the session token in a cookie
+    # TODO make this HttpOnly
     response.set_cookie('session_id', encoded)
 
     # validate in the auth handler
@@ -61,6 +63,9 @@ def make_authentication_request():
     print ('create authentication request')
     # consider storing a hash in state
     # what to hash in state might include cookie data, time, salt, etc...
+
+    # force login in order to work around the Azure AD issue where a user may be logged in to the wrong domain.
+    # Set prompt=login in the implicit flow request to force a new login
     state = rndstr()
     nounce = rndstr()
     request_args = {

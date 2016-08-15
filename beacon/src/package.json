@@ -2,9 +2,9 @@
   "name": "clingen-beacon",
   "version": "1.0.0",
   "scripts": {
-    "start": "/usr/bin/env $(cat dev.env) && concurrently \"npm run client\" \"npm run server\" \"npm run proxy\"  ",
+    "start": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy\"  ",
     "client": "tsc -w -p ui",
-    "server": "nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app",
+    "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app",
     "proxy": "browser-sync start --proxy localhost:80 --port 5001 --files 'ui' &",
     "setup": "npm run setup:client && npm run setup:server",
     "setup:server": "pip install -r requirements.txt",
