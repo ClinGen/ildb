@@ -11,6 +11,8 @@ services:
       - "5003:5003"
     volumes:
       - ../src:/app
+      - /fileshare
+      - /data/db
     tty: true
     stdin_open: true
     working_dir: /app

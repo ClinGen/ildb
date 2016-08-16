@@ -26,6 +26,12 @@ export class PatientService {
         }
       };
 
+      // update file upload progress
+      xhr.upload.onprogress = (event:any) => {
+        let progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+        console.log(progress);
+      };
+
       xhr.open('POST', `${this.patientUrl}/${id}/sample`, true);
 
       let formData = new FormData();

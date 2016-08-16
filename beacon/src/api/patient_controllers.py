@@ -63,14 +63,16 @@ def delete_patient_samples(id, sampleId):
 @patient_controllers.route('/<id>/sample', methods = ['GET'])
 @requires_auth
 def get_patient_samples(id):
-    """ Get a VCF sample """
+    """ Get all gene samples for an individual """
     list = DataAccess().get_patient_samples(id)
+
+    # add query string to fetch (status and filter by ids)
 
     return jsonify(list)
 
 @patient_controllers.route('/<id>/sample', methods = ['POST'])
 @requires_auth
-def import_patient_samples(id):
+def upload_patient_samples(id):
     """
     VCF file upload operation
     """
@@ -86,6 +88,10 @@ def import_patient_samples(id):
     if file.filename == '':
         flash('No selected file')
         return jsonify({'error':'no file'})
+
+    # 1) VALIDATE FILE AND WRITE HEADER RECORD
+    # 2) SAVE FILE TO VCF STORAGE PATH
+    # 3) QUEUE IMPORT PROCESSING
 
     # this is used to ensure we can safely use the filename sent to us
     #filename = secure_filename(file.filename)
