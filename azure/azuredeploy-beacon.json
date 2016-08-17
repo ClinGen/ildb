@@ -14,10 +14,11 @@
         "description": "SSH string for the admin VM."
       }
     },
-    "dnsLabel": {
+    "beaconAdmin": {
       "type": "string",
+      "defaultValue": "test@fs180.onmicrosoft.com",
       "metadata": {
-        "description": "DNS Label for the public endpoint"
+        "description": "The initial admin user initialized in a beacon"
       }
     }
   },
@@ -215,7 +216,17 @@
               "diskSizeGB": "1023",
               "lun": 0,
               "vhd": {
-                "Uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/vhds/',variables('vmName'),'-dataDisk1' ,'.vhd')]"
+                "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/vhds/',variables('vmName'),'-dataDisk1' ,'.vhd')]"
+              },
+              "caching": "None",
+              "createOption": "Empty"
+            },
+            {
+              "name": "datadisk2",
+              "diskSizeGB": "1023",
+              "lun": 1,
+              "vhd": {
+                "uri": "[concat('http://',variables('storageAccountName'),'.blob.core.windows.net/vhds/',variables('vmName'),'-dataDisk2' ,'.vhd')]"
               },
               "caching": "None",
               "createOption": "Empty"
@@ -278,17 +289,25 @@
                   "environment": [
                     "MONGO_CONNECTION_STRING=mongodb://mongo:27017",
                     "AUTH_SESSION_SECRET=sdce-casdwecd-scdgcedg-gcddgedcd-sdge",
-                    "AUTH_REDIRECT_URL=http://localhost:5001/api/auth/login",
+                    "[concat('AUTH_REDIRECT_URL=http://', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).dnsSettings.fqdn, '/api/auth/login')]",
                     "AUTH_PROVIDER_URL=https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/authorize",
                     "AUTH_TENANT=fs180.onmicrosoft.com",
                     "AUTH_CLIENT_ID=f123a339-be25-420f-a843-ecad0938a050",
-                    "AUTH_PROVIDER_CONFIG=https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+                    "AUTH_PROVIDER_CONFIG=https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
+                    "FILE_STORAGE_PATH=/fileshare",
+                    "[concat('ADMIN_USER=', parameters('beaconAdmin'))]"
+                  ],
+                  "volumes": [
+                    "/datadisks/disk2:/fileshare"
                   ]
                 },
                 "mongodb": {
                   "image": "mongo:3.3.6",
                   "ports": [
                     "27017:27017"
+                  ],
+                  "volumes": [
+                    "/datadisks/disk1:/data/db"
                   ]
                 }
               },

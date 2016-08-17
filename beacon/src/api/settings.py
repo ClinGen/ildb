@@ -19,6 +19,7 @@ class Settings:
   auth_provider_url = os.environ.get('AUTH_PROVIDER_URL')
   auth_tenant = os.environ.get('AUTH_TENANT')
   auth_client_id = os.environ.get('AUTH_CLIENT_ID')
+  admin_user = os.environ.get('ADMIN_USER')
 
   # APPLICATION SETTINGS
   # These settings are static in the build
