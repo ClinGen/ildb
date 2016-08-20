@@ -95,6 +95,7 @@ def make_authentication_request():
         "response_mode": "form_post",
         "state": state,
         "nonce": nounce,
+        "prompt": "login",
         "redirect_uri": Settings.auth_redirect_url,
         "scope":"openid profile"
     }

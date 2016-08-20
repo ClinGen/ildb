@@ -13,7 +13,7 @@ query_controllers = Blueprint('query_controllers', __name__)
 @query_controllers.route('/1/<chrom>/<position>/<allele>/<reference>', methods = ['GET'])
 def query1(chrom, position, allele, reference):
     """
-    Canonical Query1
+    Canonical Query 1
     """
     
     # TODO: Validate parameters

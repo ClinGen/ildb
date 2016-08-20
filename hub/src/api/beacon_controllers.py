@@ -8,35 +8,40 @@ from flask import Blueprint, jsonify, request
 from api.database import DataAccess
 from api.auth import requires_auth
 
-manage_controllers = Blueprint('manage_controllers', __name__)
+beacon_controllers = Blueprint('beacon_controllers', __name__)
 
-@manage_controllers.route('/', methods=['GET'])
+@beacon_controllers.route('', methods=['GET'])
 @requires_auth
 def get_tenant_list():
   """
   Get a list of the tenants
   """
 
-  return;
+  beacons = DataAccess().get_beacons()
 
-@manage_controllers.route('/<id>', methods=['GET'])
+  return jsonify(beacons);
+
+@beacon_controllers.route('/<id>', methods=['GET'])
 @requires_auth
 def get_tenant(id):
   """
   Get a tenant by id
   """
+  beacons = DataAccess().get_beacons()
 
   return;
 
-@manage_controllers.route('/', methods=['POST'])
+@beacon_controllers.route('', methods=['POST'])
 @requires_auth
 def add_tenant():
   """
   Add a new tenant to the system
   """
-  #beacons = DataAccess().get_beacons()
+  document = request.json
+    
+  return jsonify({'id':DataAccess().add_beacon(document)})
 
-@manage_controllers.route('/<id>', methods=['DELETE'])
+@beacon_controllers.route('/<id>', methods=['DELETE'])
 @requires_auth
 def delete_tenant(id):
   """
@@ -45,7 +50,7 @@ def delete_tenant(id):
 
   return;
 
-@manage_controllers.route('/<id>', methods=['POST'])
+@beacon_controllers.route('/<id>', methods=['POST'])
 @requires_auth
 def update_tenant(id):
   """

@@ -278,18 +278,17 @@
             "settings": {
               "compose": {
                 "clingenbeacon": {
-                  "image": "trentmswanson/beacon:v4",
+                  "image": "trentmswanson/beacon:v6",
                   "ports": [
-                    "80:80",
-                    "443:443"
+                    "80:80"
                   ],
                   "links": [
-                    "mongodb:mongodb"
+                    "mongo:mongo"
                   ],
                   "environment": [
                     "MONGO_CONNECTION_STRING=mongodb://mongo:27017",
                     "AUTH_SESSION_SECRET=sdce-casdwecd-scdgcedg-gcddgedcd-sdge",
-                    "[concat('AUTH_REDIRECT_URL=http://', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).dnsSettings.fqdn, '/api/auth/login')]",
+                    "[concat('AUTH_REDIRECT_URL=https://', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName')),providers('Microsoft.Network', 'publicIPAddresses').apiVersions[0]).dnsSettings.fqdn, '/api/auth/login')]",
                     "AUTH_PROVIDER_URL=https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/authorize",
                     "AUTH_TENANT=fs180.onmicrosoft.com",
                     "AUTH_CLIENT_ID=f123a339-be25-420f-a843-ecad0938a050",
@@ -301,13 +300,22 @@
                     "/datadisks/disk2:/fileshare"
                   ]
                 },
-                "mongodb": {
+                "mongo": {
                   "image": "mongo:3.3.6",
                   "ports": [
                     "27017:27017"
                   ],
                   "volumes": [
                     "/datadisks/disk1:/data/db"
+                  ]
+                },
+                "proxy": {
+                  "image": "trentmswanson/proxy:v2",
+                  "ports": [
+                    "443:443"
+                  ],
+                  "links": [
+                    "clingenbeacon:beaconapp"
                   ]
                 }
               },

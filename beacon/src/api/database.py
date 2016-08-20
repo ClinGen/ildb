@@ -89,6 +89,11 @@ class DataAccess:
 
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
+
+      # If the users collection does not exist then return an empty user
+      if 'users' not in db.collection_names():
+        return None
+      
       user_data = db['users']
 
       user = user_data.find_one({'_id': id})
