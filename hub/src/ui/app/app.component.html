@@ -1,120 +1,115 @@
 
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-heartbeat tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-            <!--logo start-->
-            <a href="index.html" class="logo"><b>CLINBEACON</b></a>
-            <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
-                <ul class="nav top-menu">
-                    <!-- settings start -->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-tasks"></i>
-                        </a>
-                    </li>
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
-                    <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-
-                    </li>
-                    <!-- inbox dropdown end -->
-                </ul>
-                <!--  notification end -->
+<section id="container" >
+  <!-- **********************************************************************************************************************************************************
+  TOP BAR CONTENT & NOTIFICATIONS
+  *********************************************************************************************************************************************************** -->
+  <!--header start-->
+  <header class="header black-bg">
+    <div class="sidebar-toggle-box">
+      <div class="fa fa-heartbeat tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+    </div>
+    <!--logo start-->
+    <a href="index.html" class="logo"><b>CLINBEACON</b></a>
+    <!--logo end-->
+    <div class="nav notify-row" id="top_menu">
+      <!--  notification start -->
+      <ul class="nav top-menu">
+        <!-- settings start -->
+        <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+            <i class="fa fa-cogs"></i>
+          </a>
+        </li>
+        <!-- settings end -->
+        <!-- inbox dropdown start-->
+        <li id="header_inbox_bar" class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+            <i class="fa fa-building-o"></i>
+          </a>
+        </li>
+        <!-- inbox dropdown end -->
+      </ul>
+      <!--  notification end -->
+    </div>
+    <div class="top-menu">
+      <ul class="nav pull-right top-menu">
+        <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i> Username</li>
+        <li><a class="logout" href="login.html">Logout</a></li>
+      </ul>
+    </div>
+  </header>
+  <section id="main-content">
+    <section class="wrapper">
+      <section id="search-panel" class="task-panel" >
+        <div class="showback">
+          <h4><i class="fa fa-angle-right"></i> {{title}}</h4>
+          <!-- Single button -->
+          <div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">
+                Action <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
             </div>
-            <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
-                  <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i> Username</li>
-                  <li><a class="logout" href="login.html">Logout</a></li>
-            	</ul>
+              <span>Description next to button here</span>
+          </div>
+          <router-outlet></router-outlet>
+          </div>
+        </section>
+        <section class="task-panel tasks-widget">
+          <div class="panel-heading">
+            <div class="pull-left"><h5><i class="fa fa-search"></i> Search Results</h5></div>
+            <br>
+          </div>
+          <div class="panel-body">
+            <div class="task-content">
+              <ul id="sortable" class="task-list ui-sortable">
+
+                <li class="list-danger">
+                  <div class="task-photo">
+                    <img src="../assets/img/friends/fr-01.jpg">
+                  </div>
+                  <div class="task-title">
+                    <span class="task-title-sp">Extensive collection of plugins</span><br>
+                    <span class="task-details-sp">Extensive collection of plugins</span>
+                  </div>
+                  <div class="pull-right">
+                    <span class="badge bg-important badge-block">15</span>
+                  </div>
+                </li>
+                <li class="list-success">
+                  <div class="task-photo">
+                    <img src="../assets/img/friends/fr-01.jpg">
+                  </div>
+                  <div class="task-title">
+                    <span class="task-title-sp">Extensive collection of plugins</span><br>
+                    <span class="task-details-sp">Extensive collection of plugins</span>
+                  </div>
+                  <div class="pull-right">
+                    <span class="badge bg-success badge-block">15</span>
+                  </div>
+                </li>
+                <li class="list-warning">
+                  <div class="task-photo">
+                    <img src="../assets/img/friends/fr-01.jpg">
+                  </div>
+                  <div class="task-title">
+                    <span class="task-title-sp">Extensive collection of plugins</span><br>
+                    <span class="task-details-sp">Extensive collection of plugins</span>
+                  </div>
+                  <div class="pull-right">
+                    <span class="badge bg-warning badge-block">15</span>
+                  </div>
+                </li>
+              </ul>
             </div>
-        </header>
-        <section id="main-content">
-        <section class="wrapper">
-          <section id="search-panel" class="task-panel" >
-          <div class="showback">
-      					<h4><i class="fa fa-angle-right"></i> {{title}}</h4>
-      					<!-- Single button -->
-						<div class="btn-group">
-						  <button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">
-						    Action <span class="caret"></span>
-						  </button>
-						  <ul class="dropdown-menu" role="menu">
-						    <li><a href="#">Action</a></li>
-						    <li><a href="#">Another action</a></li>
-						    <li><a href="#">Something else here</a></li>
-						    <li class="divider"></li>
-						    <li><a href="#">Separated link</a></li>
-						  </ul>
-						</div>
-              <router-outlet></router-outlet>
-      				</div>
-          </section>
-          <section class="task-panel tasks-widget">
-	                	<div class="panel-heading">
-	                        <div class="pull-left"><h5><i class="fa fa-tasks"></i> Todo List - Sortable Style</h5></div>
-	                        <br>
-	                 	</div>
-                          <div class="panel-body">
-                              <div class="task-content">
-                                  <ul id="sortable" class="task-list ui-sortable">
-
-                                      <li class="list-danger">
-                                          <i class=" fa fa-ellipsis-v"></i>
-                                          <div class="task-checkbox">
-                                              <input type="checkbox" class="list-child" value="">
-                                          </div>
-                                          <div class="task-title">
-                                              <span class="task-title-sp">Extensive collection of plugins</span>
-
-                                              <div class="pull-right">
-                                                  <span class="badge bg-important">5</span>
-                                              </div>
-                                          </div>
-                                      </li>
-                                      <li class="list-success">
-                                          <i class=" fa fa-ellipsis-v"></i>
-                                          <div class="task-checkbox">
-                                              <input type="checkbox" class="list-child" value="">
-                                          </div>
-                                          <div class="task-title">
-                                              <span class="task-title-sp">Free updates always, no extra fees.</span>
-                                              <div class="pull-right">
-                                                  <span class="badge bg-success">5</span>
-                                              </div>
-                                          </div>
-                                      </li>
-                                      <li class="list-warning">
-                                          <i class=" fa fa-ellipsis-v"></i>
-                                          <div class="task-checkbox">
-                                              <input type="checkbox" class="list-child" value="">
-                                          </div>
-                                          <div class="task-title">
-                                              <span class="task-title-sp">More features coming soon</span>
-
-                                              <div class="pull-right">
-                                                  <span class="badge bg-warning">55</span>
-                                              </div>
-                                          </div>
-                                      </li>
-
-                                  </ul>
-                              </div>
-                              <div class=" add-task-row">
-                                  <a class="btn btn-success btn-sm pull-left" href="todo_list.html#">Add New</a>
-                              </div>
-                          </div>
-                      </section>
-                    </section>
+          </div>
+        </section>
       </section>
+    </section>

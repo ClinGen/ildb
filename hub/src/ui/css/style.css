@@ -407,6 +407,9 @@ ul.sidebar-menu li a.active i {
 /* MAIN CONTENT CONFIGURATION */
 #search-panel{
 }
+.search-filters{
+  padding: 10px 0;
+}
 #main-content {
   width: 1170px;
   margin-right: auto;
@@ -432,7 +435,7 @@ ul.sidebar-menu li a.active i {
 
 .wrapper {
     display: inline-block;
-    margin-top: 120px;
+    margin-top: 90px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -2039,7 +2042,14 @@ label {
   border-color: #2bb4e8;
 }
 
-
+.badge-block{
+  width: 40px;
+  height:40px;
+  font-size: 18px;
+  line-height: 40px;
+  border-radius: 0;
+  margin-right:5px;
+}
 /*badge*/
 .badge.bg-primary {
     background: #8075c4;
@@ -2177,13 +2187,13 @@ label {
 /*todolist*/
 #sortable {
     list-style-type: none;
-    margin: 0 0 20px 0;
+    margin: 0;
     padding: 0;
     width: 100%;
 }
 #sortable li {
-    padding-left: 3em;
     font-size: 12px;
+    height: 60px;
 }
 #sortable li i {
     position: absolute;
@@ -2197,7 +2207,7 @@ label {
 }
 
 .ui-sortable > li {
-    padding: 15px 0 15px 35px !important ;
+    padding: 5 !important ;
     position: relative;
     background: #f5f6f8;
     margin-bottom: 2px;

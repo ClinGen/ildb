@@ -1,7 +1,7 @@
 /*--------------Tasks Widget--------------*/
 
 .task-content {
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 .task-panel {
@@ -15,7 +15,7 @@
 	clear: both;
 }
 
-.tasks-widget .task-footer  { 
+.tasks-widget .task-footer  {
 	margin-top: 5px;
 }
 
@@ -49,14 +49,19 @@
   margin-left:10px;
 }
 
-.tasks-widget .task-list  li > .task-checkbox {
+.tasks-widget .task-list  li > .task-photo {
 	float:left;
-	width:30px;
+	width:40px;
+  margin-right:5px;
 }
-
+.tasks-widget .task-list  li > .task-photo img{
+	height:40px;
+	width:40px;
+}
 .tasks-widget .task-list  li > .task-title  {
   overflow:hidden;
   margin-right:10px;
+  display: inline-block;
 }
 
 .tasks-widget .task-list  li > .task-config {
@@ -67,6 +72,8 @@
 
 .tasks-widget .task-list  li .task-title .task-title-sp  {
   margin-right:5px;
+  font-weight:bold;
+  font-size:14px;
 }
 
 .tasks-widget .task-list  li.task-done .task-title-sp  {
@@ -102,7 +109,7 @@
 		float:inherit;
 		display:block;
 	}
-	
+
 	.tasks-widget .task-list-projects li > .label {
 		margin-bottom:5px;
 	}

@@ -11,7 +11,7 @@ export class BeaconQuery {
 @Component({
   selector: 'hub-home',
   template: `
-  <div class="row">
+  <div class="row search-filters">
     <div class="col-md-4">
       <label>Chromosome</label>
       <input [(ngModel)]="beaconQuery.chrom" class="form-control">
@@ -24,6 +24,8 @@ export class BeaconQuery {
       <label>Allele</label>
       <input [(ngModel)]="beaconQuery.allele" class="form-control">
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
       <button type="button" (click)="find()" class="btn btn-theme"><i class="fa fa-search"></i> Search</button>
     </div>
