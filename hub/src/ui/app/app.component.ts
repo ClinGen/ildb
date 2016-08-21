@@ -4,8 +4,8 @@ import { ROUTER_DIRECTIVES }  from '@angular/router';
 @Component({
   selector: 'my-app',
   directives: [ROUTER_DIRECTIVES],
-  template: `
-    <router-outlet></router-outlet>`
+  templateUrl: '/app/app.component.html' 
+
 })
 
 // Set default query

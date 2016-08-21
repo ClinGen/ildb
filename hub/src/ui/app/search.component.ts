@@ -11,18 +11,23 @@ export class BeaconQuery {
 @Component({
   selector: 'hub-home',
   template: `
-    <h1>{{title}}</h1>
-    <h2>Reference Build {{beaconQuery.build}}!</h2>
-    <div><label>id: </label>{{beaconQuery.chrom}}:{{beaconQuery.position}} {{beaconQuery.allele}}</div>
-    <div>
-      <label>chromosome: </label>
-      <input [(ngModel)]="beaconQuery.chrom">
-      <label>position: </label>
-      <input [(ngModel)]="beaconQuery.position">
-      <label>allele: </label>
-      <input [(ngModel)]="beaconQuery.allele">
-      <button type="button" (click)="find()">Query</button> 
+  <div class="row">
+    <div class="col-md-4">
+      <label>Chromosome</label>
+      <input [(ngModel)]="beaconQuery.chrom" class="form-control">
     </div>
+    <div class="col-md-4">
+      <label>Position</label>
+      <input [(ngModel)]="beaconQuery.position" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label>Allele</label>
+      <input [(ngModel)]="beaconQuery.allele" class="form-control">
+    </div>
+    <div class="col-md-12">
+      <button type="button" (click)="find()" class="btn btn-theme"><i class="fa fa-search"></i> Search</button>
+    </div>
+  </div>
     <div *ngFor="let item of queryResults">
     {{item.beacon}} - {{item.result.count}}
     </div>`,

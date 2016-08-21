@@ -1,6 +1,6 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 import {AuthService} from './auth.service';
-import {HomeComponent} from './home.component';
+import {HomeComponent} from './search.component';
 import {LoginComponent} from './login.component';
 import {ManageComponent} from './manage.component';
 import {TenantsComponent} from './manage/beacon.component';
