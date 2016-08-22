@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BeaconService } from './beacon.services';
 
 // Display beacon id, name, query count (use/issued), users status
@@ -12,6 +13,7 @@ export class TenantsComponent implements OnInit {
   tenants = [];
 
   constructor (
+    private router: Router,
     private dataService: BeaconService) {
   }
 
