@@ -151,9 +151,9 @@ a, a:hover, a:focus {
 }
 
 .btn-clear-g {
-	color: #48bcb4;
+	color: #fff;
 	background: transparent;
-	border-color: #48bcb4;
+	border-color: #fff;
 }
 
 .btn-clear-g:hover {
@@ -430,7 +430,7 @@ ul.sidebar-menu li a.active i {
 
 .black-bg {
     background: #8c1515;
-    border-bottom: 1px solid #c9aa5f;
+    border-bottom: 1px solid #c45f5f;
 }
 
 .wrapper {
@@ -1334,11 +1334,11 @@ PANELS CONFIGURATIONS
 
 /* Soptify Panel */
 #spotify {
-	background: url(../img/lorde.jpg) no-repeat center top;
+	background: url(../assets/img/lorde.jpg) no-repeat center top;
 	margin-top: -15px;
 	background-attachment: relative;
 	background-position: center center;
-	min-height: 220px;
+	min-height: 250px;
 	width: 100%;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
@@ -1356,7 +1356,7 @@ PANELS CONFIGURATIONS
 	margin-top: 5px;
 }
 #spotify .sp-title {
-	bottom: 15%;
+	bottom: 0;
 	left: 25px;
 	position: absolute;
 	color: #efefef;
@@ -1748,7 +1748,9 @@ PANELS CONFIGURATIONS
 .brand-highlight {
 background: #fffbcc !important;
 }
-
+.beacon-status label{
+  margin-right:10px;
+}
 
 /* FORMS CONFIGURATION */
 .form-panel {
