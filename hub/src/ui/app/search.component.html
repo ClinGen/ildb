@@ -34,11 +34,6 @@
   <div class="col-md-12">
     <button type="button" (click)="find()" class="btn btn-theme"><i class="fa fa-search"></i> Search</button>
   </div>
-</div>
-  <div *ngFor="let item of queryResults">
-  {{item.beacon}} - {{item.result.count}}
-  </div>
-</div>
 </section>
 <section class="task-panel tasks-widget">
 <div class="panel-heading">
@@ -47,6 +42,21 @@
 </div>
 <div class="panel-body">
   <div class="task-content">
+    <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of queryResults">
+      <li class="list-success">
+        <div class="task-photo">
+          <img src="../assets/img/friends/fr-01.jpg">
+        </div>
+        <div class="task-title">
+          <span class="task-title-sp">{{item.beacon}}</span><br>
+          <span class="task-details-sp">Beacon hosted by clingen organization</span>
+        </div>
+        <div class="pull-right">
+          <span class="badge bg-success badge-block">{{item.result.count}}</span>
+        </div>
+      </li>
+    </ul>
+    <!--
     <ul id="sortable" class="task-list ui-sortable">
 
       <li class="list-danger">
@@ -86,6 +96,7 @@
         </div>
       </li>
     </ul>
+    -->
   </div>
 </div>
 </section>

@@ -10,8 +10,8 @@ export class BeaconQuery {
 
 @Component({
   selector: 'hub-home',
-  templateUrl: '/app/search.component.html' ,
-    providers: [QueryService]
+  templateUrl: '/app/search.component.html',
+  providers: [QueryService]
 })
 
 export class SearchComponent {
@@ -20,15 +20,15 @@ export class SearchComponent {
 
   queryResults: any[];
 
-  constructor (
-    private queryService: QueryService){
+  constructor(
+    private queryService: QueryService) {
 
-    }
+  }
 
-  find(){
+  find() {
     this.queryService.queryBeacons(this.beaconQuery.chrom, this.beaconQuery.position, this.beaconQuery.allele)
-    .then(queryResults => this.queryResults = queryResults)
-    .catch(error => console.log(error))
+      .then(queryResults => this.queryResults = queryResults)
+      .catch(error => console.log(error))
   }
 
   beaconQuery: BeaconQuery = {

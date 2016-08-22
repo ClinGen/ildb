@@ -22,8 +22,8 @@
     </div>
     <div class="top-menu">
       <ul class="nav pull-right top-menu">
-        <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i> Username</li>
-        <li><a class="logout" href="login.html">Logout</a></li>
+        <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i>{{username()}}</li>
+        <li><button class="logout" (click)="logout()">Logout</button></li>
       </ul>
     </div>
   </header>
