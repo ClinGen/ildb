@@ -3,17 +3,17 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 //
-// Tenant services
+// Beacon services
 //
 @Injectable()
-export class TenantService {
+export class BeaconService {
 
   private beaconUrl = '/api/beacons';
 
   constructor(private http: Http) { }
 
   // Get a list of tenants
-  getTenantList(): Promise<any[]> {
+  getList(): Promise<any[]> {
     return this.http.get(this.beaconUrl)
       .toPromise()
       .then(response => response.json())
@@ -21,7 +21,7 @@ export class TenantService {
   }
 
   // add a new tenant to the beacon
-  addTenant(tenant: any): Promise<any> {
+  add(tenant: any): Promise<any> {
     return this.http.post(this.beaconUrl, tenant)
       .toPromise()
       .then(response => response.json())
@@ -29,7 +29,7 @@ export class TenantService {
   }
 
   // add a new tenant to the beacon
-  updateTenant(tenant: any): Promise<any> {
+  update(tenant: any): Promise<any> {
     return this.http.post(this.beaconUrl, tenant)
       .toPromise()
       .then(response => response.json())
@@ -37,7 +37,7 @@ export class TenantService {
   }
 
   // delete a tenant
-  deleteTenant(tenantId: string) {
+  delete(tenantId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let url = `${this.beaconUrl}/${tenantId}`;

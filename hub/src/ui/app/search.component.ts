@@ -14,7 +14,7 @@ export class BeaconQuery {
     providers: [QueryService]
 })
 
-export class HomeComponent {
+export class SearchComponent {
 
   title = 'Beacon Search Hub';
 

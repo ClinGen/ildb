@@ -1,6 +1,4 @@
-
-
-<section id="container" >
+<section id="container">
   <header class="header black-bg">
     <div class="sidebar-toggle-box">
       <div class="fa fa-heartbeat tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
@@ -9,24 +7,18 @@
     <a href="index.html" class="logo"><b>CLINBEACON</b></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
-      <!--  notification start -->
       <ul class="nav top-menu">
-        <!-- settings start -->
-        <li class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-            <i class="fa fa-cogs"></i>
-          </a>
-        </li>
-        <!-- settings end -->
-        <!-- inbox dropdown start-->
         <li id="header_inbox_bar" class="dropdown">
-          <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+          <a data-toggle="dropdown" class="dropdown-toggle" routerLink="manage/beacons">
             <i class="fa fa-building-o"></i>
           </a>
         </li>
-        <!-- inbox dropdown end -->
+        <li class="dropdown">
+          <a data-toggle="dropdown" class="dropdown-toggle" routerLink="manage/settings">
+            <i class="fa fa-cogs"></i>
+          </a>
+        </li>
       </ul>
-      <!--  notification end -->
     </div>
     <div class="top-menu">
       <ul class="nav pull-right top-menu">
@@ -38,7 +30,8 @@
   <section id="main-content">
     <section class="wrapper">
 
-          <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
 
     </section>
-    </section>
+  </section>
+</section>

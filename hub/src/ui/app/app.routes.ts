@@ -1,15 +1,15 @@
 import { provideRouter, RouterConfig }  from '@angular/router';
 import {AuthService} from './auth.service';
-import {HomeComponent} from './search.component';
+import {SearchComponent} from './search.component';
 import {LoginComponent} from './login.component';
-import {ManageComponent} from './manage.component';
 import {TenantsComponent} from './manage/beacon.component';
 import {TenantAddComponent} from './manage/beacon-add.component';
+import {SettingsComponent} from './manage/settings.component';
 
 const routes: RouterConfig = [
   {
     path:'',
-    component: HomeComponent,
+    component: SearchComponent,
     canActivate: [AuthService]
   },
   {
@@ -17,18 +17,18 @@ const routes: RouterConfig = [
     component: LoginComponent
   },
   {
-    path: 'settings',
-    component: ManageComponent,
-    canActivate: [AuthService]
-  },
-  {
-    path: 'tenants',
+    path: 'manage/beacons',
     component: TenantsComponent,
     canActivate: [AuthService]
   },
   {
-    path: 'tenants/new',
+    path: 'manage/beacons/new',
     component: TenantAddComponent,
+    canActivate: [AuthService]
+  },
+  {
+    path: 'manage/settings',
+    component: SettingsComponent,
     canActivate: [AuthService]
   }
 ];
