@@ -12,7 +12,7 @@ export class BeaconService {
 
   constructor(private http: Http) { }
 
-  // Get a list of tenants
+  // Get a list of organizations
   getList(): Promise<any[]> {
     return this.http.get(this.beaconUrl)
       .toPromise()
@@ -20,27 +20,27 @@ export class BeaconService {
       .catch(this.handleError);
   }
 
-  // add a new tenant to the beacon
-  add(tenant: any): Promise<any> {
-    return this.http.post(this.beaconUrl, tenant)
+  // add a new beacon to the beacon
+  add(beacon: any): Promise<any> {
+    return this.http.post(this.beaconUrl, beacon)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   // add a new tenant to the beacon
-  update(tenant: any): Promise<any> {
-    return this.http.post(this.beaconUrl, tenant)
+  update(beacon: any): Promise<any> {
+    return this.http.post(this.beaconUrl, beacon)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   // delete a tenant
-  delete(tenantId: string) {
+  delete(beaconId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.beaconUrl}/${tenantId}`;
+    let url = `${this.beaconUrl}/${beaconId}`;
     return this.http
       .delete(url, headers)
       .toPromise()

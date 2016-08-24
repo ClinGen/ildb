@@ -1,3 +1,4 @@
+<h1>Admin Panel: Organizations</h1>
 <section class="task-panel tasks-widget">
 <div class="panel-heading">
   <div class="pull-left"><h5><i class="fa fa-share-alt"></i> List of Beacons</h5></div>
@@ -5,8 +6,23 @@
 </div>
 <div class="panel-body">
   <div class="task-content">
+    <ul id="sortable" class="task-list ui-sortable"  *ngFor="let item of organizations">
+      <li class="list-success">
+        <div class="task-photo">
+          <img src="../assets/img/friends/fr-01.jpg">
+        </div>
+        <div class="task-title">
+          <span class="task-title-sp">{{item.name}}</span><span class="badge bg-warning">Offline</span><br>
+          <span class="task-details-sp">Extensive collection of plugins</span>
+        </div>
+        <div class="pull-right edit-list">
+            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/manage/beacons/', item.id])"></button>
+            <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+        </div>
+      </li>
+    </ul>
+    <!--
     <ul id="sortable" class="task-list ui-sortable">
-
       <li class="list-danger">
         <div class="task-photo">
           <img src="../assets/img/friends/fr-01.jpg">
@@ -47,6 +63,7 @@
         </div>
       </li>
     </ul>
+    -->
   </div>
   <div>
     <br/>

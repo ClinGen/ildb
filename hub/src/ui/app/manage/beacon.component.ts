@@ -8,9 +8,9 @@ import { BeaconService } from './beacon.services';
   providers:[BeaconService]
 })
 
-export class TenantsComponent implements OnInit {
+export class BeaconComponent implements OnInit {
 
-  tenants = [];
+  organizations = [];
 
   constructor (
     private router: Router,
@@ -18,18 +18,18 @@ export class TenantsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTenants();
+    this.getBeacons();
   }
 
-  getTenants() {
+  getBeacons() {
     this.dataService.getList()
-      .then(tenants => this.tenants = tenants)
+      .then(organizations => this.organizations = organizations)
       .catch(error => console.log(error))
   }
 
   delete(id) {
     this.dataService.delete(id)
-      .then(data => this.getTenants())
+      .then(data => this.getBeacons())
       .catch(error => console.log(error))
   }
 }

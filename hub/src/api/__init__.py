@@ -13,4 +13,4 @@ app.register_blueprint(auth_controllers, url_prefix='/api/auth')
 
 # Add the management controllers to the flask application
 from api.beacon_controllers import beacon_controllers
-app.register_blueprint(beacon_controllers, url_prefix='/api/beacon')
+app.register_blueprint(beacon_controllers, url_prefix='/api/beacons')

@@ -3,6 +3,7 @@
 Beacon Query API Controllers
 These API will be called by the central hub
 """
+import sys
 import requests
 from flask import Blueprint, jsonify, request
 from api.database import DataAccess
@@ -20,7 +21,7 @@ def query1(chrom, position, allele, reference):
     
     beacons = DataAccess().get_beacons()
 
-    print(beacons)
+    print(beacons, file=sys.stderr)
 
     # TODO: These can run in parallel
     # TODO: Validate the response from these calls
@@ -28,7 +29,7 @@ def query1(chrom, position, allele, reference):
     # TODO: The hub query API will be made meta-data defined
     results = []
     for beacon in beacons:
-        print(beacon['endpoint'] + request.path)
+        print(beacon['endpoint'] + request.path, file=sys.stderr)
         resp = requests.get(beacon['endpoint'] + request.path).json()
         results.append( {'beacon': beacon['name'], 'result':resp} )
 

@@ -47,8 +47,9 @@ def delete_tenant(id):
   """
   Delete a tenant
   """
+  DataAccess().delete_beacon(id)
 
-  return;
+  return jsonify({'result':'ok'})
 
 @beacon_controllers.route('/<id>', methods=['POST'])
 @requires_auth
