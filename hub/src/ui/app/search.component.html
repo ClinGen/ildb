@@ -49,11 +49,11 @@
       <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of queryResults">
         <li class="list-success">
           <div class="task-photo">
-            <img src="../assets/img/friends/fr-01.jpg">
+            <img src="../img/no-logo.jpg">
           </div>
           <div class="task-title">
             <span class="task-title-sp">{{item.beacon}}</span><br>
-            <span class="task-details-sp">Beacon hosted by clingen organization</span>
+            <span class="task-details-sp">{{item.description}}</span>
           </div>
           <div class="pull-right">
             <span class="badge bg-success badge-block">{{item.result.count}}</span>

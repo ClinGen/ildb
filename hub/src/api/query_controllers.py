@@ -31,6 +31,6 @@ def query1(chrom, position, allele, reference):
     for beacon in beacons:
         print(beacon['endpoint'] + request.path, file=sys.stderr)
         resp = requests.get(beacon['endpoint'] + request.path).json()
-        results.append( {'beacon': beacon['name'], 'result':resp} )
+        results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
 
     return jsonify(results)

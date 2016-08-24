@@ -3,6 +3,7 @@
 Data access API
 """
 
+import sys
 import pymongo
 from bson.objectid import ObjectId
 from api.settings import Settings
@@ -34,6 +35,7 @@ class DataAccess:
         {
           "id":str(o["_id"]),
           "name":o["name"],
+          "description":o["description"],
           "endpoint":o["endpoint"]
         } for o in cursor)
 
@@ -59,7 +61,7 @@ class DataAccess:
 
       tenant_data = db[BEACON_COLLECTION]
 
-      tenant_data.update_one({'_id': id}, beacon)
+      tenant_data.replace_one({'_id': ObjectId(id)}, beacon)
 
       return True
 
@@ -83,9 +85,14 @@ class DataAccess:
 
       tenant_data = db[BEACON_COLLECTION]
 
-      tenant = tenant_data.find_one({'_id': id})
+      tenant = tenant_data.find_one({'_id': ObjectId(id)})
 
-      return tenant
+      return {
+                "id":str(tenant["_id"]),
+                "name":tenant["name"],
+                "description":tenant["description"],
+                "endpoint":tenant["endpoint"]
+              }
 
   ##
   ## User Collection Methods

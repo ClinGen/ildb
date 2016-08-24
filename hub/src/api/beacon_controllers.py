@@ -27,9 +27,9 @@ def get_tenant(id):
   """
   Get a tenant by id
   """
-  beacons = DataAccess().get_beacons()
+  beacon = DataAccess().get_beacon(id)
 
-  return;
+  return jsonify(beacon);
 
 @beacon_controllers.route('', methods=['POST'])
 @requires_auth
@@ -58,4 +58,8 @@ def update_tenant(id):
   Update a tenant
   """
 
-  return;
+  document = request.json
+
+  DataAccess().update_beacon(id, document)
+
+  return jsonify({'result':'ok'})

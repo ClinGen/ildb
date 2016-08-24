@@ -15,12 +15,16 @@ export class BeaconEditComponent implements OnInit {
   isNew = false;
   id = "";
 
+  organization  = {};
+
+  //Beacon details
   name = "";
+  description = "";
   endpoint = "";
 
   constructor(private route: ActivatedRoute, private dataService:BeaconService, private router: Router) {
-    let id = route.snapshot.params["id"];
-    if (id === "new")
+    this.id = route.snapshot.params["id"];
+    if (this.id === "new")
       this.isNew = true;
   }
 
@@ -29,7 +33,18 @@ export class BeaconEditComponent implements OnInit {
       return;
 
     // Load existing beacon information
-    
+    this.loadBeaconData();
+  }
+
+  // Load Beacon Details
+  loadBeaconData() {
+    this.dataService.getById(this.id)
+        .then(data => {
+          this.name = data.name;
+          this.description = data.description;
+          this.endpoint = data.endpoint;
+        })
+        .catch(error => console.log(error))
   }
 
   // Create a new beacon registration
@@ -41,10 +56,13 @@ export class BeaconEditComponent implements OnInit {
 
     if (this.isNew) {
       //New beacon
-      this.dataService.add({"name":this.name, "endpoint":this.endpoint})
+      this.dataService.add({"name":this.name, "description":this.description, "endpoint":this.endpoint})
         .then(result => this.router.navigate(['/manage/beacons']))
         .catch(error => console.log(error))
     } else {
+      this.dataService.update({"id": this.id, "name":this.name, "description":this.description, "endpoint":this.endpoint})
+        .then(result => this.router.navigate(['/manage/beacons']))
+        .catch(error => console.log(error))
       //Update existing beacon
     }
   }

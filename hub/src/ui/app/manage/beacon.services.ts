@@ -20,6 +20,17 @@ export class BeaconService {
       .catch(this.handleError);
   }
 
+  // Get a list of organizations
+  getById(id): Promise<any[]> {
+
+    let url = `${this.beaconUrl}/${id}`;
+
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   // add a new beacon to the beacon
   add(beacon: any): Promise<any> {
     return this.http.post(this.beaconUrl, beacon)
@@ -30,7 +41,9 @@ export class BeaconService {
 
   // add a new tenant to the beacon
   update(beacon: any): Promise<any> {
-    return this.http.post(this.beaconUrl, beacon)
+    let url = `${this.beaconUrl}/${beacon.id}`;
+
+    return this.http.post(url, beacon)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
