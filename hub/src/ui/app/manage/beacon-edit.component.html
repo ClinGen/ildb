@@ -17,32 +17,32 @@
       <h4 class="mb"><i class="fa fa-angle-right"></i> Organization Details</h4>
       <div class="form-group">
         <label>Name</label>
-        <input class="form-control">
+        <input class="form-control" [(ngModel)]="organization.name">
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input class="form-control">
+        <input class="form-control" [(ngModel)]="organization.description">
       </div>
       <div class="form-group">
         <label>Website</label>
-        <input class="form-control">
+        <input class="form-control" [(ngModel)]="organization.website">
       </div>
       <div class="form-group">
         <label>Address</label>
-        <input class="form-control">
+        <input class="form-control" [(ngModel)]="organization.address">
       </div>
       <div class="row">
         <div class="col-md-4">
           <label>City</label>
-          <input class="form-control">
+          <input class="form-control" [(ngModel)]="organization.city">
         </div>
         <div class="col-md-4">
           <label>State</label>
-          <input class="form-control">
+          <input class="form-control" [(ngModel)]="organization.state">
         </div>
         <div class="col-md-4">
           <label>Zip</label>
-          <input class="form-control">
+          <input class="form-control" [(ngModel)]="organization.zip">
         </div>
       </div>
       <h4 class="mb" style="margin-top:40px;"><i class="fa fa-angle-right"></i> Contact Details</h4>
@@ -61,15 +61,15 @@
       <h4 class="mb" style="margin-top:40px;"><i class="fa fa-angle-right"></i> Beacon Details</h4>
       <div class="form-group">
         <label>Name</label>
-        <input class="form-control" [(ngModel)]="name">
+        <input class="form-control" [(ngModel)]="beacon.name">
       </div>
       <div class="form-group">
         <label>Description</label>
-        <input class="form-control" [(ngModel)]="description">
+        <input class="form-control" [(ngModel)]="beacon.description">
       </div>
       <div class="form-group">
         <label>Endpoint</label>
-        <input class="form-control" [(ngModel)]="endpoint">
+        <input class="form-control" [(ngModel)]="beacon.endpoint">
       </div>
       <label style="margin-bottom:0;">Status</label>
       <div class="radio beacon-status">

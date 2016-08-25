@@ -3,32 +3,53 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { BeaconService } from './beacon.services';
 
-// TODO: Consider merging create with edit and handling the 'new' id
-// Name, logo, beacon endpoint, contact name/email.
+// TODO: consider reorganizing this. Can an organization have multiple beacons?
+//    Place beacons as a collection under organization?
+class Organization {
+  name = "";
+  description = "";
+  address = "";
+  city = "";
+  state = "";
+  zip = "";
+  contact = new Contact();
+}
+
+class Contact {
+  name = "";
+  email = "";
+  phone = "";
+}
+
+class Beacon {
+  id = "";
+  name = "";
+  description = "";
+  endpoint = "";
+}
+
 @Component({
   templateUrl: '/app/manage/beacon-edit.component.html',
-  providers:[BeaconService]
+  providers: [BeaconService]
 })
-
 export class BeaconEditComponent implements OnInit {
 
   isNew = false;
   id = "";
 
-  organization  = {};
-
   //Beacon details
-  name = "";
-  description = "";
-  endpoint = "";
+  beacon = new Beacon();
+  organization = new Organization();
 
-  constructor(private route: ActivatedRoute, private dataService:BeaconService, private router: Router) {
+  constructor(private route: ActivatedRoute, private dataService: BeaconService, private router: Router) {
     this.id = route.snapshot.params["id"];
     if (this.id === "new")
       this.isNew = true;
   }
 
   ngOnInit() {
+
+    // If this is a new beacon nothing to initialize
     if (this.isNew)
       return;
 
@@ -39,28 +60,30 @@ export class BeaconEditComponent implements OnInit {
   // Load Beacon Details
   loadBeaconData() {
     this.dataService.getById(this.id)
-        .then(data => {
-          this.name = data.name;
-          this.description = data.description;
-          this.endpoint = data.endpoint;
-        })
-        .catch(error => console.log(error))
+      .then(data => {
+        this.beacon.name = data.name;
+        this.beacon.description = data.description;
+        this.beacon.endpoint = data.endpoint;
+      })
+      .catch(error => console.log(error))
   }
 
   // Create a new beacon registration
   save() {
 
     // add validation
-    if (this.name == "" || this.endpoint == "")
+    if (this.beacon.name == "" || this.beacon.endpoint == "")
       return;
 
     if (this.isNew) {
       //New beacon
-      this.dataService.add({"name":this.name, "description":this.description, "endpoint":this.endpoint})
+      this.dataService.add(this.beacon)
         .then(result => this.router.navigate(['/manage/beacons']))
         .catch(error => console.log(error))
     } else {
-      this.dataService.update({"id": this.id, "name":this.name, "description":this.description, "endpoint":this.endpoint})
+      let beacon = this.beacon;
+      beacon.id = this.id;
+      this.dataService.update(beacon)
         .then(result => this.router.navigate(['/manage/beacons']))
         .catch(error => console.log(error))
       //Update existing beacon

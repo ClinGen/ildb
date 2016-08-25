@@ -21,7 +21,7 @@ export class BeaconService {
   }
 
   // Get a list of organizations
-  getById(id): Promise<any[]> {
+  getById(id): Promise<any> {
 
     let url = `${this.beaconUrl}/${id}`;
 
@@ -42,7 +42,7 @@ export class BeaconService {
   // add a new tenant to the beacon
   update(beacon: any): Promise<any> {
     let url = `${this.beaconUrl}/${beacon.id}`;
-
+    
     return this.http.post(url, beacon)
       .toPromise()
       .then(response => response.json())
