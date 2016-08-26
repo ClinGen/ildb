@@ -6,7 +6,7 @@ Docker is the only developer environment requirement
 * Docker compose 1.8.0
 
 ## development environment
-The development environment will expose the application on localhost port `:5000` and the mongodb database on localhost port `:27017`
+The development environment will expose the application on localhost port `:5051` and the mongodb database on localhost port `:27017`
 
 ### startup
 open a terminal window in the beacon directory and type `bash up.sh`
