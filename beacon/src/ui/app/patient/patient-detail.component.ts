@@ -23,7 +23,7 @@ import { PatientService } from './patient.services';
     </div>
     <div mdl>
     <button [disabled]="uploading" (click)="import()">import</button>
-    <div mdl [hidden]="!uploading" id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+    <div [hidden]="!uploading">uploading...</div>
     </div>
     `,
     providers:[PatientService]
