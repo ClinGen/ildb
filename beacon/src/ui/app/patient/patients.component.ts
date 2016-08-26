@@ -3,7 +3,7 @@ import { PatientService } from './patient.services';
 
 @Component({
   template: `
-    <h2>Patient List</h2>
+    <h2>Individuals</h2>
     <div class="demo-list-action mdl-list" style="width:400px">
       <div *ngFor="let item of patients" class="mdl-list__item">
         <span class="mdl-list__item-primary-content">
