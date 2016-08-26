@@ -1,1 +1,47 @@
-<h2>VCF Data</h2>
+<section class="task-panel tasks-widget">
+<div class="panel-heading">
+  <div class="pull-left"><h5><i class="fa fa-user"></i> VCF Files</h5></div>
+  <br>
+</div>
+<div class="panel-body">
+  <div class="task-content">
+    <ul id="sortable" class="task-list ui-sortable"  *ngFor="let item of files">
+      <li class="list-success">
+        <div class="task-title">
+          <span class="task-title-sp">{{item.id}}</span><br>
+        </div>
+        <div class="pull-right edit-list">
+            <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <br/>
+    <div>
+      <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Upload Dialog -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Import VCF File</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
