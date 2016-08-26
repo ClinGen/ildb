@@ -50,6 +50,15 @@ export class PatientService {
       .catch(this.handleError);
   }
 
+  getById(id:string): Promise<any> {
+    let url = `${this.patientUrl}/${id}`;
+
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   // add a new patient to the beacon
   addPatient(patient: any): Promise<any> {
     return this.http.post(this.patientUrl, patient)

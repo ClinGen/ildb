@@ -9,6 +9,8 @@ import { PatientService } from './patient.services';
 
 export class PatientDetailsComponent implements OnInit {
   patientId = "";
+  reference = "";
+
   showGenePanel = true;
 
   samples = [];
@@ -17,6 +19,8 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    //Retrieve individual information
+
     //Load patient samples
     this.loadSampleList();
   }
@@ -25,6 +29,14 @@ export class PatientDetailsComponent implements OnInit {
     this.dataService.getPatientSamples(this.patientId)
       .then(results => this.samples = results)
       .catch(error => console.log(error))
+
+    this.dataService.getById(this.patientId)
+      .then(results => this.reference = results.reference)
+      .catch(error => console.log(error))
+  }
+
+  save() {
+    return;
   }
 
   uploading = false;

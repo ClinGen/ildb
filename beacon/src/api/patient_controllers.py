@@ -35,7 +35,7 @@ def create_patient():
 def get_patient(id):
     """ Get a specific patient by id """
 
-    return jsonify({'result':'ok'})
+    return jsonify(DataAccess().get_patient(id))
 
 @patient_controllers.route('/<id>', methods = ['DELETE'])
 @requires_auth
