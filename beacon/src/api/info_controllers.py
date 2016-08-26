@@ -12,5 +12,5 @@ def version():
     return version information for the hub
     """
     
-    # return this from environment variables set by container
+    # TODO: Move to environment variable or file
     return jsonify({'version':1})

@@ -17,8 +17,10 @@ import_controllers = Blueprint('import_controllers', __name__)
 @requires_auth
 def import_vcf():
     """
-    VCF file upload operation
+    Import multi-sample VCF file that mauy not be associated with a specific patient
     """
+    # TODO: how do we correlate samples with patients and phenotipical data?
+    # Store documents
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
