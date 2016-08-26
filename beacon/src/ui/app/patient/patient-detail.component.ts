@@ -3,36 +3,16 @@ import {ActivatedRoute} from '@angular/router';
 import { PatientService } from './patient.services';
 
 @Component({
-  template: `
-    <h2>Patient Details</h2>
-    {{patientId}}
-    <div>
-    <h4>genome samples</h4>
-      <div *ngFor="let item of samples" class="mdl-list__item">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons">label</i>
-          <span>{{item.id}}</span>
-        </span>
-      </div>
-    </div>
-    <div>
-    <strong>import vcf</strong>
-    </div>
-    <div>
-        <input type="file" accept="vcf" (change)="fileChangeEvent($event)" placeholder="Upload file..." />                         
-    </div>
-    <div mdl>
-    <button [disabled]="uploading" (click)="import()">import</button>
-    <div [hidden]="!uploading">uploading...</div>
-    </div>
-    `,
-    providers:[PatientService]
+  templateUrl: '/app/patient/patient-edit.component.html',
+  providers: [PatientService]
 })
 
 export class PatientDetailsComponent implements OnInit {
   patientId = "";
-  samples=[];
-  constructor(route: ActivatedRoute, private dataService : PatientService) {
+  showGenePanel = true;
+
+  samples = [];
+  constructor(route: ActivatedRoute, private dataService: PatientService) {
     this.patientId = route.snapshot.params['id'];
   }
 
@@ -62,7 +42,7 @@ export class PatientDetailsComponent implements OnInit {
 
     this.uploading = true;
     this.dataService.uploadPatientSample(this.patientId, this.myfile.file[0])
-      .then(result => {this.uploading = false; this.loadSampleList();})
-      .catch(error => {console.log(error); this.uploading = false})
+      .then(result => { this.uploading = false; this.loadSampleList(); })
+      .catch(error => { console.log(error); this.uploading = false })
   }
 }

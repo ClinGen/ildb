@@ -116,9 +116,11 @@ class DataAccess:
       db = mclient[DB_NAME]
       patients_collection = db['patients']
 
-      cursor = patients_collection.find({},{})
+      cursor = patients_collection.find()
+      # The following returns just the id's
+      # cursor = patients_collection.find({},{})
 
-      return list({"id":str(o["_id"])} for o in cursor)
+      return list({'id':str(o['_id']), 'reference': o['reference']} for o in cursor)
   
   def add_patient(self, document):
     """

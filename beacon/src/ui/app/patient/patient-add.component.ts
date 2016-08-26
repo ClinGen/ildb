@@ -5,32 +5,21 @@ import { PatientService } from './patient.services';
 
 // TODO: Consider merging create with edit and handling the 'new' id
 @Component({
-  template: `
-    <h2>Add Patient</h2>
-    <div>
-      Additional data TBD
-    </div>
-    <div>
-      reference
-      <input type="text" [(ngModel)]="reference" />
-    </div>
-    <div>
-      <button (click)="add()">add</button>
-    </div>
-    `,
+  templateUrl: '/app/patient/patient-edit.component.html',
     providers:[PatientService]
 })
 
 export class PatientAddComponent {
   
   reference = "";
+  showGenePanel = false;
 
   constructor(private dataService:PatientService, private router: Router) {
     
   }
 
   // Create a new patient
-  add() {
+  save() {
 
     // add validation
     if (this.reference == "")
@@ -43,6 +32,5 @@ export class PatientAddComponent {
     // Call the service to create a new patient
 
     // Redirect to the edit view
-
   }
 }

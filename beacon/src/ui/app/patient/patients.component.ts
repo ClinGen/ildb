@@ -1,22 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PatientService } from './patient.services';
 
 @Component({
-  template: `
-    <h2>Individuals</h2>
-    <div class="demo-list-action mdl-list" style="width:400px">
-      <div *ngFor="let item of patients" class="mdl-list__item">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-avatar">person</i>
-          <a routerLink="/patient/{{item.id}}">
-          <span>{{item.id}}</span>
-          </a>
-        </span>
-        <a class="mdl-list__item-secondary-action" (click)="delete(item.id)"><i class="material-icons">delete</i></a>
-      </div>
-    </div>
-    <a href="#" routerLink="/patient/new">add patient</a>
-    `,
+  templateUrl:'/app/patient/patient.component.html',
     providers:[PatientService]
 })
 
@@ -25,6 +12,7 @@ export class PatientsComponent implements OnInit {
   patients = [];
 
   constructor (
+    private router: Router,
     private dataService: PatientService) {
   }
 
