@@ -25,7 +25,7 @@ def import_vcf(file_path, database, context):
 
       #TODO - there are better ways to handle this
           # Do we need to store the reference for this query
-      allleles = []
+      alleles = []
       if sample.gt_bases is not None:
           alleles = re.split(r'[\\/|]', sample.gt_bases)
           # remove duplicates
