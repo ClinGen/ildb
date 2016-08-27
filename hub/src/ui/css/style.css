@@ -1071,6 +1071,13 @@ PANELS CONFIGURATIONS
 	right: 10px;
 	position: absolute;
 	margin-top: 5px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: 1px solid #fff !important;
+  padding: 5px 15px;
+  background-color: rgba(163, 163, 163, 0.6);
 }
 #spotify .sp-title {
 	bottom: 0;
