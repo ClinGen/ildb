@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'vcf-import',
@@ -11,7 +11,7 @@ export class ImportComponent {
     "file": ''
   };
   importFileName = "";
-  importProgress = 10;
+  @Input() importProgress = 0;
   isUploading = false;
 
   fileList = [{
@@ -55,7 +55,13 @@ export class ImportComponent {
 
       // update file upload progress
       xhr.upload.onprogress = (event:any) => {
-        this.importProgress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+        let importProgress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+
+        // This is a workaround to some problems with the progress bar updating
+        // If we can get this working update the UI tag with teh following
+        //      [style.width.%]="importProgress"
+        // For some reason the view keeps seeing the original value set on the class
+        document.getElementById("progressBar").style.width = importProgress + "%";
       };
 
       xhr.open('POST', '/api/import/vcf', true);
