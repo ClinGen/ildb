@@ -48,6 +48,7 @@
           <input class="form-control" [(ngModel)]="importFileName">
         </div>
         <div [hidden]="!isUploading" class="progress">
+          <label>Uploading...</label>
           <div class="progress-bar progress-bar-striped active" role="progressbar" attr.aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100"
             [style.width]="importProgress + '%'"></div>
         </div>
