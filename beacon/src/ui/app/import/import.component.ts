@@ -15,14 +15,14 @@ export class ImportComponent {
   isUploading = false;
 
   fileList = [{
-    id:"asf"
+    id: "asf"
   }]
-  
+
   fileChangeEvent(fileInput: any) {
     this.selectedImportFile.file = fileInput.target.files;
   }
 
-  delete(id:string) {
+  delete(id: string) {
 
   }
 
@@ -39,7 +39,7 @@ export class ImportComponent {
     this.importFileName = "";
   }
 
-    // Upload a vcf file
+  // Upload a vcf file
   upload(file) {
     return new Promise((resolve, reject) => {
       let xhr: XMLHttpRequest = new XMLHttpRequest();
@@ -54,7 +54,7 @@ export class ImportComponent {
       };
 
       // update file upload progress
-      xhr.upload.onprogress = (event:any) => {
+      xhr.upload.onprogress = (event: any) => {
         let importProgress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
 
         // This is a workaround to some problems with the progress bar updating

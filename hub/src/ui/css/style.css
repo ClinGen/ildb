@@ -1,10 +1,3 @@
-/*
-Template Name: DASHGUM FREE - Bootstrap 3.2 Admin Theme
-Template Version: 1.0
-Author: Carlos Alvarez
-Website: http://blacktie.co
-Premium: http://www.gridgum.com
-*/
 
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
@@ -42,50 +35,12 @@ a, a:hover, a:focus {
     height: 100%;
 }
 
-/* Bootstrap Modifications */
-.modal-header {
-	background: #68dff0;
-}
-
-.modal-title {
-	color: white;
-}
-
-.btn-round {
-	border-radius: 20px;
-	-webkit-border-radius: 20px;
-}
-
-.accordion-heading .accordion-toggle {
-	display: block;
-	cursor: pointer;
-	border-top: 1px solid #F5F5F5;
-	padding: 5px 0px;
-	line-height: 28.75px;
-	text-transform: uppercase;
-	color: #1a1a1a;
-	background-color: #ffffff;
-	outline: none !important;
-	text-decoration: none;
-}
-
 /*Theme Backgrounds*/
 
 .bg-theme {
 	background-color: #68dff0;
 }
 
-.bg-theme02 {
-	background-color: #ac92ec;
-}
-
-.bg-theme03 {
-  background-color: #48cfad;
-}
-
-.bg-theme04 {
-  background-color: #ed5565;
-}
 /*Theme Buttons*/
 
 .btn-theme {
@@ -101,51 +56,6 @@ a, a:hover, a:focus {
   color: #fff;
   background-color: #48bcb4;
   border-color: #48bcb4;
-}
-
-.btn-theme02 {
-  color: #fff;
-  background-color: #ac92ec;
-  border-color: #967adc;
-}
-.btn-theme02:hover,
-.btn-theme02:focus,
-.btn-theme02:active,
-.btn-theme02.active,
-.open .dropdown-toggle.btn-theme02 {
-  color: #fff;
-  background-color: #967adc;
-  border-color: #967adc;
-}
-
-.btn-theme03 {
-  color: #fff;
-  background-color: #48cfad;
-  border-color: #37bc9b;
-}
-.btn-theme03:hover,
-.btn-theme03:focus,
-.btn-theme03:active,
-.btn-theme03.active,
-.open .dropdown-toggle.btn-theme03 {
-  color: #fff;
-  background-color: #37bc9b;
-  border-color: #37bc9b;
-}
-
-.btn-theme04 {
-  color: #fff;
-  background-color: #ed5565;
-  border-color: #da4453;
-}
-.btn-theme04:hover,
-.btn-theme04:focus,
-.btn-theme04:active,
-.btn-theme04.active,
-.open .dropdown-toggle.btn-theme04 {
-  color: #fff;
-  background-color: #da4453;
-  border-color: #da4453;
 }
 
 .btn-clear-g {
@@ -256,27 +166,6 @@ ul.top-menu > li > i{
 #sidebar .sub-menu > .sub li:last-child {
     padding-bottom: 10px;
 }
-
-/*LEFT NAVIGATION ICON*/
-.dcjq-icon {
-    height:17px;
-    width:17px;
-    display:inline-block;
-    background: url("../img/nav-expand.png") no-repeat top;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    position:absolute;
-    right:10px;
-    top:15px;
-}
-.active .dcjq-icon {
-    background: url("../img/nav-expand.png") no-repeat bottom;
-    border-radius:3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-}
-/*---*/
 
 .nav-collapse.collapse {
     display: inline;
@@ -690,7 +579,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .top-nav ul.top-menu > li > a:hover, .top-nav ul.top-menu > li > a:focus {
     border:1px solid #F1F2F7;
     background: #F1F2F7;
-
 }
 
 .top-nav .dropdown-menu.extended.logout {
@@ -706,48 +594,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     border-top-color: #000;
 }
 
-.log-arrow-up {
-    background: url("../img/arrow-up.png") no-repeat;
-    width: 20px;
-    height: 11px;
-    position: absolute;
-    right: 20px;
-    top: -10px;
-}
-
-/*----*/
-
-.notify-arrow {
-    border-style: solid;
-    border-width: 0 9px 9px;
-    height: 0;
-    margin-top: 0;
-    opacity: 0;
-    position: absolute;
-    left: 7px;
-    top: -18px;
-    transition: all 0.25s ease 0s;
-    width: 0;
-    z-index: 10;
-    margin-top: 10px;
-    opacity: 1;
-}
-
-.notify-arrow-yellow {
-    border-color: transparent transparent #FCB322;
-    border-bottom-color: #FCB322 !important;
-    border-top-color: #FCB322 !important;
-}
-.notify-arrow-green {
-    border-color: transparent transparent #68dff0;
-    border-bottom-color: #68dff0 !important;
-    border-top-color: #68dff0 !important;
-}
-
-
-
-/*--sidebar toggle---*/
-
 .sidebar-toggle-box {
     float: left;
     padding-right: 15px;
@@ -760,20 +606,6 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     font-size: 20px;
     color:#fff;
 }
-
-
-.sidebar-closed > #sidebar > ul {
-    display: none;
-}
-
-.sidebar-closed #main-content {
-    margin-left: 0px;
-}
-
-.sidebar-closed #sidebar {
-    margin-left: -180px;
-}
-
 
 /* Dash Side */
 
@@ -917,68 +749,6 @@ PANELS CONFIGURATIONS
 .grey-panel p {
 	margin-left: 5px;
 }
-/* Specific Conf for Donut Charts*/
-.donut-chart p {
-	margin-top: 5px;
-	font-weight: 700;
-	margin-left: 15px;
-}
-.donut-chart h2 {
-	font-weight: 900;
-	color: #FF6B6B;
-	font-size: 38px;
-}
-
-/* Dark Blue*/
-
-.darkblue-panel {
-	text-align: center;
-	background: #444c57;
-}
-.darkblue-panel .darkblue-header {
-	background: transparent;
-	padding: 3px;
-	margin-bottom: 15px;
-}
-.darkblue-panel h1 {
-	color: #f2f2f2;
-}
-.darkblue-panel h5 {
-	font-weight: 200;
-	margin-top: 10px;
-	color: white;
-}
-.darkblue-panel footer {
-	color: white;
-}
-.darkblue-panel footer h5 {
-	margin-left:10px;
-	margin-right: 10px;
-	font-weight: 700;
-}
-
-/*Green Panel*/
-.green-panel {
-	text-align: center;
-	background: #68dff0;
-}
-.green-panel .green-header {
-	background: #43b1a9;
-	padding: 3px;
-	margin-bottom: 15px;
-}
-.green-panel h5 {
-	color: white;
-	font-weight: 200;
-	margin-top: 10px;
-}
-.green-panel h3 {
-	color: white;
-	font-weight: 100;
-}
-.green-panel p {
-	color: white;
-}
 
 /*White Panel */
 .white-panel {
@@ -1018,35 +788,6 @@ PANELS CONFIGURATIONS
 }
 .content-panel h4 {
 	margin-left: 10px;
-}
-
-/* Product Panel */
-.product-panel {
-	background: #dadad2;
-	text-align: center;
-	padding-top: 50px;
-	height: 100%;
-}
-
-/* Product Panel 2*/
-.product-panel-2 {
-	background: #dadad2;
-	text-align: center;
-}
-.product-panel-2 .badge {
-	position: absolute;
-	top: 20px;
-	left: 35px;
-}
-.badge-hot {
-	background: #ed5565;
-	width: 70px;
-	height: 70px;
-	line-height: 70px;
-	font-size: 18px;
-	color: #fff;
-	text-align: center;
-	border-radius: 100%;
 }
 
 /* Soptify Panel */
@@ -1089,182 +830,12 @@ PANELS CONFIGURATIONS
 	font-weight: 900;
 }
 
-/* TODO PANEL */
-.steps{
-  display: block;
-}
-.steps input[type=checkbox] {
-  display: none;
-}
-.steps input[type=submit]{
-  background: #f1783c;
-  border: none;
-  padding: 0px;
-  margin: 0 auto;
-  width: 100%;
-  height: 55px;
-  color: white;
-  text-transform: uppercase;
-  font-weight: 900;
-  font-size: 11px;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background 0.5s ease
-}
-.steps input[type=submit]:hover{
-  background: #8fde9c;
-}
-.steps label{
-  background: #393D40;
-  height: 65px;
-  line-height: 65px;
-  width: 100%;
-  display: block;
-  border-bottom: 1px solid #44494e;
-  color: #889199;
-  text-transform: uppercase;
-  font-weight: 900;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-indent: 52px;
-  cursor: pointer;
-  transition: all 0.7s ease;
-  margin: 0px;
-}
-.steps label:before{
-  content:"";
-  width: 12px;
-  height: 12px;
-  display: block;
-  position: absolute;
-  margin: 26px 0px 0px 18px;
-  border-radius: 100%;
-  transition: border 0.7s ease
-}
-.steps label:hover{
-  background: #2B2E30;
-  color: #46b7e5
-}
-.steps label:hover:before{
-  border: 1px solid #46b7e5;
-}
-#op1:checked ~ label[for=op1]:before,
-#op2:checked ~ label[for=op2]:before,
-#op3:checked ~ label[for=op3]:before{
-  border: 2px solid #96c93c;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpinHLMhgEHKADia0xQThIQs6JJ9gPxZhYQAcS6QHwDiI8hSYJAC0gBPxDLAvFcIJ6JJJkDxFNBVtgBcQ8Qa6BLghgwN4A4a9ElQYAFSj8C4mwg3o8sCQIAAQYA78QTYqnPZuEAAAAASUVORK5CYII=') no-repeat center center;
-}
-
-/* PROFILE PANELS */
-/* Profile 01*/
-#profile-01 {
-	background: url(../img/profile-01.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 150px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-#profile-01 h3 {
-	color: white;
-	padding-top: 50px;
-	margin: 0px;
-	text-align: center;
-}
-#profile-01 h6 {
-	color: white;
-	text-align: center;
-	margin-bottom: 0px;
-	font-weight: 900;
-}
-.profile-01 {
-	background: #68dff0;
-	height: 50px;
-}
-.profile-01:hover {
-	background: #2f2f2f;
-  -webkit-transition: background-color 0.6s;
-  -moz-transition: background-color 0.6s;
-  -o-transition: background-color 0.6s;
-  transition: background-color 0.6s;
-  cursor: pointer;
-}
-.profile-01 p {
-	color: white;
-	padding-top: 15px;
-	font-weight: 400;
-	font-size: 15px;
-}
-
-/* Profile 02*/
-#profile-02 {
-	background: url(../img/profile-02.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 200px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-#profile-02 .user {
-	padding-top: 40px;
-	text-align: center;
-}
-#profile-02 h4 {
-	color: white;
-	margin:0px;
-	padding-top: 8px;
-}
-.pr2-social a {
-	color: #cdcdcd;
-}
-.pr2-social a:hover {
-	color: #68dff0;
-}
-.pr2-social i {
-	margin-top: 15px;
-	margin-right: 12px;
-	font-size: 20px;
-}
-
 /* showcase background */
 .showback {
 	background: #ffffff;
 	padding: 15px;
 	margin-bottom: 15px;
 	box-shadow: 0px 3px 2px #aab2bd;
-}
-
-/* EZ Checklist */
-.ez-checkbox {
-	margin-right: 5px;
-}
-
-.ez-checkbox, .ez-radio {
-	height: 20px;
-	width: 20px;
-}
-
-.brand-highlight {
-background: #fffbcc !important;
-}
-.beacon-status label{
-  margin-right:10px;
 }
 
 /* FORMS CONFIGURATION */
@@ -1469,30 +1040,4 @@ label {
 
 .ui-sortable li.list-inverse {
     border-left: 3px solid #BEC3C7;
-}
-
-/*footer*/
-.site-footer {
-    background: #68dff0;
-    color: #fff;
-    padding: 10px 0;
-}
-
-
-.go-top {
-    margin-right: 1%;
-    float: right;
-    background: rgba(255,255,255,.5);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-}
-
-.go-top i {
-    color: #2A3542;
-}
-
-.site-min-height {
-    min-height: 900px;
 }
