@@ -44,7 +44,7 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #68dff0;
+	background: #2183ae;
 }
 
 .modal-title {
@@ -788,7 +788,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 	border-bottom: 1px solid #989898;
 }
 
-.box1 span {
+.box1 i {
 	font-size: 50px;
 
 }
