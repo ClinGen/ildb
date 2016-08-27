@@ -58,6 +58,21 @@ a, a:hover, a:focus {
   border-color: #48bcb4;
 }
 
+.btn-theme03 {
+  color: #fff;
+  background-color: #48cfad;
+  border-color: #37bc9b;
+}
+.btn-theme03:hover,
+.btn-theme03:focus,
+.btn-theme03:active,
+.btn-theme03.active,
+.open .dropdown-toggle.btn-theme03 {
+  color: #fff;
+  background-color: #37bc9b;
+  border-color: #37bc9b;
+}
+
 .btn-clear-g {
 	color: #fff;
 	background: transparent;
