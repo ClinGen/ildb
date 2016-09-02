@@ -1,4 +1,10 @@
 from flask import Flask, request
+import logging
+
+FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
+logging.basicConfig(level=logging.INFO, format=FORMAT)
+
+log = logging.getLogger()
 
 # Define a new flask application
 app = Flask(__name__)

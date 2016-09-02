@@ -1,15 +1,6 @@
-/*
-Template Name: DASHGUM FREE - Bootstrap 3.2 Admin Theme
-Template Version: 1.0
-Author: Carlos Alvarez
-Website: http://blacktie.co
-Premium: http://www.gridgum.com
-*/
-
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
-/* BASIC THEME CONFIGURATION */
 body {
     color: #797979;
     background-color: #f0f4f5;
@@ -850,17 +841,6 @@ PANELS CONFIGURATIONS
 .grey-panel p {
 	margin-left: 5px;
 }
-/* Specific Conf for Donut Charts*/
-.donut-chart p {
-	margin-top: 5px;
-	font-weight: 700;
-	margin-left: 15px;
-}
-.donut-chart h2 {
-	font-weight: 900;
-	color: #FF6B6B;
-	font-size: 38px;
-}
 
 /* Dark Blue*/
 
@@ -951,35 +931,6 @@ PANELS CONFIGURATIONS
 }
 .content-panel h4 {
 	margin-left: 10px;
-}
-
-/* Product Panel */
-.product-panel {
-	background: #dadad2;
-	text-align: center;
-	padding-top: 50px;
-	height: 100%;
-}
-
-/* Product Panel 2*/
-.product-panel-2 {
-	background: #dadad2;
-	text-align: center;
-}
-.product-panel-2 .badge {
-	position: absolute;
-	top: 20px;
-	left: 35px;
-}
-.badge-hot {
-	background: #ed5565;
-	width: 70px;
-	height: 70px;
-	line-height: 70px;
-	font-size: 18px;
-	color: #fff;
-	text-align: center;
-	border-radius: 100%;
 }
 
 /* Soptify Panel */
@@ -1073,99 +1024,6 @@ PANELS CONFIGURATIONS
 }
 .steps label:hover:before{
   border: 1px solid #46b7e5;
-}
-#op1:checked ~ label[for=op1]:before,
-#op2:checked ~ label[for=op2]:before,
-#op3:checked ~ label[for=op3]:before{
-  border: 2px solid #96c93c;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGFJREFUeNpinHLMhgEHKADia0xQThIQs6JJ9gPxZhYQAcS6QHwDiI8hSYJAC0gBPxDLAvFcIJ6JJJkDxFNBVtgBcQ8Qa6BLghgwN4A4a9ElQYAFSj8C4mwg3o8sCQIAAQYA78QTYqnPZuEAAAAASUVORK5CYII=') no-repeat center center;
-}
-
-/* PROFILE PANELS */
-/* Profile 01*/
-#profile-01 {
-	background: url(../img/profile-01.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 150px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-#profile-01 h3 {
-	color: white;
-	padding-top: 50px;
-	margin: 0px;
-	text-align: center;
-}
-#profile-01 h6 {
-	color: white;
-	text-align: center;
-	margin-bottom: 0px;
-	font-weight: 900;
-}
-.profile-01 {
-	background: #68dff0;
-	height: 50px;
-}
-.profile-01:hover {
-	background: #2f2f2f;
-  -webkit-transition: background-color 0.6s;
-  -moz-transition: background-color 0.6s;
-  -o-transition: background-color 0.6s;
-  transition: background-color 0.6s;
-  cursor: pointer;
-}
-.profile-01 p {
-	color: white;
-	padding-top: 15px;
-	font-weight: 400;
-	font-size: 15px;
-}
-
-/* Profile 02*/
-#profile-02 {
-	background: url(../img/profile-02.jpg) no-repeat center top;
-	margin-top: -15px;
-	background-attachment: relative;
-	background-position: center center;
-	min-height: 200px;
-	width: 100%;
-    -webkit-background-size: 100%;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-#profile-02 .user {
-	padding-top: 40px;
-	text-align: center;
-}
-#profile-02 h4 {
-	color: white;
-	margin:0px;
-	padding-top: 8px;
-}
-.pr2-social a {
-	color: #cdcdcd;
-}
-.pr2-social a:hover {
-	color: #68dff0;
-}
-.pr2-social i {
-	margin-top: 15px;
-	margin-right: 12px;
-	font-size: 20px;
 }
 
 /* showcase background */

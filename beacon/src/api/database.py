@@ -7,6 +7,7 @@ import datetime
 import pymongo
 from bson.objectid import ObjectId
 from api.settings import Settings
+from api import log
 
 DB_NAME = "clinbeacon"
 

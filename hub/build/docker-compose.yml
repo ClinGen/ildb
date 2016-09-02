@@ -26,3 +26,5 @@ services:
           - mongohub
 networks:
   beacon:
+    external:
+      name: clinbeacon

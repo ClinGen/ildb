@@ -2,7 +2,8 @@
 @package api
 Beacon Management API Controllers
 """
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, flash
+from api import log
 from api.database import DataAccess
 from api.auth import requires_auth
 from werkzeug.utils import secure_filename
@@ -76,57 +77,71 @@ def upload_patient_samples(id):
     """
     VCF file upload operation
     """
-    # check if the post request has the file part
-    if 'file' not in request.files:
-        return jsonify({'error':'no file in file part'})
 
-    print(request.files)
+    try:
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return jsonify({'error':'no file in file part'})
 
-    file = request.files['file']
-    # if user does not select file, browser also
-    # submit a empty part without filename
-    if file.filename == '':
-        flash('No selected file')
-        return jsonify({'error':'no file'})
+        log.info('request files - %s', request.files)
 
-    # 1) VALIDATE FILE AND WRITE HEADER RECORD
-    # 2) SAVE FILE TO VCF STORAGE PATH
-    # 3) QUEUE IMPORT PROCESSING
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            log.error('patient upload file name is empty')
+            flash('No selected file')
+            return jsonify({'error':'no file'})
 
-    # this is used to ensure we can safely use the filename sent to us
-    #filename = secure_filename(file.filename)
+        # 1) VALIDATE FILE AND WRITE HEADER RECORD
+        # 2) SAVE FILE TO VCF STORAGE PATH
+        # 3) QUEUE IMPORT PROCESSING
 
-    # load data from the stream into memory for processing
-    data = file.read()
-    vcf_reader = vcf.Reader(io.StringIO(data.decode('utf-8')))
+        # this is used to ensure we can safely use the filename sent to us
+        #filename = secure_filename(file.filename)
 
-    variants = list()
-    for record in vcf_reader:
+        # load data from the stream into memory for processing
+        data = file.read()
+        stream = io.StringIO(data.decode('utf-8'))
+        vcf_reader = vcf.Reader(stream)
+
+        # This approach creates a document for each sample
+        samples = next(vcf_reader).samples
         
-        #TODO process multiple samples in a vcf file
-        sample = record.samples[0]
+        stream.seek(0)
+        vcf_reader = vcf.Reader(stream)
 
-        #TODO - there are better ways to handle this
-            # Do we need to store the reference for this query
-        allleles = []
-        if sample.gt_bases is not None:
-            alleles = re.split(r'[\\/|]', sample.gt_bases)
-            # remove duplicates
-            alleles = set(alleles)
+        for sample in samples:
+            variants = list()
+            # TODO: See if we can find a better approach to this
+            stream.seek(0)
+            vcf_reader = vcf.Reader(stream)
+            for record in vcf_reader:
 
-        for allele in alleles:
-            chrom = record.CHROM
-            # remove preceeding chr if exists
-            if (re.match('chr', chrom, re.I)):
-                chrom = chrom[3:]
-            variants.append(chrom + '_' + str(record.POS) + '_' + allele)
+                #TODO - there are better ways to handle this
+                    # Do we need to store the reference for this query
+                allleles = []
+                if sample.gt_bases is not None:
+                    alleles = re.split(r'[\\/|]', sample.gt_bases)
+                    # remove duplicates
+                    alleles = set(alleles)
 
-    # insert samples into the database
-    DataAccess().import_vcf(
-        {
-            'patientId': id,
-            'variants': variants}
-        )
+                for allele in alleles:
+                    chrom = record.CHROM
+                    # remove preceeding chr if exists
+                    if (re.match('chr', chrom, re.I)):
+                        chrom = chrom[3:]
+                    if chrom in ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12','13','14','15','16','17','18','19','20','21','22', 'X', 'Y', 'M' ]:
+                        variants.append(chrom + '_' + str(record.POS) + '_' + allele)
 
-    # TODO: change this to return stats
+            # insert samples into the database
+            DataAccess().import_vcf(
+                {
+                    'patientId': id,
+                    'variants': variants}
+                )
+    except:
+        log.exception('error importing patient vcf')
+    
+    # TODO: change this to return import stats
     return jsonify({'result':'ok'})
