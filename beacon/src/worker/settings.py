@@ -7,13 +7,13 @@ Important: Do not place secrets in this file.
 import os
 
 class Settings:
-"""
-Responsible for managing application configuration settings
-"""
+  """
+  Responsible for managing application configuration settings
+  """
 
-# ENVIRONMENT SETTINGS
-# These settings change with the environment
-mongo_connection_string = os.environ.get('MONGO_CONNECTION_STRING')
+  # ENVIRONMENT SETTINGS
+  # These settings change with the environment
+  mongo_connection_string = os.environ.get('MONGO_CONNECTION_STRING')
 
-# APPLICATION SETTINGS
-# These settings are static in the build
+  # APPLICATION SETTINGS
+  # These settings are static in the build

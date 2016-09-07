@@ -83,85 +83,6 @@ class DataAccess:
 
       genome_data.delete_one({'_id': ObjectId(id)})
       
-  def get_user(self, id):
-    """
-    Get a user by id which will be the email address
-    """
-
-    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
-      db = mclient[DB_NAME]
-
-      # If the users collection does not exist then return an empty user
-      if 'users' not in db.collection_names():
-        return None
-      
-      user_data = db['users']
-
-      user = user_data.find_one({'_id': id})
-
-      return user
-
-  def get_user_roles(self, id):
-    """
-    Get a users roles by id
-    """
-    user = self.get_user(id)
-
-    return user.roles
-
-  def get_patients(self):
-    """
-    Get a list of patients
-    """
-    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
-      db = mclient[DB_NAME]
-      patients_collection = db['patients']
-
-      cursor = patients_collection.find()
-      # The following returns just the id's
-      # cursor = patients_collection.find({},{})
-
-      return list({'id':str(o['_id']), 'reference': o['reference']} for o in cursor)
-  
-  def add_patient(self, document):
-    """
-    Add a new patient
-    """
-    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
-      db = mclient[DB_NAME]
-      patients_collection = db['patients']
-
-      document['created'] = datetime.datetime.utcnow()
-
-      result = patients_collection.insert_one(document)
-
-      return str(result.inserted_id)
- 
-  def delete_patient(self, id):
-    """
-    Delete a patient
-    """
-    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
-      db = mclient[DB_NAME]
-      patients_collection = db['patients']
-
-      #TODO - Delete all related samples
-
-      patients_collection.delete_one({'_id': ObjectId(id)})
-
-  def get_patient(self, id):
-    """
-    Get a list of all the genome samples
-    """
-
-    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
-      db = mclient[DB_NAME]
-      patients_collection = db['patients']
-
-      patient = patients_collection.find_one({'_id': ObjectId(id)})
-
-      return {"id":str(patient["_id"]), "reference":patient["reference"]}
-
   def get_patient_samples(self, id):
     """
     Get a list of all the genome samples
@@ -174,3 +95,110 @@ class DataAccess:
       cursor = genome_data.find({'patientId':id},{})
 
       return list({"id":str(o["_id"])} for o in cursor)
+
+class CollectionBase:
+  """
+  Collection base class provides general operations for a mongo collection
+  """
+  def __init__(self, collection_name, id_isobject = True):
+    self.collection_name = collection_name
+    self.id_isobject = id_isobject
+    return
+
+  def add(self, document):
+    """
+    Create a new item to the collection
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      collection = db[self.collection_name]
+
+      result = collection.insert_one(document)
+
+      return str(result.inserted_id)
+
+  def get_by_id(self, id):
+    """
+    Get an object by id
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      collection = db[self.collection_name]
+
+      doc = collection.find_one({'_id': ObjectId(id)})
+
+      # update the doc to include a string version of the id
+      doc['id'] = str(doc['_id'])
+      del doc['_id']
+
+      return doc
+
+  def get_all(self):
+    """
+    Get all objects in the collection
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      collection = db[self.collection_name]
+
+      cursor = collection.find()
+      # The following returns just the id's
+      # cursor = patients_collection.find({},{})
+
+      result = list()
+
+      # convert the Object _id to string
+      for doc in cursor:
+        doc['id'] = str(doc['_id'])
+        del doc['_id']
+        result.append(doc)
+
+      return result
+
+  def update_by_id(id, updates):
+    """
+    Update fields in a document by the id
+    """
+
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      collection = db[self.collection_name]
+
+      result = db.restaurants.update_one (
+      {
+        "_id": ObjectId(id)},
+        {
+            "$set": updates,
+            "$currentDate": {"lastModified": True}
+        }
+      )
+
+  def delete(self, id):
+    """
+    Delete a document in the collection using the id
+    """
+    with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
+      db = mclient[DB_NAME]
+      collection = db[self.collection_name]
+
+      collection.delete_one({'_id': ObjectId(id)})
+
+class VcfFileCollection(CollectionBase):
+  def __init__(self):
+    super().__init__('vcf')
+
+class VcfSampleCollection(CollectionBase):
+  def __init__(self):
+    super().__init__('vcf.samples')
+
+class IndividualCollection(CollectionBase):
+  def __init__(self):
+    super().__init__('individuals')
+
+class UserCollection(CollectionBase):
+  def __init__(self):
+    super().__init__('users')
+
+class UserAuthHistoryCollection(CollectionBase):
+  def __init__(self):
+    super().__init__('users.auth_history')

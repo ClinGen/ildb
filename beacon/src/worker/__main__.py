@@ -12,6 +12,7 @@ from celery import Celery
 from worker.settings import Settings
 
 app = Celery(broker=Settings.mongo_connection_string)
+app.conf.CELERY_ACCEPT_CONTENT = ['json']
 
 @app.task(name='tasks.process_import')
 def process_import(file_id):
@@ -19,5 +20,5 @@ def process_import(file_id):
   return 5
 
 if __name__ == '__main__':
-  app.send_task('tasks.process_import', ['test'])
+  #app.send_task('tasks.process_import', ['test'], serializer='json')
   app.worker_main()

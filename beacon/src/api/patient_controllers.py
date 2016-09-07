@@ -4,7 +4,7 @@ Beacon Management API Controllers
 """
 from flask import Blueprint, jsonify, request, flash
 from api import log
-from api.database import DataAccess
+from api.database import DataAccess, IndividualCollection
 from api.auth import requires_auth
 from werkzeug.utils import secure_filename
 import vcf
@@ -18,7 +18,7 @@ patient_controllers = Blueprint('patient_controllers', __name__)
 def get_patient_list():
     """ Retrieve a list of patients """
 
-    list = DataAccess().get_patients();
+    list = IndividualCollection().get_all();
 
     return jsonify(list)
 
@@ -29,21 +29,20 @@ def create_patient():
 
     document = request.json
     
-    return jsonify({'id':DataAccess().add_patient(document)})
+    return jsonify({'id':IndividualCollection().add(document)})
 
 @patient_controllers.route('/<id>', methods = ['GET'])
 @requires_auth
 def get_patient(id):
     """ Get a specific patient by id """
-
-    return jsonify(DataAccess().get_patient(id))
+    return jsonify(IndividualCollection().get_by_id(id))
 
 @patient_controllers.route('/<id>', methods = ['DELETE'])
 @requires_auth
 def delete_patient(id):
     """ Delete a patient """
     
-    DataAccess().delete_patient(id)
+    IndividualCollection().delete(id)
 
     return jsonify({'result':'ok'})
 

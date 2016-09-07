@@ -4,15 +4,21 @@ Data import controllers
 """
 from flask import Blueprint, jsonify, Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-from api.database import DataAccess
+from api.database import DataAccess, VcfFileCollection
 from api.auth import requires_auth
 from api import app
 from api import log
 import vcf
 import io
 import re
+import uuid
 
 import_controllers = Blueprint('import_controllers', __name__)
+
+@import_controllers.route('/vcf', methods=['GET'])
+def get_vcf_list():
+
+    return jsonify(VcfFileCollection().get_all())
 
 @import_controllers.route('/vcf', methods=['POST'])
 @requires_auth

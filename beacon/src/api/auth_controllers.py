@@ -57,7 +57,7 @@ def login():
     # verify the token is a valid user in the system
     # we can improve on this by checking status as well
     # maybe we will change this to check the tenant/role attributes instead
-    username = DataAccess().get_user(preferred_username)
+    username = UserCollection().get_by_id(preferred_username)
 
     # we keep a list of valide users in the database
     # ideally we would just check roles from the provider
