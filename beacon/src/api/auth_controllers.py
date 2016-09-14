@@ -3,7 +3,7 @@
 Data import controllers
 """
 from flask import Blueprint, jsonify, redirect, request, make_response, abort
-from api.database import DataAccess
+from lib.beacondb import UserCollection
 from oic import rndstr
 from oic.oic import Client
 from oic.oic.message import AuthorizationResponse

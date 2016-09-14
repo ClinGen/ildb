@@ -4,7 +4,7 @@ Data import controllers
 """
 from flask import Blueprint, jsonify, Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-from api.database import DataAccess, VcfFileCollection
+from lib.beacondb import VcfFileCollection
 from api.auth import requires_auth
 from api import app
 from api import log
@@ -77,7 +77,7 @@ def import_vcf():
                     if chrom in ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12','13','14','15','16','17','18','19','20','21','22', 'X', 'Y', 'M' ]:
                         variants.append(chrom + '_' + str(record.POS) + '_' + allele)
 
-            DataAccess().import_vcf({'variants': variants})
+            VcfFileCollection().add({'variants': variants})
             log.info('import complete')
     except:
         log.exception('error importing patient vcf')

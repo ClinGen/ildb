@@ -3,7 +3,7 @@
 Beacon Management API Controllers
 """
 from flask import Blueprint, jsonify
-from api.database import DataAccess
+from lib.beacondb import VcfSampleCollection
 from api.auth import requires_auth
 
 manage_controllers = Blueprint('manage_controllers', __name__)
@@ -15,7 +15,7 @@ def get_samples_list():
 
     # TODO: Validate parameters, error handling, and logging
     # TODO: Need to make this bounded (paging)
-    list = DataAccess().get_samples_list()
+    list = VcfSampleCollection().get_all()
 
     return jsonify(list)
 
@@ -24,6 +24,6 @@ def get_samples_list():
 def delete_sample(id):
     """ Delete a VCF sample """
 
-    DataAccess().delete_sample(id)
+    VcfSampleCollection().delete(id)
 
     return jsonify({'result':'ok'})

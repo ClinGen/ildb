@@ -1,5 +1,9 @@
 from flask import Flask, request
 import logging
+from os import path
+
+import sys
+sys.path.append(path.abspath('../lib'))
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)
