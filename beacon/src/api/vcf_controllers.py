@@ -3,7 +3,7 @@
 Beacon Management API Controllers
 """
 from flask import Blueprint, jsonify
-from lib.beacondb import VcfSampleCollection
+from lib.beacondb import VcfFileCollection, VcfSampleCollection
 from api.auth import requires_auth
 
 vcf_controllers = Blueprint('vcf_controllers', __name__)
@@ -11,6 +11,17 @@ vcf_controllers = Blueprint('vcf_controllers', __name__)
 @vcf_controllers.route('/files', methods = ['GET'])
 @requires_auth
 def get_files_list():
+    """ Retrieve a list of VCF files """
+
+    # TODO: Validate parameters, error handling, and logging
+    # TODO: Make this bounded (paging)
+    list = VcfFileCollection().get_all()
+
+    return jsonify(list)
+
+@vcf_controllers.route('/import', methods = ['POST'])
+@requires_auth
+def import_vcf():
     """ Retrieve a list of VCF files """
 
     # TODO: Validate parameters, error handling, and logging

@@ -10,6 +10,10 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 
 log = logging.getLogger()
 
+from api.settings import Settings
+from lib.settings import LibSettings
+LibSettings.mongo_connection_string = Settings.mongo_connection_string
+
 # Define a new flask application
 app = Flask(__name__)
 

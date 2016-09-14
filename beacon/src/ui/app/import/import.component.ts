@@ -1,10 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ImportService } from './import.service';
 
 @Component({
   selector: 'vcf-import',
-  templateUrl: '/app/import/import.component.html'
+  templateUrl: '/app/import/import.component.html',
+  providers:[ImportService]
 })
-export class ImportComponent {
+export class ImportComponent implements OnInit {
+
+  constructor (
+    private dataService: ImportService) {
+  }
 
   showImportDialog = false;
   selectedImportFile = {
@@ -14,9 +20,17 @@ export class ImportComponent {
   @Input() importProgress = 0;
   isUploading = false;
 
-  fileList = [{
-    id: "asf"
-  }]
+  fileList = []
+
+  ngOnInit() {
+    this.getFileList();
+  }
+
+  getFileList() {
+    this.dataService.getFileList()
+      .then(fileList => this.fileList = fileList)
+      .catch(error => console.log(error))
+  }
 
   fileChangeEvent(fileInput: any) {
     this.selectedImportFile.file = fileInput.target.files;

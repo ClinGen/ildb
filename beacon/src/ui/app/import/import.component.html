@@ -11,6 +11,7 @@
         <li class="list-success">
           <div class="task-title">
             <span class="task-title-sp">{{item.id}}</span><br>
+            <span class="task-details-sp">{{item.samples}} samples ({{item.status}})</span>
           </div>
           <div class="pull-right edit-list">
             <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>

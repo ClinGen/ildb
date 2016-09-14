@@ -2,7 +2,7 @@ import datetime
 import pymongo
 import logging
 from bson.objectid import ObjectId
-from api.settings import Settings
+from lib.settings import LibSettings as Settings
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)
@@ -73,23 +73,25 @@ class CollectionBase:
 
       return self.to_list(cursor)
 
-  def update_by_id(id, updates):
+  def update_by_id(self, id, updates):
     """
     Update fields in a document by the id
     """
+
+    log.info('updating id - %s', id)
 
     with self.mongo_client as mclient:
       db = mclient[DB_NAME]
       collection = db[self.collection_name]
 
-      result = db.restaurants.update_one (
-      {
-        "_id": ObjectId(id)},
+      result = collection.update_one (
+        {"_id": ObjectId(id)},
         {
             "$set": updates,
             "$currentDate": {"lastModified": True}
         }
       )
+      log.info('matched count - %s', result.matched_count)
 
   def delete(self, id):
     """
