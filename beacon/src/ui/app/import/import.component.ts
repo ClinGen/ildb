@@ -22,6 +22,10 @@ export class ImportComponent {
     this.selectedImportFile.file = fileInput.target.files;
   }
 
+  getList() {
+    
+  }
+
   delete(id: string) {
 
   }

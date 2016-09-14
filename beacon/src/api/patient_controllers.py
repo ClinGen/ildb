@@ -106,16 +106,18 @@ def upload_patient_samples(id):
 
         # This approach creates a document for each sample
         samples = next(vcf_reader).samples
+        sample_count = len(samples)
         
         stream.seek(0)
         vcf_reader = vcf.Reader(stream)
 
-        for sample in samples:
-            variants = list()
-            # TODO: See if we can find a better approach to this
+        for i in range(0, sample_count):
             stream.seek(0)
             vcf_reader = vcf.Reader(stream)
+            variants = list()
+
             for record in vcf_reader:
+                sample = record.samples[i]
 
                 #TODO - there are better ways to handle this
                     # Do we need to store the reference for this query

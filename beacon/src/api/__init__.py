@@ -21,6 +21,9 @@ def before_request():
 from api.query_controllers import query_controllers
 app.register_blueprint(query_controllers, url_prefix='/api/query')
 
+from api.vcf_controllers import vcf_controllers
+app.register_blueprint(vcf_controllers, url_prefix='/api/vcf')
+
 # Add the data import controllers to the flask application
 from api.import_controllers import import_controllers
 app.register_blueprint(import_controllers, url_prefix='/api/import')

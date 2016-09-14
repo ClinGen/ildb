@@ -4,7 +4,7 @@ Data import controllers
 """
 from flask import Blueprint, jsonify, Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-from lib.beacondb import VcfFileCollection
+from lib.beacondb import VcfFileCollection, VcfSampleCollection
 from api.auth import requires_auth
 from api import app
 from api import log
@@ -53,13 +53,17 @@ def import_vcf():
         vcf_reader = vcf.Reader(stream)
 
         samples = next(vcf_reader).samples
+        sample_count = len(samples)
         
         stream.seek(0)
         vcf_reader = vcf.Reader(stream)
 
-        for sample in samples:
+        for i in range(0, sample_count):
+            stream.seek(0)
+            vcf_reader = vcf.Reader(stream)
             variants = list()
             for record in vcf_reader:
+                sample = record.samples[i]
 
                 #TODO - there are better ways to handle this
                     # Do we need to store the reference for this query
@@ -77,10 +81,11 @@ def import_vcf():
                     if chrom in ['1', '2', '3', '4', '5', '6', '7', '8', '9','10','11','12','13','14','15','16','17','18','19','20','21','22', 'X', 'Y', 'M' ]:
                         variants.append(chrom + '_' + str(record.POS) + '_' + allele)
 
-            VcfFileCollection().add({'variants': variants})
-            log.info('import complete')
+            VcfSampleCollection().add({'variants': variants})
     except:
         log.exception('error importing patient vcf')
+
+    log.info('import complete')
 
     # TODO: change this to return stats
     return jsonify({'result':'ok'})
