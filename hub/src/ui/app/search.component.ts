@@ -16,7 +16,7 @@ export class BeaconQuery {
 
 export class SearchComponent {
 
-  title = 'Beacon Search Hub';
+  title = 'Case Vault Search';
 
   queryResults: any[];
 

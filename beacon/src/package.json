@@ -6,7 +6,7 @@
     "client": "tsc -w -p ui",
     "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib",
     "worker": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python -m worker\" -e py --watch /app/worker --watch /app/lib",
-    "proxy": "browser-sync start --proxy localhost:80 --port 5001 --files 'ui/*.html' --files 'ui/css' --files '.tmp' &",
+    "proxy": "browser-sync start --proxy localhost:80 --port 5001 --files 'ui/**/*.html' --files 'ui/css' --files '.tmp' &",
     "setup": "npm run setup:client && npm run setup:server",
     "setup:server": "pip install -r requirements.txt",
     "setup:client": "cd ui && npm install --unsafe-perm"

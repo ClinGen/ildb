@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 
 // Set default query
 export class AppComponent {
-  title = 'Beacon Search Hub';
+  title = 'Case Vault Search';
 
   constructor(private cookieService: CookieService, private authService: AuthService) { }
 
@@ -20,7 +20,7 @@ export class AppComponent {
   username() {
     return this.authService.getUserName();
   }
-
+  
   logout() {
     this.cookieService.remove('session_id');
     window.location.href = '/';

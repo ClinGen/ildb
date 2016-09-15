@@ -10,35 +10,35 @@ import { Component, OnInit } from '@angular/core';
 	  			<i class="fa fa-user"></i>
 	        <h3>933</h3>
         </div>
-		<p>Queries Over Times</p>
+		<p>Vault Queries (last 7 days)</p>
     		</div>
     		<div class="col-md-2 col-sm-2 box0">
     			<div class="box1">
           <i class="fa fa-database"></i>
-		<h3>+48</h3>
+		<h3>248</h3>
     			</div>
 		<p>Number of Samples</p>
     		</div>
     		<div class="col-md-2 col-sm-2 box0">
     			<div class="box1">
 		              <i class="fa fa-eyedropper"></i>
-		<h3>23</h3>
+		<h3>247</h3>
     			</div>
-		<p>Number of Individuals</p>
+		<p>Number of Cases</p>
     		</div>
     		<div class="col-md-2 col-sm-2 box0">
     			<div class="box1">
 		<i class="fa fa-user"></i>
-		<h3>+10</h3>
+		<h3>10</h3>
     			</div>
-		<p>Audit History</p>
+		<p>Logins (last 7 days)</p>
     		</div>
     		<div class="col-md-2 col-sm-2 box0">
     			<div class="box1">
 		<i class="fa fa-history"></i>
 		<h3>OK!</h3>
     			</div>
-		<p>Storage Metrics</p>
+		<p>Data Storage Health</p>
     		</div>
     	</div>
     </div>
