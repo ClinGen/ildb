@@ -1,0 +1,52 @@
+<h3>Request CLEARNET Query Portal Access</h3>
+<div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-9">
+    <section class="form-panel bcs-widget" style="margin:0;">
+      <h4 class="mb"><i class="fa fa-angle-right"></i> Organization Details</h4>
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="organization.name">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input class="form-control" [(ngModel)]="organization.description">
+      </div>
+      <div class="form-group">
+        <label>Website</label>
+        <input class="form-control" [(ngModel)]="organization.website">
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" [(ngModel)]="organization.address">
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label>City</label>
+          <input class="form-control" [(ngModel)]="organization.city">
+        </div>
+        <div class="col-md-4">
+          <label>State</label>
+          <input class="form-control" [(ngModel)]="organization.state">
+        </div>
+        <div class="col-md-4">
+          <label>Zip</label>
+          <input class="form-control" [(ngModel)]="organization.zip">
+        </div>
+      </div>
+      <h4 class="mb" style="margin-top:40px;"><i class="fa fa-angle-right"></i> Contact Details</h4>
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input class="form-control">
+      </div>
+        <a (click)="this.router.navigate(['/thankyou'])" class="btn btn-primary btn-sm" >Submit</a>
+    </section>
+  </div>
+</div>

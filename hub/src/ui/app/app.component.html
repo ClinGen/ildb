@@ -7,7 +7,7 @@
     <a href="/" class="logo"><b>CLEARNET Query Portal</b></a>
     <!--logo end-->
     <div class="nav notify-row" id="top_menu">
-      <ul class="nav top-menu">
+      <ul [hidden]="!isAuthenticated()" class="nav top-menu">
         <li id="header_inbox_bar" class="dropdown">
           <a data-toggle="dropdown" class="dropdown-toggle" routerLink="manage/beacons">
             <i class="fa fa-building-o"></i>
@@ -21,7 +21,7 @@
       </ul>
     </div>
     <div class="top-menu">
-      <ul class="nav pull-right top-menu">
+      <ul [hidden]="!isAuthenticated()" class="nav pull-right top-menu">
         <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i>{{username()}}</li>
         <li><button class="logout" (click)="logout()">Logout</button></li>
       </ul>

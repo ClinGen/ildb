@@ -5,6 +5,7 @@ import {LoginComponent} from './login.component';
 import {BeaconComponent} from './manage/beacon.component';
 import {BeaconEditComponent} from './manage/beacon-edit.component';
 import {SettingsComponent} from './manage/settings.component';
+import {RequestAccessComponent, RequestThankYouComponent} from './request-access.component';
 
 const routes: RouterConfig = [
   {
@@ -30,6 +31,14 @@ const routes: RouterConfig = [
     path: 'manage/settings',
     component: SettingsComponent,
     canActivate: [AuthService]
+  },
+  {
+    path: 'requestaccess',
+    component: RequestAccessComponent
+  },
+  {
+    path: 'thankyou',
+    component: RequestThankYouComponent
   }
 ];
 

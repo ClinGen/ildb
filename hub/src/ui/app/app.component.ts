@@ -25,4 +25,8 @@ export class AppComponent {
     this.cookieService.remove('session_id');
     window.location.href = '/';
   }
+
+  isAuthenticated() {
+    return this.authService.isAuthenticated();
+  }
 }

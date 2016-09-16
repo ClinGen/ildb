@@ -52,6 +52,10 @@ export class AuthService implements CanActivate {
   }
 
   public isAuthenticated() {
-    return true;
+    let token = this.cookieService.get('session_id');
+    if (token == null)
+      return false;
+    else
+      return true;
   }
 }
