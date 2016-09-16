@@ -1,4 +1,4 @@
-import { provideRouter, RouterConfig }  from '@angular/router';
+import { Routes, RouterModule }  from '@angular/router';
 import {AuthService} from './auth.service';
 import {SearchComponent} from './search.component';
 import {LoginComponent} from './login.component';
@@ -7,7 +7,7 @@ import {BeaconEditComponent} from './manage/beacon-edit.component';
 import {SettingsComponent} from './manage/settings.component';
 import {RequestAccessComponent, RequestThankYouComponent} from './request-access.component';
 
-const routes: RouterConfig = [
+const appRoutes: Routes = [
   {
     path:'',
     component: SearchComponent,
@@ -42,7 +42,4 @@ const routes: RouterConfig = [
   }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes),
-  AuthService
-];
+export const routing = RouterModule.forRoot(appRoutes);
