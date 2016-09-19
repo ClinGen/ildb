@@ -8,8 +8,8 @@ import os
 import io
 import re
 from bson.objectid import ObjectId
-from worker.settings import Settings
 from worker import log
+from lib.settings import Settings
 from lib.beacondb import VcfFileCollection, VcfSampleCollection
 
 def import_vcf(file_id):

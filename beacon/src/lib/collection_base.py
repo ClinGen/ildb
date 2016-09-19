@@ -2,7 +2,7 @@ import datetime
 import pymongo
 import logging
 from bson.objectid import ObjectId
-from lib.settings import LibSettings as Settings
+from lib.settings import Settings as Settings
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)

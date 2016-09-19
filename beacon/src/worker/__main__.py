@@ -9,7 +9,7 @@ This module is used for services that need to perform background job processing
 import sys
 
 from celery import Celery
-from worker.settings import Settings
+from lib.settings import Settings
 from worker.vcf_tasks import import_vcf
 
 app = Celery(broker=Settings.mongo_connection_string)
@@ -22,5 +22,4 @@ def process_import(file_id):
   return True
 
 if __name__ == '__main__':
-  #app.send_task('tasks.process_import', ['test'], serializer='json')
   app.worker_main()

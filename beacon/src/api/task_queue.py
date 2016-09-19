@@ -1,5 +1,5 @@
 from celery import Celery
-from api.settings import Settings
+from lib.settings import Settings
 
 celery_client = Celery(broker=Settings.mongo_connection_string)
 celery_client.conf.CELERY_TASK_SERIALIZER = "json"

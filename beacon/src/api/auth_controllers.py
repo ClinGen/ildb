@@ -7,7 +7,7 @@ from lib.beacondb import UserCollection
 from oic import rndstr
 from oic.oic import Client
 from oic.oic.message import AuthorizationResponse
-from api.settings import Settings
+from lib.settings import Settings
 import jwt
 import sys
 

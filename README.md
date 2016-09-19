@@ -15,7 +15,7 @@ The [Hub Project](https://github.com/ClinGen/clinbeacon/tree/master/hub) is resp
 The [Beacon Project](https://github.com/ClinGen/clinbeacon/tree/master/beacon) is responsible for managing the data and performing queries for a tenant.
 
 ## sample data
-The sample data directory currently contains a random collection of smaple VCF samples used for development
+The sample data directory currently contains a random collection of smaple VCF samples used for development.
 
 ## spikes
 The spikes folder contains experimental projects developed more as a POC to explore various technologies and approaches.
