@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 
 log = logging.getLogger()
 
-DB_NAME = "casevault"
+DB_NAME = "portal"
 
 class CollectionBase:
   """

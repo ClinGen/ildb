@@ -6,7 +6,7 @@ Data access API
 import sys
 import pymongo
 from bson.objectid import ObjectId
-from api.settings import Settings
+from lib.settings import Settings
 
 DB_NAME = "clingenhub"
 BEACON_COLLECTION = "beacons"

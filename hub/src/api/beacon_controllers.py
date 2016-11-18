@@ -19,7 +19,7 @@ def get_tenant_list():
 
   beacons = DataAccess().get_beacons()
 
-  return jsonify(beacons);
+  return jsonify(beacons)
 
 @beacon_controllers.route('/<id>', methods=['GET'])
 @requires_auth
@@ -29,7 +29,7 @@ def get_tenant(id):
   """
   beacon = DataAccess().get_beacon(id)
 
-  return jsonify(beacon);
+  return jsonify(beacon)
 
 @beacon_controllers.route('', methods=['POST'])
 @requires_auth
