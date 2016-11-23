@@ -1,7 +1,7 @@
 Flask==0.11.1
 PyJWT==1.4.2
-pymongo==3.3.0
+pymongo==3.3.1
 PyVCF==0.6.8
-oic==0.8.5.0
-uWSGI==2.0.13.1
-celery==3.1.23
+oic==0.9.1.0
+uWSGI==2.0.14
+celery==4.0.0
