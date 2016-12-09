@@ -13,9 +13,10 @@ log = logging.getLogger()
 # Define a new flask application
 app = Flask(__name__)
 
+
 @app.before_request
 def before_request():
-  print(request.path)
+    print(request.path)
 
 # Add the Query controllers to the flask application
 from api.query_controllers import query_controllers

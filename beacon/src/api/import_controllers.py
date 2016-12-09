@@ -20,10 +20,12 @@ from api.task_queue import queue_vcf_import
 
 import_controllers = Blueprint('import_controllers', __name__)
 
+
 @import_controllers.route('/vcf', methods=['GET'])
 def get_vcf_list():
 
     return jsonify(VcfFileCollection().get_all())
+
 
 @import_controllers.route('/vcf', methods=['POST'])
 @requires_auth
@@ -37,7 +39,7 @@ def import_vcf():
     try:
         # check if the post request has the file part
         if 'file' not in request.files:
-            return jsonify({'error':'no file in file part'})
+            return jsonify({'error': 'no file in file part'})
 
         print(request.files)
 
@@ -46,17 +48,17 @@ def import_vcf():
         # submit a empty part without filename
         if file.filename == '':
             flash('No file name provided')
-            return jsonify({'error':'no file name provided'})
+            return jsonify({'error': 'no file name provided'})
 
         # this is used to ensure we can safely use the filename sent to us
         filename = secure_filename(file.filename)
 
         # TODO: File Validation
 
-        file_id = VcfFileCollection().add (
+        file_id = VcfFileCollection().add(
             {'filename': filename,
-            'status': 'uploading',
-            'samples': 0}
+             'status': 'uploading',
+             'samples': 0}
         )
 
         file.save(os.path.join(Settings.file_store, file_id + '.vcf'))
@@ -66,7 +68,8 @@ def import_vcf():
     except:
         log.error(sys.exc_info()[0])
 
-    return jsonify({'result':'ok'})
+    return jsonify({'result': 'ok'})
+
 
 def allowed_file(filename):
     return '.' in filename and \

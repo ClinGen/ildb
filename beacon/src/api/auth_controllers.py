@@ -13,6 +13,7 @@ import sys
 
 auth_controllers = Blueprint('auth_controllers', __name__)
 
+
 @auth_controllers.route('/login', methods=['POST'])
 def login():
     """
@@ -38,8 +39,9 @@ def login():
     'iss': 'https://login.microsoftonline.com/358c5b34-4387-4b88-9dc6-7feaa77483de/v2.0'}
     """
 
-    #TODO !!!! Validate 'tid' claim and the tenant signature.
-    #TODO Store the oid for the user and the name, once the user authenticates we should use this to authorize users
+    # TODO !!!! Validate 'tid' claim and the tenant signature.
+    # TODO Store the oid for the user and the name, once the user
+    # authenticates we should use this to authorize users
     print(request.form['id_token'])
     print (user_jwt)
     # TODO Update token validation to retrieve certificate
@@ -49,7 +51,7 @@ def login():
         sformat = "dict",
         verify = False)
     """
-    
+
     response = make_response(redirect('/'))
 
     preferred_username = user_jwt['preferred_username']
@@ -62,14 +64,16 @@ def login():
     # we keep a list of valide users in the database
     # ideally we would just check roles from the provider
     #      but there are some challenges managing the group and role claims in the provider right now
-    #      and we may want to consider a simple authorization service or working out the claims
-    if(username is None):
-        if (preferred_username != Settings.admin_user):
+    # and we may want to consider a simple authorization service or working
+    # out the claims
+    if username is None:
+        if preferred_username != Settings.admin_user:
             abort(401)
             # TODO add the seed admin user to the authorization store
 
     # TODO Add expiration to the jwt and support a refresh
-    encoded = jwt.encode({'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
+    encoded = jwt.encode(
+        {'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
 
     # set the session token in a cookie
     # TODO make this HttpOnly
@@ -80,9 +84,10 @@ def login():
 
     return response
 
+
 @auth_controllers.route('/getauthrequest', methods=['GET'])
 def make_authentication_request():
-    print ('create authentication request')
+    print('create authentication request')
     # consider storing a hash in state
     # what to hash in state might include cookie data, time, salt, etc...
 
@@ -97,14 +102,14 @@ def make_authentication_request():
         "nonce": nounce,
         "prompt": "login",
         "redirect_uri": Settings.auth_redirect_url,
-        "scope":"openid profile"
+        "scope": "openid profile"
     }
 
     print (Settings.auth_client_id)
 
     client = Client(Settings.auth_client_id)
 
-    auth_req = client.construct_AuthorizationRequest(request_args = request_args)
+    auth_req = client.construct_AuthorizationRequest(request_args=request_args)
 
     provider_url = Settings.auth_provider_url
     if Settings.auth_tenant is not None:

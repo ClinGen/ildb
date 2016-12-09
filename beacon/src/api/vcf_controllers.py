@@ -8,7 +8,8 @@ from api.auth import requires_auth
 
 vcf_controllers = Blueprint('vcf_controllers', __name__)
 
-@vcf_controllers.route('/files', methods = ['GET'])
+
+@vcf_controllers.route('/files', methods=['GET'])
 @requires_auth
 def get_files_list():
     """ Retrieve a list of VCF files """
@@ -19,7 +20,8 @@ def get_files_list():
 
     return jsonify(list)
 
-@vcf_controllers.route('/import', methods = ['POST'])
+
+@vcf_controllers.route('/import', methods=['POST'])
 @requires_auth
 def import_vcf():
     """ Retrieve a list of VCF files """
@@ -30,7 +32,8 @@ def import_vcf():
 
     return jsonify(list)
 
-@vcf_controllers.route('/samples', methods = ['GET'])
+
+@vcf_controllers.route('/samples', methods=['GET'])
 @requires_auth
 def get_samples_list():
     """ Retrieve a list of patient samples """
@@ -41,11 +44,12 @@ def get_samples_list():
 
     return jsonify(list)
 
-@vcf_controllers.route('/samples/<id>', methods = ['DELETE'])
+
+@vcf_controllers.route('/samples/<id>', methods=['DELETE'])
 @requires_auth
 def delete_sample(id):
     """ Delete a VCF sample """
 
     VcfSampleCollection().delete(id)
 
-    return jsonify({'result':'ok'})
+    return jsonify({'result': 'ok'})

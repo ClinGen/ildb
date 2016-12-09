@@ -15,73 +15,83 @@ log = logging.getLogger()
 
 DB_NAME = "clinbeacon"
 
+
 class VcfFileCollection(CollectionBase):
-  def __init__(self):
-    super().__init__('vcf')
+
+    def __init__(self):
+        super().__init__('vcf')
+
 
 class VcfSampleCollection(CollectionBase):
-  def __init__(self):
-    super().__init__('vcf.samples')
 
-  def get_by_fileid(self, id):
-    """
-    Get a list of sample ids by individuals
-    """
+    def __init__(self):
+        super().__init__('vcf.samples')
 
-    with self.mongo_client as mclient:
-      db = mclient[DB_NAME]
-      collection = db[self.collection_name]
+    def get_by_fileid(self, id):
+        """
+        Get a list of sample ids by individuals
+        """
 
-      cursor = collection.find({'fileId':id},{})
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+            collection = db[self.collection_name]
 
-      return self.to_list(cursor)
+            cursor = collection.find({'fileId': id}, {})
 
-  def get_by_individualid(self, id):
-    """
-    Get a list of sample ids by individuals
-    """
+            return self.to_list(cursor)
 
-    with self.mongo_client as mclient:
-      db = mclient[DB_NAME]
-      collection = db[self.collection_name]
+    def get_by_individualid(self, id):
+        """
+        Get a list of sample ids by individuals
+        """
 
-      cursor = collection.find({'patientId':id},{})
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+            collection = db[self.collection_name]
 
-      return self.to_list(cursor)
-  
-  def get_variants_count(self, chrom, position, allele, reference):
-    """
-    @return int
+            cursor = collection.find({'patientId': id}, {})
 
-    @param chrom
-    @param position
-    @param allele
-    @param reference
-    """
+            return self.to_list(cursor)
 
-    with self.mongo_client as mclient:
-      db = mclient[DB_NAME]
+    def get_variants_count(self, chrom, position, allele, reference):
+        """
+        @return int
 
-      # This does not quite fit the 1:1 class:collection used in this wrapper since it works across multiple
-      # At the moment the only query is on the 
-      genome_data = db[self.collection_name]
+        @param chrom
+        @param position
+        @param allele
+        @param reference
+        """
 
-      # search the genome database
-      # we can add a limit since we are simply looking for an occurance
-      cursor = genome_data.find(
-        { 'variants': chrom + '_' + position + '_' + allele }
-      )
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
 
-      return sum(1 for i in cursor)
+            # This does not quite fit the 1:1 class:collection used in this wrapper since it works across multiple
+            # At the moment the only query is on the
+            genome_data = db[self.collection_name]
+
+            # search the genome database
+            # we can add a limit since we are simply looking for an occurance
+            cursor = genome_data.find(
+                {'variants': chrom + '_' + position + '_' + allele}
+            )
+
+            return sum(1 for i in cursor)
+
 
 class IndividualCollection(CollectionBase):
-  def __init__(self):
-    super().__init__('individuals')
+
+    def __init__(self):
+        super().__init__('individuals')
+
 
 class UserCollection(CollectionBase):
-  def __init__(self):
-    super().__init__('users', False)
+
+    def __init__(self):
+        super().__init__('users', False)
+
 
 class UserAuthHistoryCollection(CollectionBase):
-  def __init__(self):
-    super().__init__('users.auth_history')
+
+    def __init__(self):
+        super().__init__('users.auth_history')

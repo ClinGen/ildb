@@ -4,21 +4,22 @@ import sys
 import jwt
 from api import log
 
+
 def requires_auth(func):
-  @wraps(func)
-  def func_wrapper(*args, **kwargs):
-    
-    # decode the session cookie
-    try:
-      session_id = request.cookies['session_id']
+    @wraps(func)
+    def func_wrapper(*args, **kwargs):
 
-      # TODO: read secret from configuration
-      session_id = jwt.decode(session_id, 'secret', algorithms=['HS256'])
-      # TODO: Validate the claims and token expiration
-    except:
-      log.error('unable to decode session')
-      log.error(sys.exc_info()[0])
-      abort(401)
+        # decode the session cookie
+        try:
+            session_id = request.cookies['session_id']
 
-    return func(*args, **kwargs)
-  return func_wrapper
+            # TODO: read secret from configuration
+            session_id = jwt.decode(session_id, 'secret', algorithms=['HS256'])
+            # TODO: Validate the claims and token expiration
+        except:
+            log.error('unable to decode session')
+            log.error(sys.exc_info()[0])
+            abort(401)
+
+        return func(*args, **kwargs)
+    return func_wrapper

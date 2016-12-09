@@ -6,6 +6,8 @@ client = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui")
 output = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".tmp")
 
 # static files served from nginx in production
+
+
 @app.route('/<path:path>', methods=['GET'])
 def static_proxy(path):
     if os.path.isfile(os.path.join(output, path)):
@@ -13,10 +15,12 @@ def static_proxy(path):
     return send_from_directory(client, path)
 
 # home page served from nginx in production
+
+
 @app.route('/', methods=['GET'])
 def default_index():
     return send_from_directory(client, 'index.html')
-    
+
 if __name__ == '__main__':
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     # we set reloader to false because we nodemon handles it in development
