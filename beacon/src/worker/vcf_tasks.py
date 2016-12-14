@@ -14,6 +14,8 @@ from lib.beacondb import VcfFileCollection, VcfSampleCollection
 
 def import_vcf(file_id):
 
+    file_data = VcfFileCollection().get_by_id(file_id)
+
     VcfFileCollection().update_by_id(file_id, {'status': 'processing'})
 
     sample_count = 0
@@ -54,7 +56,8 @@ def import_vcf(file_id):
             VcfSampleCollection().add(
                 {
                     'fileid': file_id,
-                    'variants': variants
+                    'variants': variants,
+                    'patientId': file_data['patientId']
                 })
     except:
         log.exception('error importing patient vcf')

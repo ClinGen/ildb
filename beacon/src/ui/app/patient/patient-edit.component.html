@@ -1,23 +1,141 @@
 <div class="row">
   <div class="col-lg-9 col-md-9 col-sm-9">
     <section class="form-panel tasks-widget" style="margin:0;">
-      <h4 class="mb"><i class="fa fa-angle-right"></i>Case Details</h4>
-      <div class="form-group">
-        <label>Reference</label>
-        <input class="form-control" [(ngModel)]="reference">
+      <div class="panel-heading">
+        <div class="pull-left">
+          <h4><i class="fa fa-user"></i> General Information</h4>
+        </div>
+        <br>
       </div>
-      <h4 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Phenotype</h4>
-      <div class="form-group">
-        <label>Sample</label>
-        <input class="form-control">
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Case Id</label>
+          <input class="form-control" [(ngModel)]="reference">
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <input class="form-control" [(ngModel)]="city">
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input class="form-control" [(ngModel)]="state">
+        </div>
+        <div class="form-group">
+          <label>Zip</label>
+          <input class="form-control" [(ngModel)]="zip">
+        </div>
+        <div class="form-group">
+          <label>Insurance</label>
+          <input class="form-control" [(ngModel)]="insurance">
+        </div>
+        <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
       </div>
-      <h4 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Pedigree</h4>
-      <div class="form-group">
-        <label>Sample</label>
-        <input class="form-control">
-      </div>
-      <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
     </section>
+
+  
+    <section class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
+      <div class="panel-heading">
+        <div class="pull-left">
+          <h4><i class="fa fa-user"></i> Case information</h4>
+        </div>
+        <br>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label>Gender</label><br/>
+          <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female
+        </div>
+        <div class="form-group">
+          <label>Ethnicity</label><br/>
+          <div class="checkbox">
+            <label><input type="checkbox">
+          Northern European</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox">
+          Southern European</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox">
+          French Canadien or Cajun</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox">
+          African of African American</label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox">
+          Hispanic</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Sample Collection Date</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Clinical Indications</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Disease Panel Name</label>
+          <input class="form-control">
+        </div>
+        <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Personal History</h5>
+        <div class="form-group">
+          <label>
+          <input type="checkbox">
+          Patient has a history of cancer?</label>
+        </div>
+        <div class="task-content">
+          <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of personalHistory">
+            <li class="list-success">
+              <div class="task-title">
+                <span class="task-title-sp">{{item.cancerType}}</span><br>
+                <span class="task-details-sp">Age at diagnosis: {{item.ageAtDiagnosis}} - Pathology: {{item.pathology.type}}, {{item.pathology.result}}</span>
+              </div>
+              <div class="pull-right edit-list">
+                <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
+                <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Family History</h5>
+        <div class="form-group">
+          <label>
+          <input type="checkbox">
+          Patient has a family history of cancer?</label><br/>
+          <label>
+          <input type="checkbox">
+          Known gene and mutation?</label>
+        </div>
+        <div class="form-group">
+          <label>Gene</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Mutation</label>
+          <input class="form-control">
+        </div>
+        <div class="task-content">
+          <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of familyHistory">
+            <li class="list-success">
+              <div class="task-title">
+                <span class="task-title-sp">{{item.cancerType}}</span><br>
+                <span class="task-details-sp">{{item.relation}} on the {{item.side}} side diagnosed at the age of {{item.ageAtDiagnosis}} - Pathology: {{item.pathology.type}}{{item.pathology.result}}</span>
+              </div>
+              <div class="pull-right edit-list">
+                <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
+                <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
+      </div>
+    </section>
+
     <section [hidden]="!showGenePanel" class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
       <div class="panel-heading">
         <div class="pull-left">
@@ -37,14 +155,42 @@
           <div>
             <br/>
             <div>
-              <input type="file" accept="vcf" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
-              <br/>
-              <button [disabled]="uploading" type="button" (click)="import()" class="btn btn-theme"><i class="fa fa-share-alt"></i> Upload</button>
-              <div [hidden]="!uploading">uploading...</div>
+              <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fa fa-share-alt"></i> Import</button>        A new <a href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/"
+          target="_blank"> Variant Call Format (VCF) </a> File
             </div>
           </div>
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+<!-- Upload Dialog -->
+<div id="myModal" class="modal fade" role="dialog" [hidden]="!showImportDialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Import VCF File</h4>
+      </div>
+      <div class="modal-body">
+        <div [hidden]="isUploading" class="form-group">
+          <label>Select a file to upload</label>
+          <input type="file" accept="vcf" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+        </div>
+        <div [hidden]="isUploading" class="form-group">
+          <label>Name</label>
+          <input class="form-control" [(ngModel)]="importFileName">
+        </div>
+        <div [hidden]="!isUploading" class="progress">
+          <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancel" type="button" class="btn btn-default" (click)="cancelImport()" data-dismiss="modal">Cancel</button>
+        <button [disabled]="isUploading" type="button" class="btn btn-default" (click)="import()">Import</button>
+      </div>
+    </div>
   </div>
 </div>

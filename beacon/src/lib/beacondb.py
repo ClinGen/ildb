@@ -13,8 +13,7 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 
 log = logging.getLogger()
 
-DB_NAME = "clinbeacon"
-
+DB_NAME = "casevault"
 
 class VcfFileCollection(CollectionBase):
 
@@ -44,7 +43,7 @@ class VcfSampleCollection(CollectionBase):
         """
         Get a list of sample ids by individuals
         """
-
+        
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
             collection = db[self.collection_name]
