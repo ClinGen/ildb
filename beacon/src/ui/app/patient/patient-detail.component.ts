@@ -70,6 +70,9 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   showImportDialog = false;
+  showAddFamilyHistoryDialog = false;
+  showAddPersonalHistoryDialog = false;
+
   selectedImportFile = {
     "file": ''
   };
@@ -91,6 +94,18 @@ export class PatientDetailsComponent implements OnInit {
 
   }
 
+  addPersonalHistoryItem() {
+    this.showAddPersonalHistoryDialog = true;
+  }
+
+  addFamilyHistoryItem() {
+    this.showAddFamilyHistoryDialog = true;
+  }
+
+  saveFamilyHistoryItem() {
+    this.showAddFamilyHistoryDialog = false;
+  }
+
   import() {
 
     this.isUploading = true;
@@ -104,6 +119,10 @@ export class PatientDetailsComponent implements OnInit {
     this.importFileName = "";
   }
 
+  save() {
+
+  }
+  
   // Upload a vcf file
   upload(file) {
     return new Promise((resolve, reject) => {

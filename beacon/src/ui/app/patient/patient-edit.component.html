@@ -1,168 +1,200 @@
 <div class="row">
   <div class="col-lg-9 col-md-9 col-sm-9">
     <section class="form-panel tasks-widget" style="margin:0;">
-      <div class="panel-heading">
-        <div class="pull-left">
-          <h4><i class="fa fa-user"></i> General Information</h4>
-        </div>
-        <br>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <label>Case Id</label>
-          <input class="form-control" [(ngModel)]="reference">
-        </div>
-        <div class="form-group">
-          <label>City</label>
-          <input class="form-control" [(ngModel)]="city">
-        </div>
-        <div class="form-group">
-          <label>State</label>
-          <input class="form-control" [(ngModel)]="state">
-        </div>
-        <div class="form-group">
-          <label>Zip</label>
-          <input class="form-control" [(ngModel)]="zip">
-        </div>
-        <div class="form-group">
-          <label>Insurance</label>
-          <input class="form-control" [(ngModel)]="insurance">
-        </div>
-        <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
-      </div>
-    </section>
+<div class="panel-heading">
+  <div class="pull-left">
+    <h4><i class="fa fa-user"></i> General Information</h4>
+  </div>
+  <br>
+</div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Case Id</label>
+    <input class="form-control" [(ngModel)]="reference">
+  </div>
+  <div class="form-group">
+    <label>City</label>
+    <input class="form-control" [(ngModel)]="city">
+  </div>
+  <div class="form-group">
+    <label>State</label>
+    <input class="form-control" [(ngModel)]="state">
+  </div>
+  <div class="form-group">
+    <label>Zip</label>
+    <input class="form-control" [(ngModel)]="zip">
+  </div>
+  <div class="form-group">
+    <label>Insurance</label>
+    <input class="form-control" [(ngModel)]="insurance">
+  </div>
+  <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
+</div>
+</section>
 
-  
-    <section class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
-      <div class="panel-heading">
-        <div class="pull-left">
-          <h4><i class="fa fa-user"></i> Case information</h4>
-        </div>
-        <br>
-      </div>
-      <div class="panel-body">
-        <div class="form-group">
-          <label>Gender</label><br/>
-          <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female
-        </div>
-        <div class="form-group">
-          <label>Ethnicity</label><br/>
-          <div class="checkbox">
-            <label><input type="checkbox">
+<section class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
+<div class="panel-heading">
+  <div class="pull-left">
+    <h4><i class="fa fa-user"></i> Case information</h4>
+  </div>
+  <br>
+</div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Gender</label><br/>
+    <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female
+  </div>
+  <div class="form-group">
+    <label>Ethnicity</label><br/>
+    <div class="checkbox">
+      <label><input type="checkbox">
           Northern European</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
           Southern European</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
           French Canadien or Cajun</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
           African of African American</label>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
           Hispanic</label>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Sample Collection Date</label>
-          <input class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Clinical Indications</label>
-          <input class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Disease Panel Name</label>
-          <input class="form-control">
-        </div>
-        <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Personal History</h5>
-        <div class="form-group">
-          <label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Sample Collection Date</label>
+    <input class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Clinical Indications</label>
+    <input class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Disease Panel Name</label>
+    <input class="form-control">
+  </div>
+  <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Personal History</h5>
+<div class="form-group">
+  <label>
           <input type="checkbox">
           Patient has a history of cancer?</label>
-        </div>
-        <div class="task-content">
-          <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of personalHistory">
-            <li class="list-success">
-              <div class="task-title">
-                <span class="task-title-sp">{{item.cancerType}}</span><br>
-                <span class="task-details-sp">Age at diagnosis: {{item.ageAtDiagnosis}} - Pathology: {{item.pathology.type}}, {{item.pathology.result}}</span>
-              </div>
-              <div class="pull-right edit-list">
-                <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
-                <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
-              </div>
-            </li>
-          </ul>
-        </div>
+</div>
+<div class="task-content">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Age At Diagnosis</th>
+        <th>Pathology Type</th>
+        <th>Pathology Result</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of personalHistory">
+      <tr>
+        <td>{{item.cancerType}}</td>
+        <td>{{item.ageAtDiagnosis}}</td>
+        <td>{{item.pathology.type}}</td>
+        <td>{{item.pathology.result}}</td>
+        <td>
+          <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
+          <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPersonalHistoryModal" (click)="addPersonalHistoryItem()">Add Personal History Item</a>
+  </div>
+</div>
 
-        <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Family History</h5>
-        <div class="form-group">
-          <label>
+<h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Family History</h5>
+<div class="form-group">
+  <label>
           <input type="checkbox">
           Patient has a family history of cancer?</label><br/>
-          <label>
+  <label>
           <input type="checkbox">
           Known gene and mutation?</label>
-        </div>
-        <div class="form-group">
-          <label>Gene</label>
-          <input class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Mutation</label>
-          <input class="form-control">
-        </div>
-        <div class="task-content">
-          <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of familyHistory">
-            <li class="list-success">
-              <div class="task-title">
-                <span class="task-title-sp">{{item.cancerType}}</span><br>
-                <span class="task-details-sp">{{item.relation}} on the {{item.side}} side diagnosed at the age of {{item.ageAtDiagnosis}} - Pathology: {{item.pathology.type}}{{item.pathology.result}}</span>
-              </div>
-              <div class="pull-right edit-list">
-                <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
-                <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
-      </div>
-    </section>
+</div>
+<div class="form-group">
+  <label>Gene</label>
+  <input class="form-control">
+</div>
+<div class="form-group">
+  <label>Mutation</label>
+  <input class="form-control">
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Relation</th>
+      <th>Family Side</th>
+      <th>Age At Diagnosis</th>
+      <th>Pathology Type</th>
+      <th>Pathology Result</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let item of familyHistory">
+    <tr>
+      <td>{{item.cancerType}}</td>
+      <td>{{item.relation}}</td>
+      <td>{{item.side}}</td>
+      <td>{{item.ageAtDiagnosis}}</td>
+      <td>{{item.pathology.type}}</td>
+      <td>{{item.pathology.result}}</td>
+      <td>
+        <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
+        <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#addFamilyHistoryModal">Add Family History Item</a>
+</div>
+<div>
+  <br/>
+  <a class="btn btn-primary" (click)="save()">Save</a>
+</div>
+</div>
+</section>
 
-    <section [hidden]="!showGenePanel" class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
-      <div class="panel-heading">
-        <div class="pull-left">
-          <h5><i class="fa fa-user"></i> Genetic Data Associated With Case</h5>
-        </div>
-        <br>
-      </div>
-      <div class="panel-body">
-        <div class="task-content">
-          <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of samples">
-            <li class="list-success">
-              <div class="task-title">
-                <span class="task-title-sp">{{item.id}}</span><br>
-              </div>
-            </li>
-          </ul>
-          <div>
-            <br/>
-            <div>
-              <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fa fa-share-alt"></i> Import</button>        A new <a href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/"
-          target="_blank"> Variant Call Format (VCF) </a> File
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section [hidden]="!showGenePanel" class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
+<div class="panel-heading">
+  <div class="pull-left">
+    <h5><i class="fa fa-user"></i> Genetic Data Associated With Case</h5>
   </div>
+  <br>
+</div>
+<div class="panel-body">
+  <div class="task-content">
+    <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of samples">
+      <li class="list-success">
+        <div class="task-title">
+          <span class="task-title-sp">{{item.id}}</span><br>
+        </div>
+      </li>
+    </ul>
+    <div>
+      <br/>
+      <div>
+        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fa fa-share-alt"></i> Import</button>        A new <a href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/"
+          target="_blank"> Variant Call Format (VCF) </a> File
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</div>
 </div>
 
 <!-- Upload Dialog -->
@@ -190,6 +222,84 @@
       <div class="modal-footer">
         <button id="modalCancel" type="button" class="btn btn-default" (click)="cancelImport()" data-dismiss="modal">Cancel</button>
         <button [disabled]="isUploading" type="button" class="btn btn-default" (click)="import()">Import</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Family History Dialog -->
+<div id="addFamilyHistoryModal" class="modal fade" role="dialog" [hidden]="!showAddFamilyHistoryDialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Family History Item</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Type</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Relation</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Family Side</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Age At Diagnosis</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Pathology Type</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Pathology Result</label>
+          <input class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancel" type="button" class="btn btn-default" (click)="cancelImport()" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" (click)="saveFamilyHistoryItem()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Personal History Dialog -->
+<div id="addPersonalHistoryModal" class="modal fade" role="dialog" [hidden]="!showPersonalHistoryDialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Personal History Item</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Type</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Age At Diagnosis</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Pathology Type</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Pathology Result</label>
+          <input class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancel" type="button" class="btn btn-default" (click)="cancelImport()" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-default" (click)="saveFamilyHistoryItem()">Add</button>
       </div>
     </div>
   </div>
