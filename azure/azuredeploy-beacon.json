@@ -278,7 +278,7 @@
             "settings": {
               "compose": {
                 "clingenbeacon": {
-                  "image": "trentmswanson/beacon:v6",
+                  "image": "trentmswanson/beacon:8",
                   "ports": [
                     "80:80"
                   ],
