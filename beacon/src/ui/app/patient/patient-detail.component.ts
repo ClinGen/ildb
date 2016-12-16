@@ -65,7 +65,11 @@ export class PatientDetailsComponent implements OnInit {
       .catch(error => console.log(error))
 
     this.dataService.getById(this.model.id)
-      .then(result => this.model = result)
+      .then(result => {
+        if (result.clinicalIndications != null)
+          result.clinicalIndications = result.clinicalIndications.join()
+        this.model = result
+      })
       .catch(error => console.log(error))
   }
 
@@ -92,8 +96,13 @@ export class PatientDetailsComponent implements OnInit {
 
   save() {
     // if this is a new patient - save and route to edit/view patient
+    
+    let doc = JSON.parse(JSON.stringify(this.model))
+    if (doc.clinicalIndications != null)
+      doc.clinicalIndications = doc.clinicalIndications.split(',');
+
     if (this.isNew) {
-      this.dataService.addPatient(this.model)
+      this.dataService.addPatient(doc)
         .then(result => {
           this.isNew = false;
           this.id = result.id;
@@ -103,7 +112,7 @@ export class PatientDetailsComponent implements OnInit {
         .catch(error => console.log(error))
     }
     else {
-      this.dataService.updatePatient(this.model.id, this.model)
+      this.dataService.updatePatient(doc.id, doc)
       // Do we want to notify user and/or return to list?
     }
   }

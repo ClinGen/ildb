@@ -31,6 +31,30 @@
         <input [(ngModel)]="beaconQuery.allele" class="form-control">
       </div>
     </div>
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-md-3">
+        <input type="checkbox"> Where family has a history
+      </div>
+      <div class="col-md-9">
+        <label>On maternal or paternal? </label>
+        <input type="radio" name="maternalPaternal" value="either" checked="true"> Either
+        <input type="radio" name="maternalPaternal" value="maternal"> Maternal
+        <input type="radio" name="maternalPaternal" value="paternal"> Paternal
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>In a specific population</label>
+        <input class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label>With clinical indications (Example ICD9:23532, ICD10:32523)</label>
+        <input class="form-control">
+      </div>
+      <div>&nbsp;</div>
+    </div>
     <div class="row">
       <div class="col-md-12">
         <button type="button" (click)="find()" class="btn btn-theme"><i class="fa fa-search"></i> Search</button>

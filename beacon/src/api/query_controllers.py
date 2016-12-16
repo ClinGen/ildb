@@ -3,8 +3,8 @@
 Beacon Query API Controllers
 These API will be called by the central hub
 """
-from flask import Blueprint, jsonify
-from lib.beacondb import VcfSampleCollection
+from flask import Blueprint, jsonify, request
+from lib.beacondb import VcfSampleCollection, IndividualCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
 
@@ -19,3 +19,19 @@ def beacon_query(chrom, position, allele, reference):
         chrom, position, allele, reference)
 
     return jsonify({"count": result})
+
+@query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
+def query_one(chrom, position, allele):
+    """ Canonical Query2 """
+
+    if request.args.get('clinids') is not None:
+        result = VcfSampleCollection().get_indviduals_with_clinical(
+            chrom, position, allele, request.args.get('clinids').split(','))
+
+        return jsonify(result)
+    else:
+        # Validate parameters
+        result = VcfSampleCollection().get_variants_count(
+            chrom, position, allele, None)
+        
+        return jsonify({"count": result})

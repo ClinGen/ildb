@@ -5,6 +5,7 @@ Data access logic
 
 import datetime
 import pymongo
+from bson.objectid import ObjectId
 import logging
 from .collection_base import CollectionBase
 
@@ -14,6 +15,7 @@ logging.basicConfig(level=logging.INFO, format=FORMAT)
 log = logging.getLogger()
 
 DB_NAME = "casevault"
+
 
 class VcfFileCollection(CollectionBase):
 
@@ -43,7 +45,7 @@ class VcfSampleCollection(CollectionBase):
         """
         Get a list of sample ids by individuals
         """
-        
+
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
             collection = db[self.collection_name]
@@ -77,12 +79,55 @@ class VcfSampleCollection(CollectionBase):
 
             return sum(1 for i in cursor)
 
+    def get_indviduals_with_clinical(self, chrom, position, allele, clin_ids):
+        """
+        @return int
+
+        @param chrom
+        @param position
+        @param allele
+        @param reference
+        """
+
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+
+            # This does not quite fit the 1:1 class:collection used in this wrapper since it works across multiple
+            # At the moment the only query is on the
+            genome_data = db[self.collection_name]
+
+            # search the genome database
+            # we can add a limit since we are simply looking for an occurance
+            cursor = genome_data.find(
+                {'variants': chrom + '_' + position + '_' + allele,
+                 'patientId': {'$exists': True}}
+            )
+
+            return sum(1 for i in cursor)
+
 
 class IndividualCollection(CollectionBase):
 
     def __init__(self):
         super().__init__('individuals')
+    
+    def get_by_clinical_indications(self, patientId, clinicalIds):
 
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+
+            # This does not quite fit the 1:1 class:collection used in this wrapper since it works across multiple
+            # At the moment the only query is on the
+            genome_data = db[self.collection_name]
+
+            # search the genome database
+            # we can add a limit since we are simply looking for an occurance
+            cursor = genome_data.find(
+                 {'id':ObjectId(id),
+                 'clinicalIndications': {'$in': clinicalIds}}
+            )
+
+            return self.to_list(cursor)
 
 class UserCollection(CollectionBase):
 
