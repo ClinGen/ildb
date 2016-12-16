@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from './patient.services';
 
 @Component({
@@ -14,47 +14,47 @@ export class PatientDetailsComponent implements OnInit {
 
   // New/Emptye case record
   model = {
-    id:"",
-    caseId : "", //required string - autogenerate if not supplied
-    city : "", //required string
-    state : "", //required string
-    zip : "", //require string
-    gender : null, // m/f required
-    sampleCollectionDate : null,
-    clinicalIndications : null,
-    diseasePanel : [],
-    hasHistoryOfCancer : false,
-    ethnicity : [],
-    personalHistory : [],
-    familyHistory : []
+    id: "",
+    caseId: "", //required string - autogenerate if not supplied
+    city: "", //required string
+    state: "", //required string
+    zip: "", //require string
+    gender: null, // m/f required
+    sampleCollectionDate: null,
+    clinicalIndications: null,
+    diseasePanel: [],
+    hasHistoryOfCancer: false,
+    ethnicity: [],
+    personalHistory: [],
+    familyHistory: []
   }
 
   ethnicityOptions = {
-    "ne":"Northern European",
-    "se":"Southern European",
-    "fc":"French Canadian or Cajun"
+    "ne": "Northern European",
+    "se": "Southern European",
+    "fc": "French Canadian or Cajun"
   }
 
   personalHistory = [
     {
-      cancerType : "colon",
+      cancerType: "colon",
       ageAtDiagnosis: 55,
-      pathology :{
-        "type":"er",
-        "result":"MSH2"
+      pathology: {
+        "type": "er",
+        "result": "MSH2"
       }
     }
   ]
 
   familyHistory = [
     {
-      cancerType : "colon",
+      cancerType: "colon",
       ageAtDiagnosis: 77,
       relation: "father",
       side: "paternal",
-      pathology :{
-        "type":"er",
-        "result":"MSH2"
+      pathology: {
+        "type": "er",
+        "result": "MSH2"
       }
     }
   ]
@@ -63,13 +63,13 @@ export class PatientDetailsComponent implements OnInit {
   constructor(route: ActivatedRoute, private dataService: PatientService, private router: Router) {
     this.model.id = route.snapshot.params['id'];
 
-     if (this.model.id === "new")
+    if (this.model.id === "new")
       this.isNew = true;
+    else
+      this.isNew = false;
   }
 
   ngOnInit() {
-    //Retrieve individual information
-
     //Load patient samples
     if (this.isNew)
       return;
@@ -107,18 +107,22 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   getList() {
-    
+
   }
 
   save() {
     // if this is a new patient - save and route to edit/view patient
-    if (this.isNew)
-    {
-    this.dataService.addPatient(this.model)
-      .then(result => this.router.navigate(['/patient', result.id]))
-      .catch(error => console.log(error))
+    if (this.isNew) {
+      this.dataService.addPatient(this.model)
+        .then(result => {
+          this.isNew = false;
+          this.id = result.id;
+          this.model.id = result.id;
+          this.router.navigate(['/patient', result.id])
+        })
+        .catch(error => console.log(error))
     }
-    else{
+    else {
       this.dataService.updatePatient(this.model.id, this.model)
       // Do we want to notify user and/or return to list?
     }
@@ -149,7 +153,7 @@ export class PatientDetailsComponent implements OnInit {
   cancelImport() {
     this.importFileName = "";
   }
-  
+
   // Upload a vcf file
   upload(file) {
     return new Promise((resolve, reject) => {

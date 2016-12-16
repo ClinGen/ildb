@@ -105,20 +105,20 @@
   </div>
   <div class="form-group">
     <label>Sample Collection Date</label>
-    <input class="form-control">
+    <input class="form-control" [(ngModel)]="model.sampleCollectionDate">
   </div>
   <div class="form-group">
     <label>Clinical Indications (example: ICD10:12343, ICD9:345234)</label>
-    <input class="form-control">
+    <input class="form-control" [(ngModel)]="model.clinicalIndications">
   </div>
   <div class="form-group">
     <label>Disease Panel Name</label>
-    <input class="form-control">
+    <input class="form-control" [(ngModel)]="model.diseasePanel">
   </div>
   <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Personal History</h5>
 <div class="form-group">
   <label>
-          <input type="checkbox">
+          <input type="checkbox" [(ngModel)]="model.historyOfCancer">
           Patient has a history of cancer?</label>
 </div>
 <div class="task-content">
@@ -153,19 +153,19 @@
 <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Family History</h5>
 <div class="form-group">
   <label>
-          <input type="checkbox">
+          <input type="checkbox" [(ngModel)]="model.familyHistoryOfCancer">
           Patient has a family history of cancer?</label><br/>
   <label>
-          <input type="checkbox">
+          <input type="checkbox" [(ngModel)]="model.knownGeneInFamily">
           Known gene and mutation in family?</label>
 </div>
 <div class="form-group">
   <label>Gene</label>
-  <input class="form-control">
+  <input class="form-control" [(ngModel)]="model.familyGene">
 </div>
 <div class="form-group">
   <label>Mutation</label>
-  <input class="form-control">
+  <input class="form-control" [(ngModel)]="model.familyMutation">
 </div>
 <table class="table">
   <thead>

@@ -39,7 +39,7 @@ def create_patient():
 
 @patient_controllers.route('/<id>', methods=['POST'])
 @requires_auth
-def update_patient():
+def update_patient(id):
     """ Update a patient """
 
     document = request.json
@@ -51,8 +51,9 @@ def update_patient():
 @requires_auth
 def get_patient(id):
     """ Get a specific patient by id """
-    return jsonify(IndividualCollection().get_by_id(id))
-
+    document = IndividualCollection().get_by_id(id)
+    document.pop("lastModified", None)
+    return jsonify(document)
 
 @patient_controllers.route('/<id>', methods=['DELETE'])
 @requires_auth

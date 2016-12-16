@@ -69,7 +69,7 @@ export class PatientService {
 
   updatePatient(id: string, patient: any): Promise<any> {
     let url = `${this.patientUrl}/${id}`;
-    return this.http.post(this.patientUrl, patient)
+    return this.http.post(url, patient)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
