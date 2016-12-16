@@ -20,7 +20,6 @@ import { HomeComponent } from './home/home.component';
 import { ImportComponent } from './import/import.component';
 import { LoginComponent } from './account/login.component';
 import { PatientsComponent } from './patient/patients.component';
-import { PatientAddComponent } from './patient/patient-add.component';
 import { PatientDetailsComponent } from './patient/patient-detail.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -38,7 +37,6 @@ import { SettingsComponent } from './settings/settings.component';
     ImportComponent,
     LoginComponent,
     PatientsComponent,
-    PatientAddComponent,
     PatientDetailsComponent,
     SettingsComponent
   ],
