@@ -35,29 +35,9 @@ export class PatientDetailsComponent implements OnInit {
     "fc": "French Canadian or Cajun"
   }
 
-  personalHistory = [
-    {
-      cancerType: "colon",
-      ageAtDiagnosis: 55,
-      pathology: {
-        "type": "er",
-        "result": "MSH2"
-      }
-    }
-  ]
+  personalHistory = {}
 
-  familyHistory = [
-    {
-      cancerType: "colon",
-      ageAtDiagnosis: 77,
-      relation: "father",
-      side: "paternal",
-      pathology: {
-        "type": "er",
-        "result": "MSH2"
-      }
-    }
-  ]
+  familyHistory = {}
 
   samples = [];
   constructor(route: ActivatedRoute, private dataService: PatientService, private router: Router) {
@@ -129,15 +109,23 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   addPersonalHistoryItem() {
-    this.showAddPersonalHistoryDialog = true;
+    this.model.personalHistory.push(this.personalHistory);
+    this.personalHistory = {};
+    document.getElementById("addPersonalCancel").click();
+  }
+
+  deletePersonalHistoryItem(index) {
+    this.model.personalHistory.splice(index, 1);
   }
 
   addFamilyHistoryItem() {
-    this.showAddFamilyHistoryDialog = true;
+    this.model.familyHistory.push(this.familyHistory);
+    this.familyHistory = {};
+    document.getElementById("addFamilyCancel").click();
   }
 
-  saveFamilyHistoryItem() {
-    this.showAddFamilyHistoryDialog = false;
+  deletFamilyHistoryItem(index) {
+    this.model.familyHistory.splice(index, 1);
   }
 
   // import a VCF file and associate the samples with the case
