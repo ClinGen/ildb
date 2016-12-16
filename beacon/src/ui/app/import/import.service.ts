@@ -20,6 +20,13 @@ export class ImportService {
       .catch(this.handleError);
   }
 
+  deleteFile(id): Promise<any[]> {
+    return this.http.delete(`${this.vcfUrl}/${id}`)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   // error handling
   private handleError(error: any) {
     // move this to the user auth component

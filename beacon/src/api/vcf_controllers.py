@@ -32,6 +32,14 @@ def import_vcf():
 
     return jsonify(list)
 
+@vcf_controllers.route('/<id>', methods=['DELETE'])
+@requires_auth
+def delete_file(id):
+    """ Delete a VCF sample """
+
+    VcfFileCollection().delete(id)
+
+    return jsonify({'result': 'ok'})
 
 @vcf_controllers.route('/samples', methods=['GET'])
 @requires_auth
@@ -43,7 +51,6 @@ def get_samples_list():
     list = VcfSampleCollection().get_all()
 
     return jsonify(list)
-
 
 @vcf_controllers.route('/samples/<id>', methods=['DELETE'])
 @requires_auth

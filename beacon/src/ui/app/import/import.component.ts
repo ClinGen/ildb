@@ -41,7 +41,8 @@ export class ImportComponent implements OnInit {
   }
 
   delete(id: string) {
-
+    this.dataService.deleteFile(id);
+    this.getFileList();
   }
 
   import() {
