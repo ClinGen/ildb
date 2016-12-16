@@ -27,11 +27,6 @@ const appRoutes: Routes = [
     canActivate: [AuthService]
   },
   {
-    path: 'patient/new',
-    component: PatientAddComponent,
-    canActivate: [AuthService]
-  },
-  {
     path: 'patient/:id',
     component: PatientDetailsComponent,
     canActivate: [AuthService]

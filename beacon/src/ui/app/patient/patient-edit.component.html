@@ -4,29 +4,28 @@
 <div class="panel-heading">
   <div class="pull-left">
     <h4><i class="fa fa-user"></i> General Information</h4>
-  </div>
-  <br>
+  </div><br/>
 </div>
 <div class="panel-body">
   <div class="form-group">
     <label>Case Id</label>
-    <input class="form-control" [(ngModel)]="reference">
+    <input class="form-control" [(ngModel)]="model.caseId">
   </div>
   <div class="form-group">
-    <label>City</label>
-    <input class="form-control" [(ngModel)]="city">
+    <label>Country</label>
+    <input class="form-control" [(ngModel)]="model.country">
   </div>
   <div class="form-group">
     <label>State</label>
-    <input class="form-control" [(ngModel)]="state">
+    <input class="form-control" [(ngModel)]="model.state">
+  </div>
+  <div class="form-group">
+    <label>City</label>
+    <input class="form-control" [(ngModel)]="model.city">
   </div>
   <div class="form-group">
     <label>Zip</label>
-    <input class="form-control" [(ngModel)]="zip">
-  </div>
-  <div class="form-group">
-    <label>Insurance</label>
-    <input class="form-control" [(ngModel)]="insurance">
+    <input class="form-control" [(ngModel)]="model.zip">
   </div>
   <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
 </div>
@@ -42,7 +41,8 @@
 <div class="panel-body">
   <div class="form-group">
     <label>Gender</label><br/>
-    <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female
+    <input type="radio" name="gender" value="m" [(ngModel)]="model.gender"> Male <input type="radio" name="gender" value="f"
+      [(ngModel)]="model.gender"> Female
   </div>
   <div class="form-group">
     <label>Ethnicity</label><br/>
@@ -60,7 +60,11 @@
     </div>
     <div class="checkbox">
       <label><input type="checkbox">
-          African of African American</label>
+          African</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
+          African American</label>
     </div>
     <div class="checkbox">
       <label><input type="checkbox">
@@ -94,13 +98,17 @@
       <label><input type="checkbox">
           Mixed</label>
     </div>
+    <div class="checkbox">
+      <label><input type="checkbox">
+          Other/Unknown</label>
+    </div>
   </div>
   <div class="form-group">
     <label>Sample Collection Date</label>
     <input class="form-control">
   </div>
   <div class="form-group">
-    <label>Clinical Indications</label>
+    <label>Clinical Indications (example: ICD10:12343, ICD9:345234)</label>
     <input class="form-control">
   </div>
   <div class="form-group">
@@ -124,7 +132,7 @@
         <th></th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of personalHistory">
+    <tbody *ngFor="let item of model.personalHistory">
       <tr>
         <td>{{item.cancerType}}</td>
         <td>{{item.ageAtDiagnosis}}</td>
@@ -149,7 +157,7 @@
           Patient has a family history of cancer?</label><br/>
   <label>
           <input type="checkbox">
-          Known gene and mutation?</label>
+          Known gene and mutation in family?</label>
 </div>
 <div class="form-group">
   <label>Gene</label>
@@ -171,7 +179,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody *ngFor="let item of familyHistory">
+  <tbody *ngFor="let item of model.familyHistory">
     <tr>
       <td>{{item.cancerType}}</td>
       <td>{{item.relation}}</td>
@@ -196,7 +204,7 @@
 </div>
 </section>
 
-<section [hidden]="!showGenePanel" class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
+<section [hidden]="isNew" class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
 <div class="panel-heading">
   <div class="pull-left">
     <h5><i class="fa fa-user"></i> Genetic Data Associated With Case</h5>

@@ -67,6 +67,14 @@ export class PatientService {
       .catch(this.handleError);
   }
 
+  updatePatient(id: string, patient: any): Promise<any> {
+    let url = `${this.patientUrl}/${id}`;
+    return this.http.post(this.patientUrl, patient)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   // delete a patient
   deletePatient(patientId: string) {
     let headers = new Headers();

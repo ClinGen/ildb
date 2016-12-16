@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PatientService } from './patient.services';
 
 @Component({
@@ -8,8 +8,32 @@ import { PatientService } from './patient.services';
 })
 
 export class PatientDetailsComponent implements OnInit {
-  patientId = "";
-  reference = "";
+
+  isNew = false;
+  id = "";
+
+  // New/Emptye case record
+  model = {
+    id:"",
+    caseId : "", //required string - autogenerate if not supplied
+    city : "", //required string
+    state : "", //required string
+    zip : "", //require string
+    gender : null, // m/f required
+    sampleCollectionDate : null,
+    clinicalIndications : null,
+    diseasePanel : [],
+    hasHistoryOfCancer : false,
+    ethnicity : [],
+    personalHistory : [],
+    familyHistory : []
+  }
+
+  ethnicityOptions = {
+    "ne":"Northern European",
+    "se":"Southern European",
+    "fc":"French Canadian or Cajun"
+  }
 
   personalHistory = [
     {
@@ -25,16 +49,6 @@ export class PatientDetailsComponent implements OnInit {
   familyHistory = [
     {
       cancerType : "colon",
-      ageAtDiagnosis: 55,
-      relation: "grandfather",
-      side: "maternal",
-      pathology :{
-        "type":"er",
-        "result":"MSH2"
-      }
-    },
-    {
-      cancerType : "foot",
       ageAtDiagnosis: 77,
       relation: "father",
       side: "paternal",
@@ -45,27 +59,33 @@ export class PatientDetailsComponent implements OnInit {
     }
   ]
 
-  showGenePanel = true;
-
   samples = [];
-  constructor(route: ActivatedRoute, private dataService: PatientService) {
-    this.patientId = route.snapshot.params['id'];
+  constructor(route: ActivatedRoute, private dataService: PatientService, private router: Router) {
+    this.model.id = route.snapshot.params['id'];
+
+     if (this.model.id === "new")
+      this.isNew = true;
   }
 
   ngOnInit() {
     //Retrieve individual information
 
     //Load patient samples
+    if (this.isNew)
+      return;
+
+    //load list of samples
     this.loadSampleList();
   }
 
+  // VCF sample list
   loadSampleList() {
-    this.dataService.getPatientSamples(this.patientId)
+    this.dataService.getPatientSamples(this.model.id)
       .then(results => this.samples = results)
       .catch(error => console.log(error))
 
-    this.dataService.getById(this.patientId)
-      .then(results => this.reference = results.reference)
+    this.dataService.getById(this.model.id)
+      .then(result => this.model = result)
       .catch(error => console.log(error))
   }
 
@@ -90,8 +110,18 @@ export class PatientDetailsComponent implements OnInit {
     
   }
 
-  delete(id: string) {
-
+  save() {
+    // if this is a new patient - save and route to edit/view patient
+    if (this.isNew)
+    {
+    this.dataService.addPatient(this.model)
+      .then(result => this.router.navigate(['/patient', result.id]))
+      .catch(error => console.log(error))
+    }
+    else{
+      this.dataService.updatePatient(this.model.id, this.model)
+      // Do we want to notify user and/or return to list?
+    }
   }
 
   addPersonalHistoryItem() {
@@ -106,6 +136,7 @@ export class PatientDetailsComponent implements OnInit {
     this.showAddFamilyHistoryDialog = false;
   }
 
+  // import a VCF file and associate the samples with the case
   import() {
 
     this.isUploading = true;
@@ -117,10 +148,6 @@ export class PatientDetailsComponent implements OnInit {
 
   cancelImport() {
     this.importFileName = "";
-  }
-
-  save() {
-
   }
   
   // Upload a vcf file
@@ -148,7 +175,7 @@ export class PatientDetailsComponent implements OnInit {
         document.getElementById("progressBar").style.width = importProgress + "%";
       };
 
-      xhr.open('POST', `/api/patient/${this.patientId}/sample`, true);
+      xhr.open('POST', `/api/patient/${this.model.id}/sample`, true);
 
       let formData = new FormData();
 
