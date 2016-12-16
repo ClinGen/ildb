@@ -15,7 +15,6 @@
     '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
     'angular2-cookie':            'node_modules/angular2-cookie',
     'angular2-jwt':               'node_modules/angular2-jwt',
-    
     'rxjs':                       'npm:rxjs',
     'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api'
   },

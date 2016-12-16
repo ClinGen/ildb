@@ -14,7 +14,7 @@ export class BeaconQuery {
   providers: [QueryService]
 })
 
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   title = 'Case Vault Search';
 
@@ -22,6 +22,10 @@ export class SearchComponent {
 
   constructor(
     private queryService: QueryService) {
+
+  }
+
+  ngOnInit() {
 
   }
 
