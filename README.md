@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ClinGen/clinbeacon.svg?branch=master)](https://travis-ci.org/ClinGen/clinbeacon)
+
 # Clinbeacon project
 
 The Clinbeacon repository contains two different projects, a beacon or server that's responsible for managing data for a tenant and processing requests from a centralized service, the hub project which is used for manaing the tenants or beacons in the system.
