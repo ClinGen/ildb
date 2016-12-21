@@ -112,19 +112,15 @@ class IndividualCollection(CollectionBase):
     def __init__(self):
         super().__init__('individuals')
     
-    def get_by_clinical_indications(self, patient_ids, clinical_ids):
+    def get_by_clinical_history_population(self, patient_ids, clinical_ids, family_history, population):
 
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
 
-            # This does not quite fit the 1:1 class:collection used in this wrapper since it works across multiple
-            # At the moment the only query is on the
             genome_data = db[self.collection_name]
 
             obj_ids = [ObjectId(i) for i in patient_ids]
 
-            # search the genome database
-            # we can add a limit since we are simply looking for an occurance
             cursor = genome_data.find (
                  {'_id': {'$in' : tuple(obj_ids)},
                  'clinicalIndications': {'$in': clinical_ids}
