@@ -4,6 +4,7 @@ Beacon Query API Controllers
 These API will be called by the central hub
 """
 from flask import Blueprint, jsonify, request
+from api import log
 from lib.beacondb import VcfSampleCollection, IndividualCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
@@ -21,12 +22,22 @@ def beacon_query(chrom, position, allele, reference):
     return jsonify({"count": result})
 
 @query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
-def query_one(chrom, position, allele):
+def query_two(chrom, position, allele):
     """ Canonical Query2 """
 
     if request.args.get('clinids') is not None:
-        result = VcfSampleCollection().get_indviduals_with_clinical(
-            chrom, position, allele, request.args.get('clinids').split(','))
+
+        # get a list of cases matching a specific mutation
+        patient_list = VcfSampleCollection().get_patient_ids_by_variant(
+            chrom, position, allele)
+
+        log.info(patient_list)
+
+        # retrieve a list of cases matching a list of clinical indications and patients
+        result = IndividualCollection().get_by_clinical_indications (
+            patient_list,
+            request.args.get('clinids').split(',')
+        )
 
         return jsonify(result)
     else:

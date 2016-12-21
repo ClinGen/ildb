@@ -79,14 +79,13 @@ class VcfSampleCollection(CollectionBase):
 
             return sum(1 for i in cursor)
 
-    def get_indviduals_with_clinical(self, chrom, position, allele, clin_ids):
+    def get_patient_ids_by_variant(self, chrom, position, allele):
         """
-        @return int
+        @return [patientIds]
 
         @param chrom
         @param position
         @param allele
-        @param reference
         """
 
         with self.mongo_client as mclient:
@@ -100,18 +99,20 @@ class VcfSampleCollection(CollectionBase):
             # we can add a limit since we are simply looking for an occurance
             cursor = genome_data.find(
                 {'variants': chrom + '_' + position + '_' + allele,
-                 'patientId': {'$exists': True}}
+                'patientId': {'$exists': True}},
+                {'patientId':1}
             )
 
-            return sum(1 for i in cursor)
-
+            tmp = self.to_list(cursor)
+            tmp = [str(p['patientId']) for p in tmp]
+            return tmp
 
 class IndividualCollection(CollectionBase):
 
     def __init__(self):
         super().__init__('individuals')
     
-    def get_by_clinical_indications(self, patientId, clinicalIds):
+    def get_by_clinical_indications(self, patient_ids, clinical_ids):
 
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
@@ -120,11 +121,14 @@ class IndividualCollection(CollectionBase):
             # At the moment the only query is on the
             genome_data = db[self.collection_name]
 
+            obj_ids = [ObjectId(i) for i in patient_ids]
+
             # search the genome database
             # we can add a limit since we are simply looking for an occurance
-            cursor = genome_data.find(
-                 {'id':ObjectId(id),
-                 'clinicalIndications': {'$in': clinicalIds}}
+            cursor = genome_data.find (
+                 {'_id': {'$in' : tuple(obj_ids)},
+                 'clinicalIndications': {'$in': clinical_ids}
+                 }
             )
 
             return self.to_list(cursor)
