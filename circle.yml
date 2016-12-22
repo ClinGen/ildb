@@ -11,7 +11,7 @@ dependencies:
     - npm install -g typescript
   override:
     - cd beacon/src && npm run setup
-    - cd beacon && docker build -t clearnet/casevault:$CIRCLE_BUILD_NUM -f build/app.dockerfile
+    - cd beacon && docker build -t clearnet/casevault:$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 deployment:
   hub:
