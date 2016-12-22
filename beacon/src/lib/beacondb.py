@@ -50,7 +50,7 @@ class VcfSampleCollection(CollectionBase):
             db = mclient[DB_NAME]
             collection = db[self.collection_name]
 
-            cursor = collection.find({'patientId': id}, {})
+            cursor = collection.find({'caseId': id}, {})
 
             return self.to_list(cursor)
 

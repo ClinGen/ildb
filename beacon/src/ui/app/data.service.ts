@@ -68,19 +68,19 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  deletePatient(patientId: string) {
+  deletePatient(caseId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.patientUrl}/${patientId}`;
+    let url = `${this.patientUrl}/${caseId}`;
     return this.http
       .delete(url, headers)
       .toPromise()
       .catch(this.handleError);
   }
 
-  getPatientSamples(patientId: string): Promise<any> {
+  getPatientSamples(caseId: string): Promise<any> {
 
-    return this.http.get(`${this.patientUrl}/${patientId}/sample`)
+    return this.http.get(`${this.patientUrl}/${caseId}/sample`)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

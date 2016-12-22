@@ -125,7 +125,7 @@ def upload_patient_samples(id):
             {'filename': filename,
                 'status': 'uploading',
                 'samples': 0,
-                'patientId': id}
+                'caseId': id}
         )
 
         file.save(os.path.join(Settings.file_store, file_id + '.vcf'))

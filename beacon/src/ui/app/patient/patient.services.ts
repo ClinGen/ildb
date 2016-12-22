@@ -76,10 +76,10 @@ export class PatientService {
   }
 
   // delete a patient
-  deletePatient(patientId: string) {
+  deletePatient(caseId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.patientUrl}/${patientId}`;
+    let url = `${this.patientUrl}/${caseId}`;
     return this.http
       .delete(url, headers)
       .toPromise()
@@ -87,8 +87,8 @@ export class PatientService {
   }
 
   // get a list of genome samples for a patient
-  getPatientSamples(patientId: string): Promise<any> {
-    return this.http.get(`${this.patientUrl}/${patientId}/sample`)
+  getPatientSamples(caseId: string): Promise<any> {
+    return this.http.get(`${this.patientUrl}/${caseId}/sample`)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

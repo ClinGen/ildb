@@ -57,7 +57,7 @@ def import_vcf(file_id):
                 {
                     'fileid': file_id,
                     'variants': variants,
-                    'patientId': file_data['patientId']
+                    'caseId': file_data['caseId']
                 })
     except:
         log.exception('error importing patient vcf')
