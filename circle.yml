@@ -1,5 +1,5 @@
 machine:
-  service:
+  services:
     - docker
   node:
     version: 5.5.0
@@ -19,4 +19,3 @@ deployment:
     commands:
       - docker login -u $DOCKER_USER -p $DOCKER_PASS
       - docker push clearnet/:$CIRCLE_BUILD_NUM
-      
