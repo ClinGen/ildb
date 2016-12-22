@@ -9,7 +9,7 @@ dependencies:
     - npm install -g typescript
   override:
     - cd beacon/src/ui && npm install --unsafe-perm
-    - cd beacon/src tsc -p ui
+    - cd beacon/src && tsc -p ui
     - cd beacon && docker build -t clearnet/casevault:$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 deployment:
