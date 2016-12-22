@@ -3,14 +3,13 @@ machine:
     - docker
   node:
     version: 5.5.0
-  python:
-    version: 3.5.0
 
 dependencies:
   pre:
     - npm install -g typescript
   override:
-    - cd beacon/src && npm run setup
+    - cd beacon/src/ui && npm install --unsafe-perm
+    - cd beacon/src tsc -p ui
     - cd beacon && docker build -t clearnet/casevault:$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 deployment:
