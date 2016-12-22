@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ClinGen/clinbeacon.svg?branch=master)](https://travis-ci.org/ClinGen/clinbeacon)
+[![CircleCI](https://circleci.com/gh/ClinGen/clinbeacon.svg?style=svg)](https://circleci.com/gh/ClinGen/clinbeacon)
 
 # Clinbeacon project
 

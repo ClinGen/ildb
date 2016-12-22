@@ -1,5 +1,22 @@
 machine:
+  service:
+    - docker
   node:
     version: 5.5.0
   python:
     version: 3.5.0
+
+dependencies:
+  pre:
+    - npm install -g typescript
+  override:
+    - cd beacon/src && npm run setup
+    - cd beacon && docker build -t clearnet/:$CIRCLE_BUILD_NUM -f build/app.dockerfile
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push clearnet/:$CIRCLE_BUILD_NUM
+      
