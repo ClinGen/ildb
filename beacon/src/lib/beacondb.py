@@ -79,9 +79,9 @@ class VcfSampleCollection(CollectionBase):
 
             return sum(1 for i in cursor)
 
-    def get_patient_ids_by_variant(self, chrom, position, allele):
+    def get_case_ids_by_variant(self, chrom, position, allele):
         """
-        @return [patientIds]
+        @return [caseIds]
 
         @param chrom
         @param position
@@ -97,35 +97,42 @@ class VcfSampleCollection(CollectionBase):
 
             # search the genome database
             # we can add a limit since we are simply looking for an occurance
-            cursor = genome_data.find(
-                {'variants': chrom + '_' + position + '_' + allele,
-                'patientId': {'$exists': True}},
-                {'patientId':1}
+            cursor = genome_data.distinct (
+                'caseId',
+                {'variants': chrom + '_' + position + '_' + allele}
             )
 
-            tmp = self.to_list(cursor)
-            tmp = [str(p['patientId']) for p in tmp]
-            return tmp
+            # return as an immutable tuple
+            return tuple(cursor)
 
 class IndividualCollection(CollectionBase):
 
     def __init__(self):
         super().__init__('individuals')
     
-    def get_by_clinical_history_population(self, patient_ids, clinical_ids, family_history, population):
+    def get_by_clinical_history_population(self, case_ids, clinical_ids = None, family_history = None, populations = None):
 
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
 
             genome_data = db[self.collection_name]
 
-            obj_ids = [ObjectId(i) for i in patient_ids]
+            obj_ids = [ObjectId(i) for i in case_ids]
 
-            cursor = genome_data.find (
-                 {'_id': {'$in' : tuple(obj_ids)},
+            query = {'_id': {'$in' : tuple(obj_ids)},
                  'clinicalIndications': {'$in': clinical_ids}
                  }
-            )
+
+            if clinical_ids is not None:
+                query['clinicalIndications'] = {'$in': clinical_ids}
+
+            if family_history is not None:
+                query['familyHistoryOfCancer'] = True
+            
+            if populations is not None:
+                query['ethnicity'] = {'$in': populations}
+
+            cursor = genome_data.find (query)
 
             return self.to_list(cursor)
 

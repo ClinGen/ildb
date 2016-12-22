@@ -32,7 +32,7 @@ def query_two(chrom, position, allele):
     # Using the casses returned and the additional filter criteria query for cases
 
     # get a list of cases matching a specific mutation
-    case_list = VcfSampleCollection().get_patient_ids_by_variant(
+    case_list = VcfSampleCollection().get_case_ids_by_variant(
         chrom, position, allele)
         
     # If there are no cases matching the variant we can just return empty results
@@ -53,11 +53,11 @@ def query_two(chrom, position, allele):
         family_history = request.args.get('family_history')
 
     population = None
-    if request.args.get('population') is not None:
-        log.info("population specified - " +  request.args.get('population'))
+    if request.args.get('populations') is not None:
+        log.info("population specified - " +  request.args.get('populations'))
 
         # TODO validate the parameter
-        population = request.args.get('population')
+        population = request.args.get('populations')
     
     # retrieve a list of cases matching a list of clinical indications and patients
     result = IndividualCollection().get_by_clinical_history_population (
@@ -66,5 +66,5 @@ def query_two(chrom, position, allele):
         family_history,
         population
     )
-    
+
     return jsonify(result)
