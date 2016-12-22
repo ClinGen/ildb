@@ -1,6 +1,6 @@
-Flask==0.11.1
+Flask==0.12
 PyJWT==1.4.2
-pymongo==3.3.1
+pymongo==3.4.0
 PyVCF==0.6.8
-oic==0.9.1.0
-celery==4.0.0
+oic==0.9.4.0
+celery==4.0.2
