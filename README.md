@@ -13,7 +13,7 @@ __document identity setup__
 ## Hub
 The [Hub Project](https://github.com/ClinGen/clinbeacon/tree/master/hub) is responsible for performing fan-out queries across registered beacons. The hub project is also responsible for managing the tenants and beacons in the system.
 
-## Beacon
+## Case Vault
 The [Case Vault Project](https://github.com/ClinGen/clinbeacon/tree/master/casevault) is responsible for managing the data and performing queries for a tenant.
 
 ## sample data
