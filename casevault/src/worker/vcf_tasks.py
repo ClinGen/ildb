@@ -10,7 +10,7 @@ import re
 from bson.objectid import ObjectId
 from worker import log
 from lib.settings import Settings
-from lib.beacondb import VcfFileCollection, VcfSampleCollection
+from lib.casevaultdb import VcfFileCollection, VcfSampleCollection
 
 def import_vcf(file_id):
 

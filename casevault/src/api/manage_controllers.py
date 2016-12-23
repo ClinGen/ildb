@@ -1,9 +1,9 @@
 """
 @package api
-Beacon Management API Controllers
+Case Vault Management API Controllers
 """
 from flask import Blueprint, jsonify
-from lib.beacondb import VcfSampleCollection
+from lib.casevaultdb import VcfSampleCollection
 from api.auth import requires_auth
 
 manage_controllers = Blueprint('manage_controllers', __name__)

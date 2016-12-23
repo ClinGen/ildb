@@ -1,5 +1,5 @@
 {
-  "name": "clingen-beacon",
+  "name": "clearnet-casevault",
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy\" \"npm run worker\"  ",

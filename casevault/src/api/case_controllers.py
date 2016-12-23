@@ -1,10 +1,10 @@
 """
 @package api
-Beacon Management API Controllers
+Case Vault Management API Controllers
 """
 from flask import Blueprint, jsonify, request, flash
 from api import log
-from lib.beacondb import VcfSampleCollection, CaseCollection, VcfFileCollection
+from lib.casevaultdb import VcfSampleCollection, CaseCollection, VcfFileCollection
 from api.auth import requires_auth
 from werkzeug.utils import secure_filename
 import vcf

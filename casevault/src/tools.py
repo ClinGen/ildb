@@ -27,7 +27,7 @@ def main():
         userid = sys.argv[2]
 
         with pymongo.MongoClient(host=connection_string) as mclient:
-            db = mclient['clinbeacon']
+            db = mclient['casevault']
             user_data = db['users']
             user_data.insert_one({'_id': userid})
 

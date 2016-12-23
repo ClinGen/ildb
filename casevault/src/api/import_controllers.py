@@ -4,7 +4,7 @@ Data import controllers
 """
 from flask import Blueprint, jsonify, Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
-from lib.beacondb import VcfFileCollection, VcfSampleCollection
+from lib.casevaultdb import VcfFileCollection, VcfSampleCollection
 from api.auth import requires_auth
 from lib.settings import Settings
 from api import app

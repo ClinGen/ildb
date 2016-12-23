@@ -1,21 +1,21 @@
 """
 @package api
-Beacon Query API Controllers
+Case Vault Query API Controllers
 These API will be called by the central hub
 """
 from flask import Blueprint, jsonify, request
 from api import log
-from lib.beacondb import VcfSampleCollection, CaseCollection
+from lib.casevaultdb import VcfSampleCollection, CaseCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
 
 @query_controllers.route('/')
-def list_supported_beacon_queries():
+def list_supported_casevault_queries():
     return jsonify({'1':'find variants', '2': 'find variants with clinical information'})
 
 @query_controllers.route('/1/<chrom>/<position>/<allele>', defaults={'reference': None}, methods=['GET'])
 @query_controllers.route('/1/<chrom>/<position>/<allele>/<reference>', methods=['GET'])
-def beacon_query(chrom, position, allele, reference):
+def casevault_query_one(chrom, position, allele, reference):
     """ Canonical Query1 """
 
     # Validate parameters

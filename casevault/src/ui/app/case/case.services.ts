@@ -59,7 +59,7 @@ export class CaseService {
       .catch(this.handleError);
   }
 
-  // add a new case to the beacon
+  // add a new case to the case vault
   addCase(caseDoc: any): Promise<any> {
     return this.http.post(this.caseUrl, caseDoc)
       .toPromise()

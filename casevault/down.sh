@@ -1,9 +1,9 @@
 # docker compose will shutdown and cleanup containers
-docker-compose -p beacon -f ./build/docker-compose.yml down
+docker-compose -p casevault -f ./build/docker-compose.yml down
 
 # cleanup the network if there are not containers using it
-if [ "$(docker network inspect clinbeacon --format "{{range .Containers}}T{{end}}")" == "" ]; then
-docker network rm clinbeacon
+if [ "$(docker network inspect clearnet --format "{{range .Containers}}T{{end}}")" == "" ]; then
+docker network rm clearnet
 fi
 
 # NOTE: consider cleaning up data volumes

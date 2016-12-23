@@ -17,18 +17,18 @@ services:
     stdin_open: true
     working_dir: /app
     networks:
-      beacon:
+      clearnet:
         aliases:
-          - devbeacon
+          - casevault
   mongo:
     image: mongo:3.4.0
     ports:
       - "27017:27017"
     networks:
-      beacon:
+      clearnet:
         aliases:
-          - mongobeacon
+          - mongocasevault
 networks:
-  beacon:
+  clearnet:
     external:
-      name: clinbeacon
+      name: clearnet
