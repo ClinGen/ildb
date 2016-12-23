@@ -5,18 +5,33 @@
 </div>
 <div class="panel-body">
   <div class="task-content">
-    <ul id="sortable" class="task-list ui-sortable"  *ngFor="let item of cases">
-      <li class="list-success">
-        <div class="task-title">
-          <span class="task-title-sp">{{item.id}}</span><br>
-          <span class="task-details-sp">{{item.caseId}}</span>
-        </div>
-        <div class="pull-right edit-list">
-            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/case/', item.id])"></button>
-            <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
-        </div>
-      </li>
-    </ul>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Case Id</th>
+        <th>Gender</th>
+        <th>Ethnicity</th>
+        <th>Clinical Indications</th>
+        <th>Patient History</th>
+        <th>Familty History</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of cases">
+      <tr>
+        <td>{{item.caseId}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.ethnicity}}</td>
+        <td>{{item.clinicalIndications}}</td>
+        <td>{{item.hasHistoryOfCancer}}</td>
+        <td>{{item.familyHasHistory}}</td>
+        <td>
+          <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/case/', item.id])"></button>
+          <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </div>
   <div>
     <br/>
