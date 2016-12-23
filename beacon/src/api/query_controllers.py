@@ -5,7 +5,7 @@ These API will be called by the central hub
 """
 from flask import Blueprint, jsonify, request
 from api import log
-from lib.beacondb import VcfSampleCollection, IndividualCollection
+from lib.beacondb import VcfSampleCollection, CaseCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
 
@@ -59,8 +59,8 @@ def query_two(chrom, position, allele):
         # TODO validate the parameter
         population = request.args.get('populations')
     
-    # retrieve a list of cases matching a list of clinical indications and patients
-    result = IndividualCollection().get_by_clinical_history_population (
+    # retrieve a list of cases matching a list of clinical indications and cases
+    result = CaseCollection().get_by_clinical_history_population (
         case_list,
         clinic_ids,
         family_history,

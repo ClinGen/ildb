@@ -4,7 +4,7 @@ Beacon Management API Controllers
 """
 from flask import Blueprint, jsonify, request, flash
 from api import log
-from lib.beacondb import VcfSampleCollection, IndividualCollection, VcfFileCollection
+from lib.beacondb import VcfSampleCollection, CaseCollection, VcfFileCollection
 from api.auth import requires_auth
 from werkzeug.utils import secure_filename
 import vcf
@@ -15,92 +15,92 @@ from api.task_queue import queue_vcf_import
 from lib.settings import Settings
 import sys
 
-patient_controllers = Blueprint('patient_controllers', __name__)
+case_controllers = Blueprint('case_controllers', __name__)
 
 
-@patient_controllers.route('', methods=['GET'])
+@case_controllers.route('', methods=['GET'])
 @requires_auth
-def get_patient_list():
-    """ Retrieve a list of patients """
+def get_case_list():
+    """ Retrieve a list of cases """
 
-    list = IndividualCollection().get_all()
+    list = CaseCollection().get_all()
 
     return jsonify(list)
 
 
-@patient_controllers.route('', methods=['POST'])
+@case_controllers.route('', methods=['POST'])
 @requires_auth
-def create_patient():
-    """ Create a new patient """
+def create_case():
+    """ Create a new case """
 
     document = request.json
 
-    return jsonify({'id': IndividualCollection().add(document)})
+    return jsonify({'id': CaseCollection().add(document)})
 
-@patient_controllers.route('/<id>', methods=['POST'])
+@case_controllers.route('/<id>', methods=['POST'])
 @requires_auth
-def update_patient(id):
-    """ Update a patient """
+def update_case(id):
+    """ Update a case """
 
     document = request.json
 
-    return jsonify({'id': IndividualCollection().update_by_id(id, document)})
+    return jsonify({'id': CaseCollection().update_by_id(id, document)})
 
 
-@patient_controllers.route('/<id>', methods=['GET'])
+@case_controllers.route('/<id>', methods=['GET'])
 @requires_auth
-def get_patient(id):
-    """ Get a specific patient by id """
-    document = IndividualCollection().get_by_id(id)
+def get_case(id):
+    """ Get a specific case by id """
+    document = CaseCollection().get_by_id(id)
     document.pop("lastModified", None)
     return jsonify(document)
 
-@patient_controllers.route('/<id>', methods=['DELETE'])
+@case_controllers.route('/<id>', methods=['DELETE'])
 @requires_auth
-def delete_patient(id):
-    """ Delete a patient """
+def delete_case(id):
+    """ Delete a case """
 
-    IndividualCollection().delete(id)
+    CaseCollection().delete(id)
 
     return jsonify({'result': 'ok'})
 
 
-@patient_controllers.route('/<id>/sample/<sampleId>', methods=['GET'])
+@case_controllers.route('/<id>/sample/<sampleId>', methods=['GET'])
 @requires_auth
-def get_patient_sample(id, sampleId):
+def get_case_sample(id, sampleId):
     """ Delete a VCF sample """
 
     return jsonify({'result': 'ok'})
 
 
-@patient_controllers.route('/<id>/sample/<sampleId>', methods=['DELETE'])
+@case_controllers.route('/<id>/sample/<sampleId>', methods=['DELETE'])
 @requires_auth
-def delete_patient_samples(id, sampleId):
+def delete_case_samples(id, sampleId):
     """ Delete a VCF sample """
 
     return jsonify({'result': 'ok'})
 
 
-@patient_controllers.route('/<id>/sample', methods=['GET'])
+@case_controllers.route('/<id>/sample', methods=['GET'])
 @requires_auth
-def get_patient_samples(id):
-    """ Get all gene samples for an individual """
-    list = VcfSampleCollection().get_by_individualid(id)
+def get_case_samples(id):
+    """ Get all gene samples for an case """
+    list = VcfSampleCollection().get_by_caseid(id)
 
     # add query string to fetch (status and filter by ids)
 
     return jsonify(list)
 
 
-@patient_controllers.route('/<id>/sample', methods=['POST'])
+@case_controllers.route('/<id>/sample', methods=['POST'])
 #@requires_auth
-def upload_patient_samples(id):
+def upload_case_samples(id):
     """
-    Import multi-sample VCF file that mauy not be associated with a specific patient
+    Import multi-sample VCF file that mauy not be associated with a specific case
     """
     log.info('vcf import')
 
-    # TODO: how do we correlate samples with patients and phenotype data?
+    # TODO: how do we correlate samples with cases and phenotype data?
     # Store documents
     try:
         # check if the post request has the file part

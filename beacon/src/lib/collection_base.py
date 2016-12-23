@@ -76,7 +76,7 @@ class CollectionBase(object):
 
             cursor = collection.find()
             # The following returns just the id's
-            # cursor = patients_collection.find({},{})
+            # cursor = cases_collection.find({},{})
 
             return self.to_list(cursor)
 

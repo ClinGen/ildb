@@ -7,7 +7,7 @@ export class DataService {
   //TODO: break this out in to multiple
 
   private samplesUrl = '/api/manage/samples';
-  private patientUrl = '/api/patient';
+  private caseUrl = '/api/case';
 
   constructor(private http: Http) { }
 
@@ -31,7 +31,7 @@ export class DataService {
   }
 
   // Upload a vcf file
-  uploadPatientSample(id, file) {
+  uploadCaseSample(id, file) {
     return new Promise((resolve, reject) => {
       let xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
@@ -44,7 +44,7 @@ export class DataService {
         }
       };
 
-      xhr.open('POST', `${this.patientUrl}/${id}/sample`, true);
+      xhr.open('POST', `${this.caseUrl}/${id}/sample`, true);
 
       let formData = new FormData();
 
@@ -54,33 +54,33 @@ export class DataService {
     });
   }
 
-  getPatientList(): Promise<any[]> {
-    return this.http.get(this.patientUrl)
+  getCaseList(): Promise<any[]> {
+    return this.http.get(this.caseUrl)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  addPatient(patient: any): Promise<any> {
-    return this.http.post(this.patientUrl, patient)
+  addCase(caseDoc: any): Promise<any> {
+    return this.http.post(this.caseUrl, caseDoc)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  deletePatient(caseId: string) {
+  deleteCase(caseId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.patientUrl}/${caseId}`;
+    let url = `${this.caseUrl}/${caseId}`;
     return this.http
       .delete(url, headers)
       .toPromise()
       .catch(this.handleError);
   }
 
-  getPatientSamples(caseId: string): Promise<any> {
+  getCaseSamples(caseId: string): Promise<any> {
 
-    return this.http.get(`${this.patientUrl}/${caseId}/sample`)
+    return this.http.get(`${this.caseUrl}/${caseId}/sample`)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

@@ -19,8 +19,8 @@ import { UserComponent } from './account/user.component';
 import { HomeComponent } from './home/home.component';
 import { ImportComponent } from './import/import.component';
 import { LoginComponent } from './account/login.component';
-import { PatientsComponent } from './patient/patients.component';
-import { PatientDetailsComponent } from './patient/patient-detail.component';
+import { CaseComponent } from './case/cases.component';
+import { CaseDetailsComponent } from './case/case-detail.component';
 import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
@@ -36,8 +36,8 @@ import { SettingsComponent } from './settings/settings.component';
     HomeComponent,
     ImportComponent,
     LoginComponent,
-    PatientsComponent,
-    PatientDetailsComponent,
+    CaseComponent,
+    CaseDetailsComponent,
     SettingsComponent
   ],
   bootstrap: [AppComponent],

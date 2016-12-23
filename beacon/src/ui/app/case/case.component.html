@@ -5,14 +5,14 @@
 </div>
 <div class="panel-body">
   <div class="task-content">
-    <ul id="sortable" class="task-list ui-sortable"  *ngFor="let item of patients">
+    <ul id="sortable" class="task-list ui-sortable"  *ngFor="let item of cases">
       <li class="list-success">
         <div class="task-title">
           <span class="task-title-sp">{{item.id}}</span><br>
           <span class="task-details-sp">{{item.caseId}}</span>
         </div>
         <div class="pull-right edit-list">
-            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/patient/', item.id])"></button>
+            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/case/', item.id])"></button>
             <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
         </div>
       </li>
@@ -21,7 +21,7 @@
   <div>
     <br/>
     <div>
-      <button type="button" (click)="this.router.navigate(['/patient/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
+      <button type="button" (click)="this.router.navigate(['/case/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
     </div>
   </div>
 </div>

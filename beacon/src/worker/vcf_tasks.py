@@ -60,7 +60,7 @@ def import_vcf(file_id):
                     'caseId': file_data['caseId']
                 })
     except:
-        log.exception('error importing patient vcf')
+        log.exception('error importing case vcf')
 
     VcfFileCollection().update_by_id(file_id,
         {

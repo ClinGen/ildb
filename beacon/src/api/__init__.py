@@ -41,5 +41,5 @@ app.register_blueprint(info_controllers, url_prefix='/api/info')
 from api.manage_controllers import manage_controllers
 app.register_blueprint(manage_controllers, url_prefix='/api/manage')
 
-from api.patient_controllers import patient_controllers
-app.register_blueprint(patient_controllers, url_prefix='/api/patient')
+from api.case_controllers import case_controllers
+app.register_blueprint(case_controllers, url_prefix='/api/case')

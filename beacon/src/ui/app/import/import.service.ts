@@ -3,7 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 //
-// Patient services
+// Case services
 //
 @Injectable()
 export class ImportService {

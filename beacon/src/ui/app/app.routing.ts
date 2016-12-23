@@ -2,7 +2,7 @@ import { Routes, RouterModule }  from '@angular/router';
 import {ImportComponent} from './import/import.component';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './account/login.component';
-import {PatientsComponent, PatientDetailsComponent} from './patient/index';
+import {CaseComponent, CaseDetailsComponent} from './case/index';
 import {SettingsComponent} from './settings/settings.component';
 import {AuthService} from './account/auth.service';
 
@@ -22,13 +22,13 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'patient',
-    component: PatientsComponent,
+    path: 'case',
+    component: CaseComponent,
     canActivate: [AuthService]
   },
   {
-    path: 'patient/:id',
-    component: PatientDetailsComponent,
+    path: 'case/:id',
+    component: CaseDetailsComponent,
     canActivate: [AuthService]
   },
   {

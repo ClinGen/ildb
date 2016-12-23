@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PatientService } from './patient.services';
+import { CaseService } from './case.services';
 
 @Component({
-  templateUrl: '/app/patient/patient-edit.component.html',
-  providers: [PatientService]
+  templateUrl: '/app/case/case-edit.component.html',
+  providers: [CaseService]
 })
 
-export class PatientDetailsComponent implements OnInit {
+export class CaseDetailsComponent implements OnInit {
 
   isNew = false;
   id = "";
@@ -40,7 +40,7 @@ export class PatientDetailsComponent implements OnInit {
   familyHistory = {}
 
   samples = [];
-  constructor(route: ActivatedRoute, private dataService: PatientService, private router: Router) {
+  constructor(route: ActivatedRoute, private dataService: CaseService, private router: Router) {
     this.model.id = route.snapshot.params['id'];
 
     if (this.model.id === "new")
@@ -50,7 +50,7 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Load patient samples
+    //Load case samples
     if (this.isNew)
       return;
 
@@ -60,7 +60,7 @@ export class PatientDetailsComponent implements OnInit {
 
   // VCF sample list
   loadSampleList() {
-    this.dataService.getPatientSamples(this.model.id)
+    this.dataService.getCaseSamples(this.model.id)
       .then(results => this.samples = results)
       .catch(error => console.log(error))
 
@@ -95,24 +95,24 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   save() {
-    // if this is a new patient - save and route to edit/view patient
+    // if this is a new case - save and route to edit/view case
     
     let doc = JSON.parse(JSON.stringify(this.model))
     if (doc.clinicalIndications != null)
       doc.clinicalIndications = doc.clinicalIndications.split(',');
 
     if (this.isNew) {
-      this.dataService.addPatient(doc)
+      this.dataService.addCase(doc)
         .then(result => {
           this.isNew = false;
           this.id = result.id;
           this.model.id = result.id;
-          this.router.navigate(['/patient', result.id])
+          this.router.navigate(['/case', result.id])
         })
         .catch(error => console.log(error))
     }
     else {
-      this.dataService.updatePatient(doc.id, doc)
+      this.dataService.updateCase(doc.id, doc)
       // Do we want to notify user and/or return to list?
     }
   }
@@ -176,7 +176,7 @@ export class PatientDetailsComponent implements OnInit {
         document.getElementById("progressBar").style.width = importProgress + "%";
       };
 
-      xhr.open('POST', `/api/patient/${this.model.id}/sample`, true);
+      xhr.open('POST', `/api/case/${this.model.id}/sample`, true);
 
       let formData = new FormData();
 

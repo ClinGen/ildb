@@ -31,10 +31,10 @@ def get_vcf_list():
 @requires_auth
 def import_vcf():
     """
-    Import multi-sample VCF file that mauy not be associated with a specific patient
+    Import multi-sample VCF file that mauy not be associated with a specific case
     """
     log.info('vcf import')
-    # TODO: how do we correlate samples with patients and phenotype data?
+    # TODO: how do we correlate samples with cases and phenotype data?
     # Store documents
     try:
         # check if the post request has the file part

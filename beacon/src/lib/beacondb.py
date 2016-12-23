@@ -30,7 +30,7 @@ class VcfSampleCollection(CollectionBase):
 
     def get_by_fileid(self, id):
         """
-        Get a list of sample ids by individuals
+        Get a list of sample ids by cases
         """
 
         with self.mongo_client as mclient:
@@ -41,9 +41,9 @@ class VcfSampleCollection(CollectionBase):
 
             return self.to_list(cursor)
 
-    def get_by_individualid(self, id):
+    def get_by_caseid(self, id):
         """
-        Get a list of sample ids by individuals
+        Get a list of sample ids by cases
         """
 
         with self.mongo_client as mclient:
@@ -105,10 +105,10 @@ class VcfSampleCollection(CollectionBase):
             # return as an immutable tuple
             return tuple(cursor)
 
-class IndividualCollection(CollectionBase):
+class CaseCollection(CollectionBase):
 
     def __init__(self):
-        super().__init__('individuals')
+        super().__init__('cases')
     
     def get_by_clinical_history_population(self, case_ids, clinical_ids = None, family_history = None, populations = None):
 

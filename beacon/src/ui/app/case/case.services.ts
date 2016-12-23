@@ -3,17 +3,17 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 //
-// Patient services
+// Cae services
 //
 @Injectable()
-export class PatientService {
+export class CaseService {
 
-  private patientUrl = '/api/patient';
+  private caseUrl = '/api/case';
 
   constructor(private http: Http) { }
 
   // Upload a vcf file
-  uploadPatientSample(id, file) {
+  uploadCaseSample(id, file) {
     return new Promise((resolve, reject) => {
       let xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
@@ -32,7 +32,7 @@ export class PatientService {
         console.log(progress);
       };
 
-      xhr.open('POST', `${this.patientUrl}/${id}/sample`, true);
+      xhr.open('POST', `${this.caseUrl}/${id}/sample`, true);
 
       let formData = new FormData();
 
@@ -42,16 +42,16 @@ export class PatientService {
     });
   }
 
-  // Get a list of patients
-  getPatientList(): Promise<any[]> {
-    return this.http.get(this.patientUrl)
+  // Get a list of cases
+  getCaseList(): Promise<any[]> {
+    return this.http.get(this.caseUrl)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   getById(id:string): Promise<any> {
-    let url = `${this.patientUrl}/${id}`;
+    let url = `${this.caseUrl}/${id}`;
 
     return this.http.get(url)
       .toPromise()
@@ -59,43 +59,43 @@ export class PatientService {
       .catch(this.handleError);
   }
 
-  // add a new patient to the beacon
-  addPatient(patient: any): Promise<any> {
-    return this.http.post(this.patientUrl, patient)
+  // add a new case to the beacon
+  addCase(caseDoc: any): Promise<any> {
+    return this.http.post(this.caseUrl, caseDoc)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  updatePatient(id: string, patient: any): Promise<any> {
-    let url = `${this.patientUrl}/${id}`;
-    return this.http.post(url, patient)
+  updateCase(id: string, caseDoc: any): Promise<any> {
+    let url = `${this.caseUrl}/${id}`;
+    return this.http.post(url, caseDoc)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  // delete a patient
-  deletePatient(caseId: string) {
+  // delete a case
+  deleteCase(caseId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.patientUrl}/${caseId}`;
+    let url = `${this.caseUrl}/${caseId}`;
     return this.http
       .delete(url, headers)
       .toPromise()
       .catch(this.handleError);
   }
 
-  // get a list of genome samples for a patient
-  getPatientSamples(caseId: string): Promise<any> {
-    return this.http.get(`${this.patientUrl}/${caseId}/sample`)
+  // get a list of genome samples for a case
+  getCaseSamples(caseId: string): Promise<any> {
+    return this.http.get(`${this.caseUrl}/${caseId}/sample`)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  // delete patient samples
-  deletePatientSample() {
+  // delete case samples
+  deleteCaseSample() {
 
   }
 
