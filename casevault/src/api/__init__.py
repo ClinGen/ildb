@@ -25,10 +25,6 @@ app.register_blueprint(query_controllers, url_prefix='/api/query')
 from api.vcf_controllers import vcf_controllers
 app.register_blueprint(vcf_controllers, url_prefix='/api/vcf')
 
-# Add the data import controllers to the flask application
-from api.import_controllers import import_controllers
-app.register_blueprint(import_controllers, url_prefix='/api/import')
-
 # Authentication controllers to the flask application
 from api.auth_controllers import auth_controllers
 app.register_blueprint(auth_controllers, url_prefix='/api/auth')

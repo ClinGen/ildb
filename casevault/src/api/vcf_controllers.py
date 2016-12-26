@@ -1,10 +1,18 @@
 """
 @package api
-Case Vault Management API Controllers
+Case Vault VCF file Management API Controllers
 """
-from flask import Blueprint, jsonify
+
+import os
+import sys
+
+from flask import Blueprint, jsonify, request, flash
+from werkzeug.utils import secure_filename
 from lib.casevaultdb import VcfFileCollection, VcfSampleCollection
 from api.auth import requires_auth
+from api import app, log
+from api.task_queue import queue_vcf_import
+from lib.settings import Settings
 
 vcf_controllers = Blueprint('vcf_controllers', __name__)
 
@@ -24,13 +32,46 @@ def get_files_list():
 @vcf_controllers.route('/import', methods=['POST'])
 @requires_auth
 def import_vcf():
-    """ Retrieve a list of VCF files """
+    """
+    Import multi-sample VCF file that mauy not be associated with a specific case
+    """
+    log.info('vcf import')
+    # TODO: how do we correlate samples with cases and phenotype data?
+    # Store documents
+    try:
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return jsonify({'error': 'no file in file part'})
 
-    # TODO: Validate parameters, error handling, and logging
-    # TODO: Make this bounded (paging)
-    list = VcfFileCollection().get_all()
+        print(request.files)
 
-    return jsonify(list)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No file name provided')
+            return jsonify({'error': 'no file name provided'})
+
+        # this is used to ensure we can safely use the filename sent to us
+        filename = secure_filename(file.filename)
+
+        # TODO: File Validation
+
+        file_id = VcfFileCollection().add(
+            {'filename': filename,
+             'status': 'uploading',
+             'samples': 0}
+        )
+
+        file.save(os.path.join(Settings.file_store, file_id + '.vcf'))
+
+        queue_vcf_import(file_id)
+        VcfFileCollection().update_by_id(file_id, {'status': 'queued'})
+    except:
+        log.error(sys.exc_info()[0])
+
+    return jsonify({'result': 'ok'})
+
 
 @vcf_controllers.route('/<id>', methods=['DELETE'])
 @requires_auth
@@ -60,3 +101,7 @@ def delete_sample(id):
     VcfSampleCollection().delete(id)
 
     return jsonify({'result': 'ok'})
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ['vcf']

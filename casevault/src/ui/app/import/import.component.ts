@@ -83,7 +83,7 @@ export class ImportComponent implements OnInit {
         document.getElementById("progressBar").style.width = importProgress + "%";
       };
 
-      xhr.open('POST', '/api/import/vcf', true);
+      xhr.open('POST', '/api/vcf/import', true);
 
       let formData = new FormData();
 
