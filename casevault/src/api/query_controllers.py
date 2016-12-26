@@ -16,7 +16,7 @@ def list_supported_casevault_queries():
 @query_controllers.route('/1/<chrom>/<position>/<allele>', defaults={'reference': None}, methods=['GET'])
 @query_controllers.route('/1/<chrom>/<position>/<allele>/<reference>', methods=['GET'])
 def casevault_query_one(chrom, position, allele, reference):
-    """ Canonical Query1 """
+    """ Case Vault Query1 """
 
     # Validate parameters
     result = VcfSampleCollection().get_variants_count(
@@ -26,7 +26,7 @@ def casevault_query_one(chrom, position, allele, reference):
 
 @query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
 def query_two(chrom, position, allele):
-    """ Canonical Query2 """
+    """ Case vault Query2 """
 
     # Query cases matching a specific snp
     # Using the casses returned and the additional filter criteria query for cases
@@ -49,14 +49,14 @@ def query_two(chrom, position, allele):
     if request.args.get('family_history') is not None:
         log.info("family_history specified - " +  request.args.get('family_history'))
 
-        # TODO validate the parameter
+        # TODO validate family history parameter
         family_history = request.args.get('family_history')
 
     population = None
     if request.args.get('populations') is not None:
         log.info("population specified - " +  request.args.get('populations'))
 
-        # TODO validate the parameter
+        # TODO validate population parameter
         population = request.args.get('populations')
     
     # retrieve a list of cases matching a list of clinical indications and cases

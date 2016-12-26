@@ -18,10 +18,11 @@ app = Flask(__name__)
 def before_request():
     print(request.path)
 
-# Add the Query controllers to the flask application
+# Register query controllers with the app
 from api.query_controllers import query_controllers
 app.register_blueprint(query_controllers, url_prefix='/api/query')
 
+# Register VCF controllers with the app
 from api.vcf_controllers import vcf_controllers
 app.register_blueprint(vcf_controllers, url_prefix='/api/vcf')
 
