@@ -37,9 +37,5 @@ app.register_blueprint(auth_controllers, url_prefix='/api/auth')
 from api.info_controllers import info_controllers
 app.register_blueprint(info_controllers, url_prefix='/api/info')
 
-# Data management information controllers to the flask application
-from api.manage_controllers import manage_controllers
-app.register_blueprint(manage_controllers, url_prefix='/api/manage')
-
 from api.case_controllers import case_controllers
 app.register_blueprint(case_controllers, url_prefix='/api/case')
