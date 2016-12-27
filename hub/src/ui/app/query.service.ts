@@ -7,8 +7,8 @@ export class QueryService {
   
   constructor(private http: Http) { }
 
-  queryBeacons(chrom:string, position:number, allele:string) {
-    return this.http.get("/api/query/1/" + chrom + "/" + position + "/" + allele)
+  queryBeacons(chrom:string, position:number, allele:string, clinical_indications:string) {
+    return this.http.get("/api/query/2/" + chrom + "/" + position + "/" + allele + "?clinical_indications=" + clinical_indications)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

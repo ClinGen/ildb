@@ -21,8 +21,6 @@ def query1(chrom, position, allele, reference):
     
     beacons = DataAccess().get_beacons()
 
-    print(beacons, file=sys.stderr)
-
     # TODO: These can run in parallel
     # TODO: Validate the response from these calls
     # TODO: Make this async message based
@@ -31,6 +29,22 @@ def query1(chrom, position, allele, reference):
     for beacon in beacons:
         print(beacon['endpoint'] + request.path, file=sys.stderr)
         resp = requests.get(beacon['endpoint'] + request.path).json()
+        results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
+
+    return jsonify(results)
+
+@query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
+def query2(chrom, position, allele):
+    """
+    Canonical Query 2
+    """
+    
+    beacons = DataAccess().get_beacons()
+
+    results = []
+    for beacon in beacons:
+        print(beacon['endpoint'] + request.path, file=sys.stderr)
+        resp = requests.get(beacon['endpoint'] + request.path + '?' + request.query_string.decode("utf-8")).json()
         results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
 
     return jsonify(results)
