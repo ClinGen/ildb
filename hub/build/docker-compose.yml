@@ -15,16 +15,16 @@ services:
     stdin_open: true
     working_dir: /app
     networks:
-      - beacon
+      - clearnet
   mongo:
     image: mongo:3.4.0
     ports:
       - "27027:27017"
     networks:
-      beacon:
+      clearnet:
         aliases:
           - mongohub
 networks:
-  beacon:
+  clearnet:
     external:
-      name: clinbeacon
+      name: clearnet

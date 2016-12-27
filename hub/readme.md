@@ -1,4 +1,4 @@
-# beacon server project
+# clearnet server project
 
 ## requirements
 Docker is the only developer environment requirement
@@ -9,10 +9,10 @@ Docker is the only developer environment requirement
 The development environment will expose the application on localhost port `:5051` and the mongodb database on localhost port `:27017`
 
 ### startup
-open a terminal window in the beacon directory and type `bash up.sh`
+open a terminal window in the hub directory and type `bash up.sh`
 
 1. the first time may take a few minutes
-2. it may appear to hang at the end, after you see *Creating beacon_mongo_1*  hit the __enter__ key to get to the command prompt
+2. it may appear to hang at the end, after you see *Creating clearnethub_mongo_1*  hit the __enter__ key to get to the command prompt
 3. type `npm run setup` to install application pip modules
 4. type `npm start` to run the application
 
