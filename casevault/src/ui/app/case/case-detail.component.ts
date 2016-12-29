@@ -126,6 +126,7 @@ export class CaseDetailsComponent implements OnInit {
       doc.clinicalIndications = doc.clinicalIndications.split(',');
 
     let keys = Object.keys(this.selectedEthnicities);
+    doc.ethnicity = [];
     for (var i = 0; i < keys.length; i++) {
       let ethnicity = this.selectedEthnicities[keys[i]];
       if (ethnicity) {
