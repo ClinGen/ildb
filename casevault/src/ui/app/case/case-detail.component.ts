@@ -29,10 +29,27 @@ export class CaseDetailsComponent implements OnInit {
     familyHistory: []
   }
 
+  selectedEthnicities = {};
+
+  getEthnicityKeys() {
+    return Object.keys(this.ethnicityOptions);
+  }
+
   ethnicityOptions = {
     "ne": "Northern European",
     "se": "Southern European",
-    "fc": "French Canadian or Cajun"
+    "fc": "French Canadian or Cajun",
+    "af": "African",
+    "afa": "African American",
+    "hi": "Hispanic",
+    "me": "Middle Eastern",
+    "na": "Native American",
+    "pi": "Pacific Islander",
+    "aj": "Ashkenazim Jewish",
+    "ea": "East Asian",
+    "sa": "South Asian",
+    "mi": "Mixed",
+    "ot": "Other/Unknown"
   }
 
   personalHistory = {}
@@ -68,7 +85,14 @@ export class CaseDetailsComponent implements OnInit {
       .then(result => {
         if (result.clinicalIndications != null)
           result.clinicalIndications = result.clinicalIndications.join()
-        this.model = result
+        
+        if (result.ethnicities) {
+          for(var i = 0; i < result.ethnicities.length; i++) {
+            this.selectedEthnicities[result.ethnicities[i]] = true;
+          }
+        }
+
+        this.model = result;
       })
       .catch(error => console.log(error))
   }

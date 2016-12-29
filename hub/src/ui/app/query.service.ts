@@ -7,8 +7,18 @@ export class QueryService {
   
   constructor(private http: Http) { }
 
-  queryBeacons(chrom:string, position:number, allele:string, clinical_indications:string) {
-    return this.http.get("/api/query/2/" + chrom + "/" + position + "/" + allele + "?clinical_indications=" + clinical_indications)
+  queryBeacons(chrom:string, position:number, allele:string, clinical_indications:string, populations:string) {
+    let url:string = "/api/query/1/" + chrom + "/" + position + "/" + allele + "?";
+
+    if (!clinical_indications || 0 === clinical_indications.length) {
+      url += "clinical_indications=" + clinical_indications + "&"
+    }
+
+    if (!populations || 0 === populations.length) {
+      url += "populations=" + populations + "&"
+    }
+
+    return this.http.get(url)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

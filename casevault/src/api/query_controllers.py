@@ -13,20 +13,9 @@ query_controllers = Blueprint('query_controllers', __name__)
 def list_supported_casevault_queries():
     return jsonify({'1':'find variants', '2': 'find variants with clinical information'})
 
-@query_controllers.route('/1/<chrom>/<position>/<allele>', defaults={'reference': None}, methods=['GET'])
-@query_controllers.route('/1/<chrom>/<position>/<allele>/<reference>', methods=['GET'])
-def casevault_query_one(chrom, position, allele, reference):
-    """ Case Vault Query1 """
-
-    # Validate parameters
-    result = VcfSampleCollection().get_variants_count(
-        chrom, position, allele, reference)
-
-    return jsonify({"count": result})
-
-@query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
-def query_two(chrom, position, allele):
-    """ Case vault Query2 """
+@query_controllers.route('/1/<chrom>/<position>/<allele>', methods=['GET'])
+def query_one(chrom, position, allele):
+    """ Case vault Query1 """
 
     # Query cases matching a specific snp
     # Using the casses returned and the additional filter criteria query for cases
@@ -67,4 +56,4 @@ def query_two(chrom, position, allele):
         population
     )
 
-    return jsonify(result)
+    return jsonify({"count": len(result)})

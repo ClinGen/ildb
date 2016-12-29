@@ -46,61 +46,8 @@
   </div>
   <div class="form-group">
     <label>Ethnicity</label><br/>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Northern European</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Southern European</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          French Canadien or Cajun</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          African</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          African American</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Hispanic</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Middle Eastern</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Native American</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Pacific Islander</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Ashkenazim Jewish</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          East Asian</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          South Asian</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Mixed</label>
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox">
-          Other/Unknown</label>
+    <div class="checkbox" *ngFor="let key of getEthnicityKeys()">
+    <label><input type="checkbox" [checked]="selectedEthnicities[key]" /> {{this.ethnicityOptions[key]}} </label>
     </div>
   </div>
   <div class="form-group">
