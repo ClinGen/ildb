@@ -86,9 +86,9 @@ export class CaseDetailsComponent implements OnInit {
         if (result.clinicalIndications != null)
           result.clinicalIndications = result.clinicalIndications.join()
         
-        if (result.ethnicities) {
-          for(var i = 0; i < result.ethnicities.length; i++) {
-            this.selectedEthnicities[result.ethnicities[i]] = true;
+        if (result.ethnicity) {
+          for(var i = 0; i < result.ethnicity.length; i++) {
+            this.selectedEthnicities[result.ethnicity[i]] = true;
           }
         }
 
@@ -124,6 +124,14 @@ export class CaseDetailsComponent implements OnInit {
     let doc = JSON.parse(JSON.stringify(this.model))
     if (doc.clinicalIndications != null)
       doc.clinicalIndications = doc.clinicalIndications.split(',');
+
+    let keys = Object.keys(this.selectedEthnicities);
+    for (var i = 0; i < keys.length; i++) {
+      let ethnicity = this.selectedEthnicities[keys[i]];
+      if (ethnicity) {
+        doc.ethnicity.push(keys[i])
+      }
+    }
 
     if (this.isNew) {
       this.dataService.addCase(doc)
