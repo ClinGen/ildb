@@ -46,7 +46,7 @@ def query_one(chrom, position, allele):
         log.info("population specified - " +  request.args.get('populations'))
 
         # TODO validate population parameter
-        population = request.args.get('populations')
+        population = request.args.get('populations').split(',')
     
     # retrieve a list of cases matching a list of clinical indications and cases
     result = CaseCollection().get_by_clinical_history_population (
