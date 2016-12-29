@@ -10,33 +10,10 @@ from api.database import DataAccess
 
 query_controllers = Blueprint('query_controllers', __name__)
 
-@query_controllers.route('/1/<chrom>/<position>/<allele>', defaults = { 'reference' : None }, methods=['GET'])
-@query_controllers.route('/1/<chrom>/<position>/<allele>/<reference>', methods = ['GET'])
-def query1(chrom, position, allele, reference):
+@query_controllers.route('/1/<chrom>/<position>/<allele>', methods=['GET'])
+def query1(chrom, position, allele):
     """
-    Canonical Query 1
-    """
-    
-    # TODO: Validate parameters
-    
-    beacons = DataAccess().get_beacons()
-
-    # TODO: These can run in parallel
-    # TODO: Validate the response from these calls
-    # TODO: Make this async message based
-    # TODO: The hub query API will be made meta-data defined
-    results = []
-    for beacon in beacons:
-        print(beacon['endpoint'] + request.path, file=sys.stderr)
-        resp = requests.get(beacon['endpoint'] + request.path).json()
-        results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
-
-    return jsonify(results)
-
-@query_controllers.route('/2/<chrom>/<position>/<allele>', methods=['GET'])
-def query2(chrom, position, allele):
-    """
-    Canonical Query 2
+    Case Vault Query 1
     """
     
     beacons = DataAccess().get_beacons()
@@ -44,7 +21,8 @@ def query2(chrom, position, allele):
     results = []
     for beacon in beacons:
         print(beacon['endpoint'] + request.path, file=sys.stderr)
-        resp = requests.get(beacon['endpoint'] + request.path + '?' + request.query_string.decode("utf-8")).json()
+        resp = requests.get(beacon['endpoint'] + request.path + '?' + request.query_string.decode("utf-8"), timeout=5).json()
+        print(resp, file=sys.stderr)
         results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
 
     return jsonify(results)

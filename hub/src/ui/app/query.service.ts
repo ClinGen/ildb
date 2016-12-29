@@ -10,11 +10,11 @@ export class QueryService {
   queryBeacons(chrom:string, position:number, allele:string, clinical_indications:string, populations:string) {
     let url:string = "/api/query/1/" + chrom + "/" + position + "/" + allele + "?";
 
-    if (!clinical_indications || 0 === clinical_indications.length) {
-      url += "clinical_indications=" + clinical_indications + "&"
+    if (!!clinical_indications && 0 !== clinical_indications.length) {
+      url += "clinic_indications=" + clinical_indications + "&"
     }
 
-    if (!populations || 0 === populations.length) {
+    if (!!populations && 0 !== populations.length) {
       url += "populations=" + populations + "&"
     }
 

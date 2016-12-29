@@ -119,9 +119,7 @@ class CaseCollection(CollectionBase):
 
             obj_ids = [ObjectId(i) for i in case_ids]
 
-            query = {'_id': {'$in' : tuple(obj_ids)},
-                 'clinicalIndications': {'$in': clinical_ids}
-                 }
+            query = {'_id': {'$in' : tuple(obj_ids)}}
 
             if clinical_ids is not None:
                 query['clinicalIndications'] = {'$in': clinical_ids}

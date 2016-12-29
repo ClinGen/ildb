@@ -29,20 +29,20 @@ def query_one(chrom, position, allele):
         return jsonify([])
     
     clinic_ids = None
-    if request.args.get('clinic_indications') is not None:
+    if 'clinic_indications' in request.args:
         log.info("clinic_indications specified - " +  request.args.get('clinic_indications'))
 
         clinic_ids = request.args.get('clinic_indications').split(',')
     
     family_history = None
-    if request.args.get('family_history') is not None:
+    if 'family_history' in request.args:
         log.info("family_history specified - " +  request.args.get('family_history'))
 
         # TODO validate family history parameter
         family_history = request.args.get('family_history')
 
     population = None
-    if request.args.get('populations') is not None:
+    if 'populations' in request.args:
         log.info("population specified - " +  request.args.get('populations'))
 
         # TODO validate population parameter
