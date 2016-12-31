@@ -20,15 +20,15 @@
     <div class="row search-filters">
       <div class="col-md-4">
         <label>Chromosome</label>
-        <input [(ngModel)]="beaconQuery.chrom" class="form-control">
+        <input [(ngModel)]="caseVaultQuery.chrom" class="form-control">
       </div>
       <div class="col-md-4">
         <label>Position</label>
-        <input [(ngModel)]="beaconQuery.position" class="form-control">
+        <input [(ngModel)]="caseVaultQuery.position" class="form-control">
       </div>
       <div class="col-md-4">
         <label>Allele</label>
-        <input [(ngModel)]="beaconQuery.allele" class="form-control">
+        <input [(ngModel)]="caseVaultQuery.allele" class="form-control">
       </div>
     </div>
     <div>&nbsp;</div>
@@ -66,7 +66,7 @@
       </div>
       <div class="col-md-6">
         <label>With clinical indications (Example ICD9:23532, ICD10:32523)</label>
-        <input [(ngModel)]="beaconQuery.clinicalIndications" class="form-control">
+        <input [(ngModel)]="caseVaultQuery.clinicalIndications" class="form-control">
       </div>
       <div>&nbsp;</div>
     </div>
@@ -92,7 +92,7 @@
             <img src="../img/no-logo.jpg">
           </div>
           <div class="bc-title">
-            <span class="bc-title-sp">{{item.beacon}}</span><br>
+            <span class="bc-title-sp">{{item.casevault}}</span><br>
             <span class="bc-details-sp">{{item.description}}</span>
           </div>
           <div class="pull-right">

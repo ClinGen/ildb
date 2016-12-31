@@ -10,8 +10,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppComponent }   from './app.component';
 import { SearchComponent } from './search.component';
 import { LoginComponent } from './login.component';
-import { BeaconComponent } from './manage/beacon.component';
-import { BeaconEditComponent } from './manage/beacon-edit.component';
+import { CaseVaultComponent } from './manage/casevault.component';
+import { CaseVaultComponent } from './manage/casevault-edit.component';
 import { SettingsComponent } from './manage/settings.component';
 import { RequestAccessComponent, RequestThankYouComponent } from './request-access.component';
 
@@ -25,8 +25,8 @@ import { CookieService } from 'angular2-cookie/core';
     AppComponent,
     SearchComponent,
     LoginComponent,
-    BeaconComponent,
-    BeaconEditComponent,
+    CaseVaultComponent,
+    CaseVaultEditComponent,
     SettingsComponent,
     RequestAccessComponent,
     RequestThankYouComponent],

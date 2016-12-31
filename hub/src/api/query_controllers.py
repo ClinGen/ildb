@@ -1,6 +1,6 @@
 """
 @package api
-Beacon Query API Controllers
+Case Vaults Query API Controllers
 These API will be called by the central hub
 """
 import sys
@@ -16,13 +16,13 @@ def query1(chrom, position, allele):
     Case Vault Query 1
     """
     
-    beacons = DataAccess().get_beacons()
+    casevaults = DataAccess().get_casevaults()
 
     results = []
-    for beacon in beacons:
-        print(beacon['endpoint'] + request.path, file=sys.stderr)
-        resp = requests.get(beacon['endpoint'] + request.path + '?' + request.query_string.decode("utf-8"), timeout=5).json()
+    for casevault in casevaults:
+        print(casevault['endpoint'] + request.path, file=sys.stderr)
+        resp = requests.get(casevault['endpoint'] + request.path + '?' + request.query_string.decode("utf-8"), timeout=5).json()
         print(resp, file=sys.stderr)
-        results.append( {'beacon': beacon['name'], 'description': beacon['description'], 'result':resp} )
+        results.append( {'casevault': casevault['name'], 'description': casevault['description'], 'result':resp} )
 
     return jsonify(results)

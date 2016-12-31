@@ -1,6 +1,6 @@
 """
 @package api
-Beacon Query API Controllers
+Case Vault Query API Controllers
 These API will be called by the central hub
 """
 import requests
@@ -8,30 +8,30 @@ from flask import Blueprint, jsonify, request
 from api.database import DataAccess
 from api.auth import requires_auth
 
-beacon_controllers = Blueprint('beacon_controllers', __name__)
+casevault_controllers = Blueprint('casevault_controllers', __name__)
 
-@beacon_controllers.route('', methods=['GET'])
+@casevault_controllers.route('', methods=['GET'])
 @requires_auth
 def get_tenant_list():
   """
   Get a list of the tenants
   """
 
-  beacons = DataAccess().get_beacons()
+  casevaults = DataAccess().get_casevaults()
 
-  return jsonify(beacons)
+  return jsonify(casevaults)
 
-@beacon_controllers.route('/<id>', methods=['GET'])
+@casevault_controllers.route('/<id>', methods=['GET'])
 @requires_auth
 def get_tenant(id):
   """
   Get a tenant by id
   """
-  beacon = DataAccess().get_beacon(id)
+  casevaults = DataAccess().get_casevault(id)
 
-  return jsonify(beacon)
+  return jsonify(casevaults)
 
-@beacon_controllers.route('', methods=['POST'])
+@casevault_controllers.route('', methods=['POST'])
 @requires_auth
 def add_tenant():
   """
@@ -39,19 +39,19 @@ def add_tenant():
   """
   document = request.json
     
-  return jsonify({'id':DataAccess().add_beacon(document)})
+  return jsonify({'id':DataAccess().add_casevault(document)})
 
-@beacon_controllers.route('/<id>', methods=['DELETE'])
+@casevault_controllers.route('/<id>', methods=['DELETE'])
 @requires_auth
 def delete_tenant(id):
   """
   Delete a tenant
   """
-  DataAccess().delete_beacon(id)
+  DataAccess().delete_casevault(id)
 
   return jsonify({'result':'ok'})
 
-@beacon_controllers.route('/<id>', methods=['POST'])
+@casevault_controllers.route('/<id>', methods=['POST'])
 @requires_auth
 def update_tenant(id):
   """
@@ -60,6 +60,6 @@ def update_tenant(id):
 
   document = request.json
 
-  DataAccess().update_beacon(id, document)
+  DataAccess().update_casevault(id, document)
 
   return jsonify({'result':'ok'})

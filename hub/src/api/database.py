@@ -8,8 +8,8 @@ import pymongo
 from bson.objectid import ObjectId
 from lib.settings import Settings
 
-DB_NAME = "clingenhub"
-BEACON_COLLECTION = "beacons"
+DB_NAME = "clearnethub"
+CASEVAULT_COLLECTION = "casevaults"
 
 class DataAccess:
   """Implements data access layer"""
@@ -18,19 +18,19 @@ class DataAccess:
     """DataAccess Constructor"""
 
   ##
-  ## Beacon Methods
+  ## Casevault Methods
   ##
-  def get_beacons(self):
+  def get_casevaults(self):
     """
-    Get a list of the beacons
+    Get a list of the casevaults
     """
     # Pass confgiuration in on the constructor
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
       
-      # filter for current and active tenants with beacons
+      # filter for current and active tenants with casevaults
 
-      cursor = db[BEACON_COLLECTION].find()
+      cursor = db[CASEVAULT_COLLECTION].find()
       return list(
         {
           "id":str(o["_id"]),
@@ -39,51 +39,51 @@ class DataAccess:
           "endpoint":o["endpoint"]
         } for o in cursor)
 
-  def add_beacon(self, document):
+  def add_casevault(self, document):
     """
-    Add a new beacon
+    Add a new casevault
     """
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
 
-      tenant_data = db[BEACON_COLLECTION]
+      tenant_data = db[CASEVAULT_COLLECTION]
 
       result = tenant_data.insert_one(document)
 
       return str(result.inserted_id)
 
-  def update_beacon(self, id, beacon):
+  def update_casevault(self, id, casevault):
     """
-    Update a beacon
+    Update a casevault
     """
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
 
-      tenant_data = db[BEACON_COLLECTION]
+      tenant_data = db[CASEVAULT_COLLECTION]
 
-      tenant_data.replace_one({'_id': ObjectId(id)}, beacon)
+      tenant_data.replace_one({'_id': ObjectId(id)}, casevault)
 
       return True
 
-  def delete_beacon(self, id):
+  def delete_casevault(self, id):
     """
-    Delete a beacon
+    Delete a casevault
     """
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
 
-      tenant_data = db[BEACON_COLLECTION]
+      tenant_data = db[CASEVAULT_COLLECTION]
 
       tenant_data.delete_one({'_id': ObjectId(id)})
 
-  def get_beacon(self, id):
+  def get_casevault(self, id):
     """
-    Get Beacon Details
+    Get Casevault Details
     """
     with pymongo.MongoClient(host = Settings.mongo_connection_string) as mclient:
       db = mclient[DB_NAME]
 
-      tenant_data = db[BEACON_COLLECTION]
+      tenant_data = db[CASEVAULT_COLLECTION]
 
       tenant = tenant_data.find_one({'_id': ObjectId(id)})
 

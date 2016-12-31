@@ -7,7 +7,7 @@ export class QueryService {
   
   constructor(private http: Http) { }
 
-  queryBeacons(chrom:string, position:number, allele:string, clinical_indications:string, populations:string) {
+  queryCaseVaults(chrom:string, position:number, allele:string, clinical_indications:string, populations:string) {
     let url:string = "/api/query/1/" + chrom + "/" + position + "/" + allele + "?";
 
     if (!!clinical_indications && 0 !== clinical_indications.length) {

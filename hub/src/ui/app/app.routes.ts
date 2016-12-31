@@ -2,8 +2,8 @@ import { Routes, RouterModule }  from '@angular/router';
 import {AuthService} from './auth.service';
 import {SearchComponent} from './search.component';
 import {LoginComponent} from './login.component';
-import {BeaconComponent} from './manage/beacon.component';
-import {BeaconEditComponent} from './manage/beacon-edit.component';
+import {CaseVaultComponent} from './manage/casevault.component';
+import {CaseVaultEditComponent} from './manage/casevault-edit.component';
 import {SettingsComponent} from './manage/settings.component';
 import {RequestAccessComponent, RequestThankYouComponent} from './request-access.component';
 
@@ -18,13 +18,13 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'manage/beacons',
-    component: BeaconComponent,
+    path: 'manage/casevaults',
+    component: CaseVaultComponent,
     canActivate: [AuthService]
   },
   {
-    path: 'manage/beacons/:id',
-    component: BeaconEditComponent,
+    path: 'manage/casevaults/:id',
+    component: CaseVaultEditComponent,
     canActivate: [AuthService]
   },
   {

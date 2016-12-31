@@ -3,18 +3,18 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 //
-// Beacon services
+// CaseVault services
 //
 @Injectable()
-export class BeaconService {
+export class CaseVaultService {
 
-  private beaconUrl = '/api/beacons';
+  private caseVaultUrl = '/api/casevault';
 
   constructor(private http: Http) { }
 
   // Get a list of organizations
   getList(): Promise<any[]> {
-    return this.http.get(this.beaconUrl)
+    return this.http.get(this.caseVaultUrl)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -23,7 +23,7 @@ export class BeaconService {
   // Get a list of organizations
   getById(id): Promise<any> {
 
-    let url = `${this.beaconUrl}/${id}`;
+    let url = `${this.caseVaultUrl}/${id}`;
 
     return this.http.get(url)
       .toPromise()
@@ -31,29 +31,29 @@ export class BeaconService {
       .catch(this.handleError);
   }
 
-  // add a new beacon to the beacon
-  add(beacon: any): Promise<any> {
-    return this.http.post(this.beaconUrl, beacon)
+  // add a new casevault to the casevault
+  add(casevault: any): Promise<any> {
+    return this.http.post(this.caseVaultUrl, casevault)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
-  // add a new tenant to the beacon
-  update(beacon: any): Promise<any> {
-    let url = `${this.beaconUrl}/${beacon.id}`;
+  // add a new tenant to the casevault
+  update(casevault: any): Promise<any> {
+    let url = `${this.caseVaultUrl}/${casevault.id}`;
     
-    return this.http.post(url, beacon)
+    return this.http.post(url, casevault)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   // delete a tenant
-  delete(beaconId: string) {
+  delete(casevaultId: string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    let url = `${this.beaconUrl}/${beaconId}`;
+    let url = `${this.caseVaultUrl}/${casevaultId}`;
     return this.http
       .delete(url, headers)
       .toPromise()

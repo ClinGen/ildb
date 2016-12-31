@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BeaconService } from './beacon.services';
+import { CaseVaultService } from './casevault.services';
 
-// Display beacon id, name, query count (use/issued), users status
+// Display casevault id, name, query count (use/issued), users status
 @Component({
-  templateUrl: '/app/manage/beacon.component.html',
-  providers:[BeaconService]
+  templateUrl: '/app/manage/casevault.component.html',
+  providers:[CaseVaultService]
 })
 
-export class BeaconComponent implements OnInit {
+export class CaseVaultComponent implements OnInit {
 
   organizations = [];
 
   constructor (
     private router: Router,
-    private dataService: BeaconService) {
+    private dataService: CaseVaultService) {
   }
 
   ngOnInit() {
-    this.getBeacons();
+    this.getCaseVaults();
   }
 
-  getBeacons() {
+  getCaseVaults() {
     this.dataService.getList()
       .then(organizations => this.organizations = organizations)
       .catch(error => console.log(error))
@@ -29,7 +29,7 @@ export class BeaconComponent implements OnInit {
 
   delete(id) {
     this.dataService.delete(id)
-      .then(data => this.getBeacons())
+      .then(data => this.getCaseVaults())
       .catch(error => console.log(error))
   }
 }

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 })
 export class RequestAccessComponent {
   organization = {}
-  beacon = {}
+  casevault = {}
   constructor (
     private router: Router) {
   }
@@ -19,7 +19,7 @@ export class RequestAccessComponent {
 })
 export class RequestThankYouComponent {
   organization = {}
-  beacon = {}
+  casevault = {}
   constructor() {
 
   }
