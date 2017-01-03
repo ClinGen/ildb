@@ -22,8 +22,8 @@
       }
     },
     "version": {
-      "type": "integer",
-      "defaultValue": 30,
+      "type": "string",
+      "defaultValue": "latest",
       "metadata": {
         "description": "The initial admin user initialized in a hub"
       }
