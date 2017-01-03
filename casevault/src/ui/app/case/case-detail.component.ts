@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CaseService } from './case.services';
 
+import * as _ from "lodash";
+
 @Component({
   templateUrl: '/app/case/case-edit.component.html',
   providers: [CaseService]
@@ -60,6 +62,8 @@ export class CaseDetailsComponent implements OnInit {
   samples = [];
   constructor(route: ActivatedRoute, private dataService: CaseService, private router: Router) {
     this.model.id = route.snapshot.params['id'];
+
+    _.chunk(['a', 'b', 'c', 'd'], 2);
 
     if (this.model.id === "new")
       this.isNew = true;

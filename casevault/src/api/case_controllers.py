@@ -137,6 +137,26 @@ def upload_case_samples(id):
 
     return jsonify({'result': 'ok'})
 
+@case_controllers.route('/stats', methods=['GET'])
+@requires_auth
+def get_case_stats(id):
+    """ Retrieve case statistics """
+
+    return jsonify({
+        'total': 200,
+        'gender': {
+            'm': 120,
+            'f': 80
+        },
+        'ethnicity': {
+            'ne': 50,
+            'se': 50,
+            'hi': 100
+        },
+        'percentFamilyHistory': 50,
+        'percentPatientHistory': 20,
+        'percentWithClinicalIndications': 10
+    })
 
 def allowed_file(filename):
     return '.' in filename and \
