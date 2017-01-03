@@ -20,6 +20,13 @@
       "metadata": {
         "description": "The initial admin user initialized in a hub"
       }
+    },
+    "version": {
+      "type": "integer",
+      "defaultValue": 30,
+      "metadata": {
+        "description": "The initial admin user initialized in a hub"
+      }
     }
   },
   "variables": {
@@ -277,8 +284,8 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "compose": {
-                "clingenhub": {
-                  "image": "clearnet/hub:12",
+                "clearnethub": {
+                  "image": "[concat('clearnet/hub:', parameters('version'))]",
                   "ports": [
                     "80:80"
                   ],
@@ -315,7 +322,7 @@
                     "443:443"
                   ],
                   "links": [
-                    "clingenhub:hubapp"
+                    "clearnethub:hubapp"
                   ]
                 }
               },

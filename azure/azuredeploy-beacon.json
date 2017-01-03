@@ -14,28 +14,35 @@
         "description": "SSH string for the admin VM."
       }
     },
-    "beaconAdmin": {
+    "casevaultAdmin": {
       "type": "string",
       "defaultValue": "test@fs180.onmicrosoft.com",
       "metadata": {
-        "description": "The initial admin user initialized in a beacon"
+        "description": "The initial admin user initialized in a case vault"
+      }
+    },
+    "version": {
+      "type": "integer",
+      "defaultValue": 30,
+      "metadata": {
+        "description": "The version to install"
       }
     }
   },
   "variables": {
     "OSDiskName": "osdisk",
-    "nicName": "beacon-nic",
+    "nicName": "casevault-nic",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Premium_LRS",
-    "publicIPAddressName": "beacon-pip",
-    "securityGroupName": "beacon-nsg",
+    "publicIPAddressName": "casevault-pip",
+    "securityGroupName": "casevault-nsg",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
-    "vmName": "beacon-vm",
+    "vmName": "casevault-vm",
     "vmSize": "Standard_DS1",
-    "virtualNetworkName": "beacon-vnet",
+    "virtualNetworkName": "casevault-vnet",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     "storageAccountname": "[concat('bc', uniqueString(resourceGroup().id, deployment().name), 'stg')]",
@@ -60,7 +67,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[concat('beacon', uniqueString(resourceGroup().id, deployment().name))]"
+          "domainNameLabel": "[concat('casevault', uniqueString(resourceGroup().id, deployment().name))]"
         }
       }
     },
@@ -277,8 +284,8 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "compose": {
-                "clingenbeacon": {
-                  "image": "clearnet/casevault:29",
+                "clearnetcasevault": {
+                  "image": "[concat('clearnet/casevault:', parameters('version'))]",
                   "ports": [
                     "80:80"
                   ],
@@ -294,7 +301,7 @@
                     "AUTH_CLIENT_ID=f123a339-be25-420f-a843-ecad0938a050",
                     "AUTH_PROVIDER_CONFIG=https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
                     "FILE_STORAGE_PATH=/fileshare",
-                    "[concat('ADMIN_USER=', parameters('beaconAdmin'))]"
+                    "[concat('ADMIN_USER=', parameters('casevaultAdmin'))]"
                   ],
                   "volumes": [
                     "/datadisks/disk2:/fileshare"
@@ -315,12 +322,12 @@
                     "443:443"
                   ],
                   "links": [
-                    "clingenbeacon:beaconapp"
+                    "clearnetcasevault:casevaultapp"
                   ]
                 }
               },
               "compose-environment": {
-                "COMPOSE_PROJECT_NAME": "beacon"
+                "COMPOSE_PROJECT_NAME": "casevault"
               }
             }
           }
