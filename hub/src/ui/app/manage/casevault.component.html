@@ -16,7 +16,7 @@
           <span class="bc-details-sp">CLEARNET Hosted Case Vaults</span>
         </div>
         <div class="pull-right edit-list">
-            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/manage/casevault/', item.id])"></button>
+            <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/manage/casevaults/', item.id])"></button>
             <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
         </div>
       </li>
@@ -68,7 +68,7 @@
   <div>
     <br/>
     <div>
-      <button type="button" (click)="this.router.navigate(['/manage/casevault/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
+      <button type="button" (click)="this.router.navigate(['/manage/casevaults/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
     </div>
   </div>
 </div>

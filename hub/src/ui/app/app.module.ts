@@ -11,7 +11,7 @@ import { AppComponent }   from './app.component';
 import { SearchComponent } from './search.component';
 import { LoginComponent } from './login.component';
 import { CaseVaultComponent } from './manage/casevault.component';
-import { CaseVaultComponent } from './manage/casevault-edit.component';
+import { CaseVaultEditComponent } from './manage/casevault-edit.component';
 import { SettingsComponent } from './manage/settings.component';
 import { RequestAccessComponent, RequestThankYouComponent } from './request-access.component';
 
