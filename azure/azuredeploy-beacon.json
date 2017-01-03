@@ -278,7 +278,7 @@
             "settings": {
               "compose": {
                 "clingenbeacon": {
-                  "image": "trentmswanson/beacon:8",
+                  "image": "clearnet/casevault:29",
                   "ports": [
                     "80:80"
                   ],

@@ -278,7 +278,7 @@
             "settings": {
               "compose": {
                 "clingenhub": {
-                  "image": "trentmswanson/hub:v1",
+                  "image": "clearnet/hub:12",
                   "ports": [
                     "80:80"
                   ],
