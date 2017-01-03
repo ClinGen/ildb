@@ -23,6 +23,6 @@ deployment:
       - docker push clearnet/casevault:$CIRCLE_BUILD_NUM
       - docker push clearnet/hub:$CIRCLE_BUILD_NUM
       - docker tag clearnet/hub:$CIRCLE_BUILD_NUM clearnet/hub:latest
-      - docker tag clearnet/casevault:$CIRCLE_BUILD_NUM clearnet/vault:latest
+      - docker tag clearnet/casevault:$CIRCLE_BUILD_NUM clearnet/casevault:latest
       - docker push clearnet/casevault:latest
       - docker push clearnet/hub:latest
