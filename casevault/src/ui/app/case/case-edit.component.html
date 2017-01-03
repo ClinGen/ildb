@@ -55,7 +55,9 @@
     <input class="form-control" [(ngModel)]="model.sampleCollectionDate">
   </div>
   <div class="form-group">
-    <label>Clinical Indications (example: ICD10:12343, ICD9:345234)</label>
+    <label>Clinical Indications (comma seperated list of ICD codes: 54321, 12345)</label><br/>
+    Codes entered are: <input type="radio" name="icdVersion" value="10" [(ngModel)]="icdVersion"> ICD10 <input type="radio" name="icdVersion" value="9"
+      [(ngModel)]="icdVersion"> ICD9
     <input class="form-control" [(ngModel)]="model.clinicalIndications">
   </div>
   <div class="form-group">
@@ -68,7 +70,7 @@
           <input type="checkbox" [(ngModel)]="model.historyOfCancer">
           Patient has a history of cancer?</label>
 </div>
-<div class="task-content">
+<div *ngIf="model.historyOfCancer" class="task-content">
   <table class="table">
     <thead>
       <tr>
@@ -98,22 +100,24 @@
 
 <h5 class="mb" style="margin-top:20px;"><i class="fa fa-angle-right"></i> Family History</h5>
 <div class="form-group">
-  <label>
-          <input type="checkbox" [(ngModel)]="model.familyHistoryOfCancer">
-          Patient has a family history of cancer?</label><br/>
+<label><input type="checkbox" [(ngModel)]="model.familyHistoryOfCancer">
+          Patient has a family history of cancer?</label>
+</div>
+<div *ngIf="model.familyHistoryOfCancer" class="form-group">
   <label>
           <input type="checkbox" [(ngModel)]="model.knownGeneInFamily">
           Known gene and mutation in family?</label>
-</div>
-<div class="form-group">
+
+    <div *ngIf="model.knownGeneInFamily">
   <label>Gene</label>
   <input class="form-control" [(ngModel)]="model.familyGene">
 </div>
-<div class="form-group">
+<div *ngIf="model.knownGeneInFamily">
   <label>Mutation</label>
   <input class="form-control" [(ngModel)]="model.familyMutation">
 </div>
-<table class="table">
+</div>
+<table *ngIf="model.familyHistoryOfCancer" class="table">
   <thead>
     <tr>
       <th>Type</th>
@@ -139,7 +143,7 @@
     </tr>
   </tbody>
 </table>
-<div>
+<div *ngIf="model.familyHistoryOfCancer" >
   <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#addFamilyHistoryModal">Add Family History Item</a>
 </div>
 <div>

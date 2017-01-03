@@ -37,3 +37,7 @@ app.register_blueprint(info_controllers, url_prefix='/api/info')
 # Register case management controllers with the app
 from api.case_controllers import case_controllers
 app.register_blueprint(case_controllers, url_prefix='/api/case')
+
+# Register case management controllers with the app
+from api.reference_data_controllers import reference_data_controllers
+app.register_blueprint(reference_data_controllers, url_prefix='/api/reference_data')

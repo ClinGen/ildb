@@ -11,6 +11,7 @@ export class CaseDetailsComponent implements OnInit {
 
   isNew = false;
   id = "";
+  icdVersion = "10";
 
   // New/Emptye case record
   model = {
