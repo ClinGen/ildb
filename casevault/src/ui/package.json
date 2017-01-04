@@ -21,6 +21,7 @@
     "@angular/upgrade": "2.4.1",
     "@types/lodash": "4.14.45",
     "angular2-cookie": "1.2.6",
+    "angular2-datatable": "^0.5.2",
     "angular2-in-memory-web-api": "0.0.21",
     "angular2-jwt": "0.1.27",
     "core-js": "2.4.1",

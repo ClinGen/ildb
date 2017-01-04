@@ -12,6 +12,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { JwtHelper } from 'angular2-jwt';
 import { CookieService } from 'angular2-cookie/core';
+import {DataTableModule} from "angular2-datatable";
 
 import { AuthService } from './account/auth.service';
 
@@ -28,7 +29,8 @@ import { SettingsComponent } from './settings/settings.component';
     BrowserModule,
     FormsModule,
     routing,
-    HttpModule
+    HttpModule,
+    DataTableModule
   ],
   declarations: [
     AppComponent,

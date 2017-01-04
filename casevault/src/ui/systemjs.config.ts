@@ -15,6 +15,7 @@
     '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
     'angular2-cookie':            'npm:angular2-cookie',
     'angular2-jwt':               'npm:angular2-jwt',
+    'angular2-datatable': 'npm:angular2-datatable',
     
     'rxjs':                       'npm:rxjs',
     'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
@@ -27,6 +28,7 @@
     'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
     'angular2-cookie':            { main: 'core.js',  defaultExtension: 'js' },
     'angular2-jwt':               { main: 'angular2-jwt.js',  defaultExtension: 'js' },
-    'symbol-observable':          { main: 'index.js', defaultExtension: 'js' }
+    'symbol-observable':          { main: 'index.js', defaultExtension: 'js' },
+    'angular2-datatable':         { main: 'index.js', defaultExtension: 'js'}
   }});
 })(this);

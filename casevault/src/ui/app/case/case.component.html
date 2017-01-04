@@ -5,20 +5,20 @@
 </div>
 <div class="panel-body">
   <div class="task-content">
-    <table class="table">
+    <table class="table" [mfData]="cases" #mf="mfDataTable" [mfRowsOnPage]="25">
     <thead>
       <tr>
-        <th>Case Id</th>
-        <th>Gender</th>
-        <th>Ethnicity</th>
-        <th>Clinical Indications</th>
-        <th>Patient History</th>
-        <th>Familty History</th>
+        <th><mfDefaultSorter by="caseId">Case Id</mfDefaultSorter></th>
+        <th><mfDefaultSorter by="gender">Gender</mfDefaultSorter></th>
+        <th><mfDefaultSorter by="ethnicity">Ethnicity</mfDefaultSorter></th>
+        <th><mfDefaultSorter by="clinicalIndications">Clinical Indications</mfDefaultSorter></th>
+        <th><mfDefaultSorter by="hasHistoryOfCancer">Patient History</mfDefaultSorter></th>
+        <th><mfDefaultSorter by="familyHistoryOfCancer">Family History</mfDefaultSorter></th>
         <th></th>
       </tr>
     </thead>
-    <tbody *ngFor="let item of cases">
-      <tr>
+    <tbody>
+      <tr *ngFor="let item of mf.data">
         <td>{{item.caseId}}</td>
         <td>{{item.gender}}</td>
         <td>{{item.ethnicity}}</td>
@@ -31,6 +31,13 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7">
+            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+        </td>
+    </tr>
+    </tfoot>
   </table>
   </div>
   <div>
