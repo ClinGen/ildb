@@ -3,9 +3,10 @@
 Case Vault Query API Controllers
 These API will be called by the central hub
 """
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, response
 from api import log
-from lib.casevaultdb import VcfSampleCollection, CaseCollection
+from datetime import datetime
+from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
 
@@ -15,10 +16,15 @@ def list_supported_casevault_queries():
 
 @query_controllers.route('/1/<chrom>/<position>/<allele>', methods=['GET'])
 def query_one(chrom, position, allele):
-    """ Case vault Query1 """
+    """ Case vault Query 1 """
 
     # Query cases matching a specific snp
     # Using the casses returned and the additional filter criteria query for cases
+
+    user = None
+    if 'user' not in request.args:
+        response.status_code = 400
+        return jsonify({'error': 'user query string parameter is required and missing'})
 
     # get a list of cases matching a specific mutation
     case_list = VcfSampleCollection().get_case_ids_by_variant(
@@ -56,4 +62,21 @@ def query_one(chrom, position, allele):
         population
     )
 
-    return jsonify({"count": len(result)})
+    count = len(result)
+
+    QueryLogsCollection().add({
+        'user': user,
+        'queryId': '1',
+        'count': count,
+        'datetime': datetime.datetime.utcnow(),
+        'parameters': {
+            'chrom': chrom,
+            'position': position,
+            'allele': allele,
+            'clinic_ids': clinic_ids,
+            'family_history': family_history,
+            'populations': population
+        }
+    })
+
+    return jsonify({"count": count})

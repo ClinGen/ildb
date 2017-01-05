@@ -139,6 +139,9 @@ class UserCollection(CollectionBase):
     def __init__(self):
         super().__init__('users', False)
 
+class QueryLogsCollection(CollectionBase):
+    def __init__(self):
+        super().__init__('query.logs')
 
 class UserAuthHistoryCollection(CollectionBase):
 

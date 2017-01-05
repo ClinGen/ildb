@@ -13,7 +13,6 @@ log = logging.getLogger()
 # Define a new flask application
 app = Flask(__name__)
 
-
 @app.before_request
 def before_request():
     print(request.path)
