@@ -3,9 +3,9 @@
 Case Vault Query API Controllers
 These API will be called by the central hub
 """
-from flask import Blueprint, jsonify, request, response
+from flask import Blueprint, jsonify, request
 from api import log
-from datetime import datetime
+import datetime
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
@@ -23,8 +23,7 @@ def query_one(chrom, position, allele):
 
     user = None
     if 'user' not in request.args:
-        response.status_code = 400
-        return jsonify({'error': 'user query string parameter is required and missing'})
+        return jsonify({'error': 'user query string parameter is required and missing'}), 400
 
     # get a list of cases matching a specific mutation
     case_list = VcfSampleCollection().get_case_ids_by_variant(
@@ -32,7 +31,7 @@ def query_one(chrom, position, allele):
         
     # If there are no cases matching the variant we can just return empty results
     if len(case_list) == 0:
-        return jsonify([])
+        return jsonify({"count": 0})
     
     clinic_ids = None
     if 'clinic_indications' in request.args:
