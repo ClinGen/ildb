@@ -31,7 +31,17 @@ def query_one(chrom, position, allele):
         
     # If there are no cases matching the variant we can just return empty results
     if len(case_list) == 0:
-        # Note: the query operation will not be logged to the audit history
+        QueryLogsCollection().add({
+            'user': user,
+            'queryId': '1',
+            'count': 0,
+            'datetime': datetime.datetime.utcnow(),
+            'parameters': {
+                'chrom': chrom,
+                'position': position,
+                'allele': allele
+            }
+        })
         return jsonify({"count": 0})
     
     clinic_ids = None
