@@ -28,8 +28,8 @@ def query_one(chrom, position, allele):
     # Using the casses returned and the additional filter criteria query for cases
 
     user = None
-    if 'user' not in request.args:
-        return jsonify({'error': 'user query string parameter is required and missing'}), 400
+    #if 'user' not in request.args:
+    #    return jsonify({'error': 'user query string parameter is required and missing'}), 400
 
     requestId = str(uuid.uuid4())
     
