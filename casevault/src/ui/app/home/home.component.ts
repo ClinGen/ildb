@@ -23,11 +23,11 @@ export class HomeComponent implements OnInit {
       .catch(error => console.log(error))
 
 		this.dataService.getCaseStats()
-      .then(stats => this.totalCases = stats.total)
+      .then(stats => this.caseStats = stats)
       .catch(error => console.log(error))
 	}
 
-	totalCases = 0;
+  caseStats = {total:0};
 	recentQueryCount = 0;
 	variantFiles = 0;
 }
