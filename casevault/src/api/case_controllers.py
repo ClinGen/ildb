@@ -139,11 +139,11 @@ def upload_case_samples(id):
 
 @case_controllers.route('/stats', methods=['GET'])
 @requires_auth
-def get_case_stats(id):
+def get_case_stats():
     """ Retrieve case statistics """
 
     return jsonify({
-        'total': 200,
+        'total': CaseCollection().get_total(),
         'gender': {
             'm': 120,
             'f': 80

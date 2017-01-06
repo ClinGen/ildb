@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
 		this.dataService.getQueryStats()
       .then(stats => this.recentQueryCount = stats.lastSevenDays)
       .catch(error => console.log(error))
+
+		this.dataService.getCaseStats()
+      .then(stats => this.totalCases = stats.total)
+      .catch(error => console.log(error))
 	}
 
 	totalCases = 0;

@@ -22,7 +22,7 @@ export class HomeService {
   }
 
   getCaseStats(): Promise<any> {
-    return this.http.get(this.queryStats)
+    return this.http.get(this.caseStats)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

@@ -116,7 +116,7 @@ class CaseCollection(CollectionBase):
         with self.mongo_client as mclient:
             db = mclient[DB_NAME]
 
-            genome_data = db[self.collection_name]
+            case_data = db[self.collection_name]
 
             obj_ids = [ObjectId(i) for i in case_ids]
 
@@ -131,9 +131,17 @@ class CaseCollection(CollectionBase):
             if populations is not None:
                 query['ethnicity'] = {'$in': populations}
 
-            cursor = genome_data.find (query)
+            cursor = case_data.find (query)
 
             return self.to_list(cursor)
+
+    def get_total(self):
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+
+            case_data = db[self.collection_name]
+
+            return case_data.count()
 
 class UserCollection(CollectionBase):
 
