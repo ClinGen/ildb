@@ -10,7 +10,7 @@
       <button type="button" (click)="this.router.navigate(['/case/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
     </div>
     <div class="task-content">
-      <table class="table" [mfData]="cases" #mf="mfDataTable" [mfRowsOnPage]="25">
+      <table class="table" [mfData]="cases | caseFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="25">
         <thead>
           <tr>
             <th>
@@ -32,6 +32,12 @@
               <mfDefaultSorter by="familyHistoryOfCancer">Family History</mfDefaultSorter>
             </th>
             <th></th>
+          </tr>
+          <tr>
+            <th colspan="7">
+              Filter by Case Id:
+              <input class="form-control" [(ngModel)]="filterQuery" />
+            </th>
           </tr>
         </thead>
         <tbody>

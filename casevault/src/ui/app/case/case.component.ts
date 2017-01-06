@@ -9,6 +9,7 @@ import { CaseService } from './case.services';
 
 export class CaseComponent implements OnInit {
   
+  public filterQuery = "";
   cases = [];
 
   constructor (
