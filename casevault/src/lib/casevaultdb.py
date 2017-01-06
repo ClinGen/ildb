@@ -8,6 +8,7 @@ import pymongo
 from bson.objectid import ObjectId
 import logging
 from .collection_base import CollectionBase
+from datetime import datetime, timedelta
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)
@@ -142,6 +143,17 @@ class UserCollection(CollectionBase):
 class QueryLogsCollection(CollectionBase):
     def __init__(self):
         super().__init__('query.logs')
+
+    def num_query_count_since(self, days):
+        """ Return the query count since the number of days passed """
+
+        with self.mongo_client as mclient:
+            db = mclient[DB_NAME]
+
+            query_logs = db[self.collection_name]
+
+            return query_logs.count({'datetime' : {'$gte': datetime.utcnow() - timedelta(days=days)}})
+
 
 class UserAuthHistoryCollection(CollectionBase):
 

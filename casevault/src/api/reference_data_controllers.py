@@ -9,7 +9,7 @@ import os
 reference_data_controllers = Blueprint('reference_data_controllers', __name__)
 
 @reference_data_controllers.route('/icd_codes/<version>')
-def list_supported_casevault_queries(version):
+def icd_codes(version):
     
     codes = []
 

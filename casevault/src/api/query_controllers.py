@@ -10,6 +10,11 @@ from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollec
 
 query_controllers = Blueprint('query_controllers', __name__)
 
+@query_controllers.route('/stats')
+def stats():
+    
+    return jsonify({'lastSevenDays': QueryLogsCollection().num_query_count_since(7)})
+
 @query_controllers.route('/')
 def list_supported_casevault_queries():
     return jsonify({'1':'find variants', '2': 'find variants with clinical information'})
