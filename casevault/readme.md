@@ -2,8 +2,7 @@
 
 ## requirements
 Docker is the only developer environment requirement
-* Docker 1.12.0-rc4-beta20 or later
-* Docker compose 1.8.0-rc13
+* Docker 1.12 or later
 
 ## development environment
 The development environment will expose the application on localhost port `:5001` and the mongodb database on localhost port `:27017`
