@@ -6,6 +6,7 @@ These API will be called by the central hub
 from flask import Blueprint, jsonify, request
 from api import log
 import datetime
+import uuid
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
@@ -30,9 +31,7 @@ def query_one(chrom, position, allele):
     if 'user' not in request.args:
         return jsonify({'error': 'user query string parameter is required and missing'}), 400
 
-    queryId = None
-    if 'queryId' not in request.args:
-        return jsonify({'error': 'queryId string parameter is required and missing'}), 400
+    requestId = str(uuid.uuid4())
     
     # get a list of cases matching a specific mutation
     case_list = VcfSampleCollection().get_case_ids_by_variant(
@@ -41,7 +40,7 @@ def query_one(chrom, position, allele):
     # If there are no cases matching the variant we can just return empty results
     if len(case_list) == 0:
         QueryLogsCollection().add({
-            'queryId': queryId,
+            'queryId': requestId,
             'user': user,
             'queryId': '1',
             'count': 0,
@@ -52,7 +51,7 @@ def query_one(chrom, position, allele):
                 'allele': allele
             }
         })
-        return jsonify({"count": 0})
+        return jsonify({"count": 0, "requestId": requestId})
     
     clinic_ids = None
     if 'clinic_indications' in request.args:
@@ -85,7 +84,7 @@ def query_one(chrom, position, allele):
     count = len(result)
 
     QueryLogsCollection().add({
-        'queryId': queryId,
+        'queryId': requestId,
         'user': user,
         'queryId': '1',
         'count': count,
@@ -100,4 +99,4 @@ def query_one(chrom, position, allele):
         }
     })
 
-    return jsonify({"count": count})
+    return jsonify({"count": count, "requestId": requestId})
