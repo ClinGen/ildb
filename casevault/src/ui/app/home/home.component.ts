@@ -25,4 +25,5 @@ export class HomeComponent implements OnInit {
 
 	totalCases = 0;
 	recentQueryCount = 0;
+	variantFiles = 0;
 }
