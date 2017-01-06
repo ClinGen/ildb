@@ -4,18 +4,22 @@ Case Vault Reference Data API Controllers
 """
 from flask import Blueprint, jsonify, request
 from api import log
+import os
 
 reference_data_controllers = Blueprint('reference_data_controllers', __name__)
 
 @reference_data_controllers.route('/icd_codes/<version>')
 def list_supported_casevault_queries(version):
     
-    codes = ()
+    codes = []
 
-    with open('../data/icd10cm_code_2017.txt') as f:
+    # TODO load reference data into memory or database
+    with open('/app/data/icd10cm_codes_2017.txt') as f:
         for line in f:
-            codes.push (
-                line
+            codes.append (
+                {'code':line[0:8].strip(),
+                'description':line[8:].strip()
+                }
             )
             
     return jsonify(codes)

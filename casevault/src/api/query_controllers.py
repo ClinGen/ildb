@@ -25,6 +25,10 @@ def query_one(chrom, position, allele):
     if 'user' not in request.args:
         return jsonify({'error': 'user query string parameter is required and missing'}), 400
 
+    queryId = None
+    if 'queryId' not in request.args:
+        return jsonify({'error': 'queryId string parameter is required and missing'}), 400
+    
     # get a list of cases matching a specific mutation
     case_list = VcfSampleCollection().get_case_ids_by_variant(
         chrom, position, allele)
@@ -32,6 +36,7 @@ def query_one(chrom, position, allele):
     # If there are no cases matching the variant we can just return empty results
     if len(case_list) == 0:
         QueryLogsCollection().add({
+            'queryId': queryId,
             'user': user,
             'queryId': '1',
             'count': 0,
@@ -75,6 +80,7 @@ def query_one(chrom, position, allele):
     count = len(result)
 
     QueryLogsCollection().add({
+        'queryId': queryId,
         'user': user,
         'queryId': '1',
         'count': count,
