@@ -4,7 +4,7 @@
   "scripts": {
     "start": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy\" \"npm run worker\"  ",
     "client": "tsc -w -p ui",
-    "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib",
+    "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib  --watch /app/query",
     "worker": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python -m worker\" -e py --watch /app/worker --watch /app/lib",
     "proxy": "browser-sync start --proxy localhost:80 --port 5001 --files 'ui/**/*.html' --files 'ui/css' --files '.tmp' &",
     "setup": "npm run setup:client && npm run setup:server",

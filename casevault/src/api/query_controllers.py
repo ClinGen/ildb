@@ -7,6 +7,7 @@ from flask import Blueprint, jsonify, request
 from api import log
 import datetime
 import uuid
+import query
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
 
 query_controllers = Blueprint('query_controllers', __name__)
@@ -16,87 +17,50 @@ def stats():
     
     return jsonify({'lastSevenDays': QueryLogsCollection().num_query_count_since(7)})
 
+@query_controllers.route('/history')
+def history():
+    """ retrieve query logs """
+    return jsonify(QueryLogsCollection().get_all())
+
 @query_controllers.route('/')
 def list_supported_casevault_queries():
     return jsonify({'1':'find variants', '2': 'find variants with clinical information'})
 
-@query_controllers.route('/1/<chrom>/<position>/<allele>', methods=['GET'])
-def query_one(chrom, position, allele):
-    """ Case vault Query 1 """
+@query_controllers.route('/hub/<id>', methods=['POST'])
+def execute_query(id):
+    """ Execute a case vault query and return the results """
 
-    # Query cases matching a specific snp
-    # Using the casses returned and the additional filter criteria query for cases
+    # Get the json payload from the request
+    query_request = request.get_json(force=True)
 
-    user = None
-    #if 'user' not in request.args:
-    #    return jsonify({'error': 'user query string parameter is required and missing'}), 400
+    user = query_request['user']
+    if not user:
+        return jsonify({'error': 'user property is required by the hub when sending a request'}), 400
 
-    requestId = str(uuid.uuid4())
+    # Get the query object
+    query_type =  next(q for q in query.query_collection if q.metadata['id'] == id)
+    if query_type is None:
+        return jsonify({'error': 'query id ' + id + ' was not found in the casevault'})
+
+    query_instance = query_type()
     
-    # get a list of cases matching a specific mutation
-    case_list = VcfSampleCollection().get_case_ids_by_variant(
-        chrom, position, allele)
-        
-    # If there are no cases matching the variant we can just return empty results
-    if len(case_list) == 0:
-        QueryLogsCollection().add({
-            'queryId': requestId,
-            'user': user,
-            'queryId': '1',
-            'count': 0,
-            'datetime': datetime.datetime.utcnow(),
-            'parameters': {
-                'chrom': chrom,
-                'position': position,
-                'allele': allele
-            }
-        })
-        return jsonify({"count": 0, "requestId": requestId})
-    
-    clinic_ids = None
-    if 'clinic_indications' in request.args:
-        log.info("clinic_indications specified - " +  request.args.get('clinic_indications'))
+    # Validate parameters
 
-        clinic_ids = request.args.get('clinic_indications').split(',')
-    
-    family_history = None
-    if 'family_history' in request.args:
-        log.info("family_history specified - " +  request.args.get('family_history'))
+    # Generate a request id to uniquely identify this request to the case vault
+    request_id = str(uuid.uuid4())
 
-        # TODO validate family history parameter
-        family_history = request.args.get('family_history')
+    # Execute the query
+    res = query_instance.execute_hub_query(query_request['parameters'])
 
-    population = None
-    if 'populations' in request.args:
-        log.info("population specified - " +  request.args.get('populations'))
-
-        # TODO validate population parameter
-        population = request.args.get('populations').split(',')
-    
-    # retrieve a list of cases matching a list of clinical indications and cases
-    result = CaseCollection().get_by_clinical_history_population (
-        case_list,
-        clinic_ids,
-        family_history,
-        population
-    )
-
-    count = len(result)
-
+    # Log query execution and results
     QueryLogsCollection().add({
-        'queryId': requestId,
+        'queryId': request_id,
         'user': user,
-        'queryId': '1',
-        'count': count,
+        'count': res,
         'datetime': datetime.datetime.utcnow(),
-        'parameters': {
-            'chrom': chrom,
-            'position': position,
-            'allele': allele,
-            'clinic_ids': clinic_ids,
-            'family_history': family_history,
-            'populations': population
-        }
+        'parameters': query_request['parameters']
     })
 
-    return jsonify({"count": count, "requestId": requestId})
+    # return results
+
+    return jsonify({"result": res, "requestId": request_id})

@@ -17,7 +17,6 @@ log = logging.getLogger()
 
 DB_NAME = "casevault"
 
-
 class VcfFileCollection(CollectionBase):
 
     def __init__(self):

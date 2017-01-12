@@ -92,8 +92,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><strong><a href="#">General SNP and Case Query</a></strong> - 1/4/2017 4:45PM UTC<br/>Chrom:1, Position: 1, Allele: 4</td><td>5</td></tr>
-            <tr><td><strong><a href="#">General SNP and Case Query</a></strong> - 1/4/2017 4:45PM UTC<br/>Chrom:1, Position: 1, Allele: 4, ICD: ICD10:A1243</td><td>2</td></tr>
+            <tr *ngFor="let item of queryLogs"><td><strong><a href="#">General SNP and Case Query</a></strong> - {{item.datetime}}<br/>Chrom:{{item.parameters.chrom}}, Position: {{item.parameters.position}}, Allele: {{item.parameters.allele}}</td><td>{{item.count}}</td></tr>
           </tbody>
         </table>
         </div>

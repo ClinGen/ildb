@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class HomeService {
 
   private queryStats = '/api/query/stats';
+  private queryLogs = '/api/query/history';
   private caseStats = '/api/case/stats';
 
   constructor(private http: Http) { }
@@ -16,6 +17,13 @@ export class HomeService {
   // Get a list of vcf files
   getQueryStats(): Promise<any> {
     return this.http.get(this.queryStats)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  getQueryLogs(): Promise<any> {
+    return this.http.get(this.queryLogs)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

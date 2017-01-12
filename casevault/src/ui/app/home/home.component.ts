@@ -22,11 +22,16 @@ export class HomeComponent implements OnInit {
       .then(stats => this.recentQueryCount = stats.lastSevenDays)
       .catch(error => console.log(error))
 
+    this.dataService.getQueryLogs()
+      .then(queryLogs => this.queryLogs = queryLogs)
+      .catch(error => console.log(error))
+
 		this.dataService.getCaseStats()
       .then(stats => this.caseStats = stats)
       .catch(error => console.log(error))
 	}
 
+  queryLogs = [];
   caseStats = {total:0};
 	recentQueryCount = 0;
 	variantFiles = 0;
