@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-9">
+    <section class="form-panel tasks-widget" style="margin:0;">
+<div class="panel-heading">
+  <div class="pull-left">
+    <h4><i class="fa fa-lock"></i> Security Settings</h4>
+  </div><br/>
+</div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Trusted Hub</label>
+    <input class="form-control" [(ngModel)]="model.hubKey" />
+  </div>
+  <div>
+    <a class="btn btn-primary btn-sm" (click)="getConnectionInfo()">Get Connection Information</a><br/><br/>
+  </div>
+  <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
+</div>
+</section>
+</div>
+</div>

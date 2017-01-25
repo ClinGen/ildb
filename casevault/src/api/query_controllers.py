@@ -43,6 +43,8 @@ def execute_query(id):
         return jsonify({'error': 'query id ' + id + ' was not found in the casevault'})
 
     query_instance = query_type()
+
+    query_description = query_instance.get_query_description()
     
     # Validate parameters
 

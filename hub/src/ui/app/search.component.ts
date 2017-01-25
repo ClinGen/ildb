@@ -3,7 +3,7 @@ import {QueryService} from './query.service';
 
 export class CaseVaultQuery {
   chrom: string;
-  position: number;
+  position: string;
   allele: string;
   clinicalIndications: string;
   populations: string;
@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
 
   caseVaultQuery: CaseVaultQuery = {
     chrom: '1',
-    position: 15118,
+    position: '15118',
     allele: "G",
     clinicalIndications: "",
     populations: ""

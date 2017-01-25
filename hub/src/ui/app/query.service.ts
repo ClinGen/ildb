@@ -7,18 +7,24 @@ export class QueryService {
   
   constructor(private http: Http) { }
 
-  queryCaseVaults(chrom:string, position:number, allele:string, clinical_indications:string, populations:string) {
-    let url:string = "/api/query/1/" + chrom + "/" + position + "/" + allele + "?";
+  queryCaseVaults(chrom:string, position:string, allele:string, clinical_indications:string, populations:string) {
+    let body = {
+      chrom: chrom,
+      position: position,
+      allele: allele
+    }
+
+    let url:string = "/api/query/exec/1";
 
     if (!!clinical_indications && 0 !== clinical_indications.length) {
-      url += "clinic_indications=" + clinical_indications + "&"
+      body["clinic_indications="] = clinical_indications
     }
 
     if (!!populations && 0 !== populations.length) {
-      url += "populations=" + populations + "&"
+      body["populations="] = populations
     }
 
-    return this.http.get(url)
+    return this.http.post(url, body)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

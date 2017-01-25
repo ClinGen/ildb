@@ -1,17 +1,5 @@
 <h1>Admin Panel: Organizations</h1>
 <div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-3 mb">
-  	<div class="content-panel pn">
-  		<div id="spotify">
-  			<div class="col-xs-3 col-xs-offset-9">
-  				<button class="btn btn-sm btn-clear-g">CHANGE</button>
-  			</div>
-  			<div class="sp-title">
-  				<h4>LOGO</h4>
-  			</div>
-  		</div>
-  	</div>
-  </div>
   <div class="col-lg-9 col-md-9 col-sm-9">
     <section class="form-panel bcs-widget" style="margin:0;">
       <h4 class="mb"><i class="fa fa-angle-right"></i> Organization Details</h4>
@@ -70,6 +58,10 @@
       <div class="form-group">
         <label>Endpoint</label>
         <input class="form-control" [(ngModel)]="casevault.endpoint">
+      </div>
+      <div class="form-group">
+        <label>Public Key</label>
+        <input class="form-control" [(ngModel)]="casevault.publickey">
       </div>
       <label style="margin-bottom:0;">Status</label>
       <div class="radio casevault-status">
