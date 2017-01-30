@@ -1,5 +1,5 @@
 # docker compose will shutdown and cleanup containers
-docker-compose -p casevault -f ./build/docker-compose.yml down
+docker-compose -p casevault --volumes -f ./build/docker-compose.yml down
 
 # cleanup the network if there are not containers using it
 if [ "$(docker network inspect clearnet --format "{{range .Containers}}T{{end}}")" == "" ]; then

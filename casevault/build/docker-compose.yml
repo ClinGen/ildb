@@ -9,6 +9,7 @@ services:
       - "5001:5001"
       - "5002:5002"
       - "5003:5003"
+      - "5443:443"
     volumes:
       - ../src:/app
       - /fileshare
@@ -20,6 +21,9 @@ services:
       clearnet:
         aliases:
           - casevault
+  web:
+    image: nginx:1.11.9-alpine
+    network_mode: "service:app"
   mongo:
     image: mongo:3.4.0
     ports:
