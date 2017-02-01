@@ -14,6 +14,7 @@ import { CaseVaultComponent } from './manage/casevault.component';
 import { CaseVaultEditComponent } from './manage/casevault-edit.component';
 import { SettingsComponent } from './manage/settings.component';
 import { RequestAccessComponent, RequestThankYouComponent } from './request-access.component';
+import { DeployComponent } from './deploy.component';
 
 import {AuthService} from './auth.service';
 
@@ -29,7 +30,9 @@ import { CookieService } from 'angular2-cookie/core';
     CaseVaultEditComponent,
     SettingsComponent,
     RequestAccessComponent,
-    RequestThankYouComponent],
+    RequestThankYouComponent,
+    DeployComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,

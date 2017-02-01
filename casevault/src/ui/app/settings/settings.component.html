@@ -9,12 +9,30 @@
 <div class="panel-body">
   <div class="form-group">
     <label>Trusted Hub</label>
-    <input class="form-control" [(ngModel)]="model.hubKey" />
+    <input disabled="true" class="form-control" [(ngModel)]="model.name" />
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input disabled="true" class="form-control" [(ngModel)]="model.description" />
+  </div>
+  <div class="form-group">
+    <label>Thumbprint</label>
+    <input disabled="true" class="form-control" [(ngModel)]="model.thumbprint" />
+  </div>
+  <div class="form-group">
+    <label>Location</label>
+    <input disabled="true" class="form-control" [(ngModel)]="model.location" />
+  </div>
+  <div class="form-group">
+    <label>Domain</label>
+    <input disabled="true" class="form-control" [(ngModel)]="model.domain" />
   </div>
   <div>
-    <a class="btn btn-primary btn-sm" (click)="getConnectionInfo()">Get Connection Information</a><br/><br/>
+    <input type="file" accept="json" (change)="fileChangeEvent($event)" placeholder="Upload"/><br/><br/>
   </div>
-  <a class="btn btn-primary btn-sm" (click)="save()">Save</a>
+  <div>
+    <a class="btn btn-primary btn-sm" target="_blank" href="/api/settings/endpoint">Download Vault Connection Information</a><br/><br/>
+  </div>
 </div>
 </section>
 </div>

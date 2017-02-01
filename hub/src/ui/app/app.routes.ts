@@ -6,6 +6,7 @@ import {CaseVaultComponent} from './manage/casevault.component';
 import {CaseVaultEditComponent} from './manage/casevault-edit.component';
 import {SettingsComponent} from './manage/settings.component';
 import {RequestAccessComponent, RequestThankYouComponent} from './request-access.component';
+import {DeployComponent} from './deploy.component';
 
 const appRoutes: Routes = [
   {
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
   {
     path: 'thankyou',
     component: RequestThankYouComponent
+  },
+  {
+    path: 'deploy/vault',
+    component: DeployComponent
   }
 ];
 

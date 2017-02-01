@@ -166,3 +166,8 @@ class UserAuthHistoryCollection(CollectionBase):
 
     def __init__(self):
         super().__init__('users.auth_history')
+
+class SettingsCollection(CollectionBase):
+    """ Storage of case vault settings """
+    def __init__(self):
+        super().__init__('settings')
