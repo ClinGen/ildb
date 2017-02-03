@@ -9,23 +9,28 @@ import datetime
 import uuid
 import query
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
+from api.auth import requires_auth
 
 query_controllers = Blueprint('query_controllers', __name__)
 
 @query_controllers.route('/stats')
+@requires_auth
 def stats():
     
     return jsonify({'lastSevenDays': QueryLogsCollection().num_query_count_since(7)})
 
 @query_controllers.route('/history')
+@requires_auth
 def history():
     """ retrieve query logs """
     return jsonify(QueryLogsCollection().get_all())
 
 @query_controllers.route('/')
+@requires_auth
 def list_supported_casevault_queries():
     return jsonify({'1':'find variants', '2': 'find variants with clinical information'})
 
+# This query API is secured with an NGINX proxy
 @query_controllers.route('/hub/<id>', methods=['POST'])
 def execute_query(id):
     """ Execute a case vault query and return the results """
