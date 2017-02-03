@@ -22,7 +22,9 @@ services:
         aliases:
           - casevault
   web:
-    image: nginx:1.11.9-alpine
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
     network_mode: "service:app"
   mongo:
     image: mongo:3.4.0
