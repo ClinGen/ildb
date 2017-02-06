@@ -14,7 +14,6 @@ services:
       - ../src:/app
       - /fileshare
       - /data/db
-      - /certs
     tty: true
     stdin_open: true
     working_dir: /app
@@ -22,11 +21,6 @@ services:
       clearnet:
         aliases:
           - casevault
-  web:
-    build:
-      context: .
-      dockerfile: nginx.dockerfile
-    network_mode: "service:app"
   mongo:
     image: mongo:3.4.0
     ports:
