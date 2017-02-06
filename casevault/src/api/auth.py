@@ -11,7 +11,10 @@ def requires_auth(func):
 
         # decode the session cookie
         try:
-            session_id = request.cookies['session_id']
+            # look for the session token on the cookies or a header
+            session_id = request.cookies.get('session_id') or request.headers.get('session_id')
+
+            log.info(session_id)
 
             # TODO: read secret from configuration
             session_id = jwt.decode(session_id, 'secret', algorithms=['HS256'])

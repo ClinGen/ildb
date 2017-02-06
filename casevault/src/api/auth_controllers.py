@@ -3,6 +3,7 @@
 Data import controllers
 """
 from flask import Blueprint, jsonify, redirect, request, make_response, abort
+from api import log
 from lib.casevaultdb import UserCollection
 from oic import rndstr
 from oic.oic import Client
@@ -84,6 +85,21 @@ def login():
 
     return response
 
+@auth_controllers.route('/session', methods=['POST'])
+def get_session_tools():
+
+    data = request.data.decode('utf-8')
+
+    if request.data is None:
+        abort(401)
+    if data != Settings.shared_key:
+        abort(401)
+
+    # this uses a shared key and will be updated removed when a better solutions is implemented
+    encoded = jwt.encode(
+        {'userid': 'internal'}, 'secret', algorithm='HS256')
+
+    return encoded
 
 @auth_controllers.route('/getauthrequest', methods=['GET'])
 def make_authentication_request():

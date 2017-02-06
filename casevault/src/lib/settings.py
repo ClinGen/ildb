@@ -26,6 +26,7 @@ class Settings(object):
     auth_tenant = os.environ.get('AUTH_TENANT')
     auth_client_id = os.environ.get('AUTH_CLIENT_ID')
     admin_user = os.environ.get('ADMIN_USER')
+    shared_key = os.environ.get('SHARED_KEY')
 
     # APPLICATION SETTINGS
     # These settings are static in the build and do not belong to the

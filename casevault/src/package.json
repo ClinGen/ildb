@@ -2,7 +2,7 @@
   "name": "clearnet-casevault",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run client\" \"npm run server\" \"npm run proxy\" \"npm run worker\"  ",
+    "start": "concurrently \"npm run server\" \"npm run proxy\" \"npm run worker\" \"npm run client\"  ",
     "client": "tsc -w -p ui",
     "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib  --watch /app/query",
     "worker": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python -m worker\" -e py --watch /app/worker --watch /app/lib",
