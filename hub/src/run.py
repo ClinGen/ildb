@@ -19,4 +19,4 @@ def default_index():
     
 if __name__ == '__main__':
     # we set reloader to false because we nodemon handles it in development
-    app.run(host='0.0.0.0', port=80, debug=True, use_reloader=False)
+    app.run(host='0.0.0.0', port=8080, debug=True, use_reloader=False)
