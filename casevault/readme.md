@@ -99,3 +99,8 @@ Example case document
 
 ###Query the system
 `curl -X POST -l -d @query.json -k --header "Content-Type:application/json" https://endpoint/api/query/hub/1`
+
+###Upload VCF for a customer
+`curl -XPOST -l -k -sS --header "sessionid:$TOKEN" -F "file=@individual-tiny.vcf" https://endpoint/api/case/caseid/sample`
+
+Use case.id can be used to associate a VCF import with a case
