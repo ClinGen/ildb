@@ -52,5 +52,24 @@ __document azure deployment__
 ###Import a new case
 `curl -X POST -l -d @casefile1.json --header "sessionid:$TOKEN" --header "Content-Type:application/json" https://endpoint/api/case`
 
+Example case document
+
+```json
+{
+    caseId: "example",
+    city: "Wellington",
+    state: "FL",
+    zip: "33414",
+    gender: "m",
+    sampleCollectionDate: null,
+    clinicalIndications: ["ICD10:G124", "ICD9:5632"],
+    diseasePanel: [],
+    hasHistoryOfCancer: false,
+    ethnicity: [],
+    personalHistory: [],
+    familyHistory: []
+  }
+```
+
 ###Query the system
-`curl -X POST -l -d @query.json -k --header "sessionid:$TOKEN" --header "Content-Type:application/json" https://endpoint/api/query/hub/1`
+`curl -X POST -l -d @query.json -k --header "Content-Type:application/json" https://endpoint/api/query/hub/1`
