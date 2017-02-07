@@ -2,18 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminUsername": {
-      "type": "string",
-      "metadata": {
-        "description": "Username for the Virtual Machine."
-      }
-    },
-    "sshKeyData": {
-      "type": "string",
-      "metadata": {
-        "description": "SSH string for the admin VM."
-      }
-    },
     "casevaultAdmin": {
       "type": "string",
       "defaultValue": "test@fs180.onmicrosoft.com",
@@ -45,8 +33,7 @@
     "virtualNetworkName": "casevault-vnet",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-    "storageAccountname": "[concat('bc', uniqueString(resourceGroup().id, deployment().name), 'stg')]",
-    "sshKeyPath": "[concat('/home/',parameters('adminUsername'),'/.ssh/authorized_keys')]"
+    "storageAccountname": "[concat('bc', uniqueString(resourceGroup().id, deployment().name), 'stg')]"
   },
   "resources": [
     {
@@ -78,20 +65,6 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "securityRules": [
-          {
-            "name": "SSH",
-            "properties": {
-              "description": "Allows SSH traffic",
-              "protocol": "Tcp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "22",
-              "sourceAddressPrefix": "*",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 100,
-              "direction": "Inbound"
-            }
-          },
           {
             "name": "Https",
             "properties": {
@@ -189,18 +162,8 @@
         },
         "osProfile": {
           "computerName": "[variables('vmName')]",
-          "adminUsername": "[parameters('adminUserName')]",
-          "linuxConfiguration": {
-            "disablePasswordAuthentication": "true",
-            "ssh": {
-              "publicKeys": [
-                {
-                  "path": "[variables('sshKeyPath')]",
-                  "keyData": "[parameters('sshKeyData')]"
-                }
-              ]
-            }
-          }
+          "adminUsername": "casevaultadmin",
+          "adminPassword": "ncabsjelc234"
         },
         "storageProfile": {
           "imageReference": {
@@ -287,7 +250,8 @@
                 "clearnetcasevault": {
                   "image": "[concat('clearnet/casevault:', parameters('version'))]",
                   "ports": [
-                    "80:80"
+                    "80:80",
+                    "443:443"
                   ],
                   "links": [
                     "mongo:mongo"
@@ -301,7 +265,8 @@
                     "AUTH_CLIENT_ID=f123a339-be25-420f-a843-ecad0938a050",
                     "AUTH_PROVIDER_CONFIG=https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
                     "FILE_STORAGE_PATH=/fileshare",
-                    "[concat('ADMIN_USER=', parameters('casevaultAdmin'))]"
+                    "[concat('ADMIN_USER=', parameters('casevaultAdmin'))]",
+                    "SHARED_KEY=663CD863-3C1B-4D89-9573-9811EAE149EF"
                   ],
                   "volumes": [
                     "/datadisks/disk2:/fileshare"
@@ -314,15 +279,6 @@
                   ],
                   "volumes": [
                     "/datadisks/disk1:/data/db"
-                  ]
-                },
-                "proxy": {
-                  "image": "trentmswanson/proxy:v2",
-                  "ports": [
-                    "443:443"
-                  ],
-                  "links": [
-                    "clearnetcasevault:casevaultapp"
                   ]
                 }
               },
