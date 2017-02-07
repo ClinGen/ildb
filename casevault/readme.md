@@ -55,19 +55,45 @@ __document azure deployment__
 Example case document
 
 ```json
-{
-    caseId: "example",
-    city: "Wellington",
-    state: "FL",
-    zip: "33414",
-    gender: "m",
-    sampleCollectionDate: null,
-    clinicalIndications: ["ICD10:G124", "ICD9:5632"],
-    diseasePanel: [],
-    hasHistoryOfCancer: false,
-    ethnicity: [],
-    personalHistory: [],
-    familyHistory: []
+{ 
+    "caseId" : "test", 
+    "city" : "Wellington", 
+    "state" : "FL", 
+    "zip" : "33414", 
+    "gender" : "m", 
+    "sampleCollectionDate" : null, 
+    "clinicalIndications" : [
+        "ICD10:1234", 
+        "ICD9:5342"
+    ], 
+    "diseasePanel" : "Bob", 
+    "hasHistoryOfCancer" : false, 
+    "ethnicity" : [
+        "ne", 
+        "fc", 
+        "na"
+    ], 
+    "personalHistory" : [
+        {
+            "cancerType" : "example", 
+            "ageAtDiagnosis" : "65", 
+            "pathologyType" : "path type", 
+            "pathologyResult" : "negative"
+        }
+    ], 
+    "familyHistory" : [
+        {
+            "cancerType" : "example", 
+            "relation" : "grandfather", 
+            "familySide" : "maternal", 
+            "ageAtDiagnosis" : "45", 
+            "pathologyType" : "example", 
+            "pathologyResult" : "example"
+        }
+    ], 
+    "country" : "United States", 
+    "historyOfCancer" : true, 
+    "familyHistoryOfCancer" : true
   }
 ```
 
