@@ -37,3 +37,20 @@ will create a deployment in the resource group casevaultdemo in the westus data 
 The command will prompt for the admin username and SSH Key data. This can optionally be passed on the command line or through parameters file.
 
 __document azure deployment__
+
+##Using CURL with the API
+
+###Retrieve a token using a pre-shared key (if enabled)
+`TOKEN=$(curl -XPOST -k -sS --data "pre-shared-key" --header "Content-Type:text/xml" https://endpoint/api/auth/session)`
+
+###Use the token to query a list of cases
+`curl -XGET -l -sS --header "session_id:$TOKEN" https://endpoint/api/case`
+
+###Use the token to query a list of cases
+`curl -XGET -l -sS --header "session_id:$TOKEN" https://endpoint/api/case`
+
+###Import a new case
+`curl -X POST -l -d @casefile1.json --header "Content-Type:application/json" https://endpoint/api/case`
+
+###Query the system
+`curl -X POST -l -d @query.json -k --header "Content-Type:application/json" https://endpoint/api/query/hub/1`
