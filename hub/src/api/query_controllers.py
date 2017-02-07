@@ -9,6 +9,7 @@ import aiohttp
 import async_timeout
 import retrying
 import json
+import ssl
 
 from api import log
 
@@ -24,12 +25,21 @@ async def query_casevaults(future, req):
 
     tasks = []
 
-    async with aiohttp.ClientSession() as session:
+    # configure SSL seccions context
+    sslcontext = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+    sslcontext.load_cert_chain('/app/client.pem', password="1234")
+
+    # for now we disable the hostname check
+    sslcontext.check_hostname = False
+    conn = aiohttp.TCPConnector(ssl_context=sslcontext)
+
+    async with aiohttp.ClientSession(connector=conn) as session:
 
         for casevault in casevaults:
 
             try:
-                task = asyncio.ensure_future(fetch(casevault['endpoint'] + '/api/query/hub/1', req.json,  session))
+
+                task = asyncio.ensure_future(fetch(casevault, casevault['endpoint'] + '/api/query/hub/1', req.json,  session))
             
                 tasks.append(task)
 
@@ -37,14 +47,11 @@ async def query_casevaults(future, req):
                 log.error(str(e))
 
         responses = await asyncio.gather(*tasks)
-
-        log.info([s.decode("utf-8") for s in responses])
             
-        future.set_result([s.decode("utf-8") for s in responses])
+        future.set_result(responses)
 
         # format the results
         # results.append( {'casevault': casevault['name'], 'description': casevault['description'], 'result':resp} )
-
 
 @query_controllers.route('/exec/<id>', methods=['POST'])
 def execute_query(id):
@@ -59,11 +66,23 @@ def execute_query(id):
 
     return jsonify(future.result())
 
-async def fetch(url, body, session):
+async def get_response(casevault, response):
+    output = await response.json()
+    tmp = {
+        "casevault":casevault['name'],
+        "description":casevault['description'],
+        "result": {
+            "count": output['result']
+        }
+    }
+    log.info(str(output))
+    return tmp
+
+async def fetch(casevault, url, body, session):
     tmp = {
         'parameters': body,
         'user':'hub'
     }
     log.info(tmp)
-    async with session.post(url, data = json.dumps(tmp), headers = {'content-type': 'application/json'}) as response:
-        return await response.read()
+    async with session.post(url, data = json.dumps(tmp), headers = {'content-type': 'application/json'}, timeout=15) as response:
+        return await get_response(casevault, response)

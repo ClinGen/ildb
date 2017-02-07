@@ -9,4 +9,6 @@ WORKDIR /app
 
 COPY ./src /app/
 
+COPY ./build /certs/
+
 RUN pip install -r requirements.txt

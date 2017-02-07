@@ -16,7 +16,6 @@ def static_proxy(path):
 
 # home page served from nginx in production
 
-
 @app.route('/', methods=['GET'])
 def default_index():
     return send_from_directory(client, 'index.html')
