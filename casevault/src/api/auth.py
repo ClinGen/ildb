@@ -12,7 +12,7 @@ def requires_auth(func):
         # decode the session cookie
         try:
             # look for the session token on the cookies or a header
-            session_id = request.cookies.get('session_id') or request.headers.get('session_id')
+            session_id = request.cookies.get('session_id') or request.headers.get('sessionid')
 
             log.info(session_id)
 
