@@ -67,7 +67,7 @@ def execute_query(id):
     return jsonify(future.result())
 
 async def get_response(casevault, response):
-    output = await response.json()
+    output = await response.read()
     tmp = {
         "casevault":casevault['name'],
         "description":casevault['description'],
@@ -75,7 +75,7 @@ async def get_response(casevault, response):
             "count": output['result']
         }
     }
-    log.info(str(output))
+
     return tmp
 
 async def fetch(casevault, url, body, session):

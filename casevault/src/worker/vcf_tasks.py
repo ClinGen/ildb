@@ -1,7 +1,6 @@
 """
 Responsible for processing VCF file for data import
 """
-
 import pymongo
 import vcf
 import os
