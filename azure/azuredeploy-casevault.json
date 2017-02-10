@@ -163,7 +163,7 @@
         "osProfile": {
           "computerName": "[variables('vmName')]",
           "adminUsername": "casevaultadmin",
-          "adminPassword": "ncabsjelc234"
+          "adminPassword": "ncaBkcsjelc234"
         },
         "storageProfile": {
           "imageReference": {
