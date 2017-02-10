@@ -31,7 +31,7 @@
     "vmName": "casevault-vm",
     "vmSize": "Standard_DS1",
     "virtualNetworkName": "casevault-vnet",
-    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+    "vnetID": "[resourceId(Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     "storageAccountname": "[concat('bc', uniqueString(resourceGroup().id, deployment().name), 'stg')]"
   },
@@ -266,7 +266,8 @@
                     "AUTH_PROVIDER_CONFIG=https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration",
                     "FILE_STORAGE_PATH=/fileshare",
                     "[concat('ADMIN_USER=', parameters('casevaultAdmin'))]",
-                    "SHARED_KEY=663CD863-3C1B-4D89-9573-9811EAE149EF"
+                    "SHARED_KEY=663CD863-3C1B-4D89-9573-9811EAE149EF",
+                    "TRUSTED_HUB=ewogICAgIm5hbWUiOiAiY2xlYXJuZXQiLAogICAgImRlc2NyaXB0aW9uIjogImNsZWFybmV0IGRlbW8gaHViIiwKICAgICJ0aHVtYnByaW50IjogIjkzNTA5M2YxNjkwOTAwMmFjZDk4NjI2ZGY0ODVmYTIyYjQxZDlkZmQiLAogICAgImxvY2F0aW9uIjogImh0dHBzOi8vY2xlYXJuZXQuY2xvdWRhcHAuYXp1cmUuY29tIiwKICAgICJkb21haW4iOiAiY2xlYXJuZXQuY2xvdWRhcHAuYXp1cmUuY29tIgp9"
                   ],
                   "volumes": [
                     "/datadisks/disk2:/fileshare"
