@@ -31,7 +31,7 @@
     "vmName": "casevault-vm",
     "vmSize": "Standard_DS1",
     "virtualNetworkName": "casevault-vnet",
-    "vnetID": "[resourceId(Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+    "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     "storageAccountname": "[concat('bc', uniqueString(resourceGroup().id, deployment().name), 'stg')]"
   },
