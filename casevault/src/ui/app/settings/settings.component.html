@@ -3,12 +3,12 @@
     <section class="form-panel tasks-widget" style="margin:0;">
 <div class="panel-heading">
   <div class="pull-left">
-    <h4><i class="fa fa-lock"></i> Security Settings</h4>
+    <h4><i class="fa fa-lock"></i>Trusted Hub Settings</h4>
   </div><br/>
 </div>
 <div class="panel-body">
   <div class="form-group">
-    <label>Trusted Hub</label>
+    <label>Name</label>
     <input disabled="true" class="form-control" [(ngModel)]="model.name" />
   </div>
   <div class="form-group">
@@ -28,7 +28,7 @@
     <input disabled="true" class="form-control" [(ngModel)]="model.domain" />
   </div>
   <div>
-    <input type="file" accept="json" (change)="fileChangeEvent($event)" placeholder="Upload"/><br/><br/>
+    <input type="file" disabled="true" accept="json" (change)="fileChangeEvent($event)" placeholder="Upload"/><br/><br/>
   </div>
   <div>
     <a class="btn btn-primary btn-sm" target="_blank" href="/api/settings/endpoint">Download Vault Connection Information</a><br/><br/>
