@@ -33,7 +33,7 @@ export class ImportComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput: any) {
-    this.selectedImportFile.file = fileInput.target.files;
+    this.selectedImportFile.file = fileInput.target.files[0];
   }
 
   getList() {

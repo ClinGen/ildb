@@ -12,6 +12,10 @@ export class CaseVaultComponent implements OnInit {
 
   organizations = [];
 
+  selectedImportFile = {
+    "file": null
+  };
+
   constructor (
     private router: Router,
     private dataService: CaseVaultService) {
@@ -19,6 +23,35 @@ export class CaseVaultComponent implements OnInit {
 
   ngOnInit() {
     this.getCaseVaults();
+  }
+
+  importVault() {
+    var reader = new FileReader();
+
+    var f = '';
+
+    reader.onload = (function(cvault) {
+        return function(e) {
+          if (e.target.readyState == 2) {
+            var contents = e.target.result;
+            var doc = JSON.parse(contents);
+            cvault.dataService.add (
+              {
+                "name":doc["name"],
+                "description":doc["description"],
+                "endpoint":doc["endpoint"]
+              }
+            );
+            cvault.getCaseVaults();
+          }
+        };
+      })(this);
+
+    reader.readAsText(this.selectedImportFile.file)
+  }
+
+  fileChangeEvent(fileInput: any) {
+    this.selectedImportFile.file = fileInput.target.files[0];
   }
 
   getCaseVaults() {

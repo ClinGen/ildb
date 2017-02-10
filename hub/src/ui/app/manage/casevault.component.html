@@ -30,7 +30,8 @@
   </div>
   <div>
     <div><br/>
-    <a class="btn btn-primary btn-sm" (click)="getConnectionInfo()">Get Connection Information</a>
+    <input type="file" accept="json" (change)="fileChangeEvent($event)" placeholder="Vault file..." />
+    <a class="btn btn-primary btn-sm" (click)="importVault()">Import new vault</a>
     </div>
   </div>
 </div>

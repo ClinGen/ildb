@@ -25,10 +25,6 @@ shutdown and cleanup the development enviornment using `bash down.sh`  not that 
 ## Deploy
 A case vault can be deployed to Microsoft Azure using the command line or the portal link below.
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FClinGen%2Fclinbeacon%2Fmaster%2Fazure%2Fazuredeploy-casevault.json" target="_blank">
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
-
 The Azure CLI can be used by first authenticating and selecting the account to use.
 After authenticating and selecting the account or subscription to deploy the bacon to you simply need to use the `azure group create command`.
 For example, from the project azure folder, `azure group create -f azuredeploy-casevault.json -l westus --name casevaultdemo`

@@ -1,7 +1,7 @@
 FROM python:3.6.0
 
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-    apt-get install -y nodejs tmux inotify-tools && \
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
+    apt-get install -y nodejs tmux supervisor inotify-tools && \
     npm install -g nodemon concurrently browser-sync typescript angular-cli && \
     rm -rf /var/lib/apt/lists; rm /tmp/*; apt-get autoremove -y
 
