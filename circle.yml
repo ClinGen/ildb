@@ -8,21 +8,15 @@ dependencies:
   pre:
     - npm install -g typescript
   override:
-    - cd casevault/src/ui && npm install --unsafe-perm
-    - cd casevault/src && tsc -p ui || true
-    - cd casevault && docker build -t clearnet/casevault:$CIRCLE_BUILD_NUM -f build/app.dockerfile .
-    - cd hub/src/ui && npm install --unsafe-perm
-    - cd hub/src && tsc -p ui || true
-    - cd hub && docker build -t clearnet/hub:$CIRCLE_BUILD_NUM -f build/app.dockerfile .
+    - cd src/ui && npm install --unsafe-perm
+    - cd src && tsc -p ui || true
+    - cd docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
-      - docker push clearnet/casevault:$CIRCLE_BUILD_NUM
-      - docker push clearnet/hub:$CIRCLE_BUILD_NUM
-      - docker tag clearnet/hub:$CIRCLE_BUILD_NUM clearnet/hub:latest
-      - docker tag clearnet/casevault:$CIRCLE_BUILD_NUM clearnet/casevault:latest
+      - docker push clearnet/casevault:2.$CIRCLE_BUILD_NUM
+      - docker tag clearnet/casevault:2.$CIRCLE_BUILD_NUM clearnet/casevault:latest
       - docker push clearnet/casevault:latest
-      - docker push clearnet/hub:latest
