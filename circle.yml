@@ -12,6 +12,10 @@ dependencies:
     - cd src && tsc -p ui || true
     - docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
+test:
+  override:
+    - echo "update with real tests"
+
 deployment:
   hub:
     branch: master
