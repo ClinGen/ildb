@@ -11,10 +11,10 @@ https://apps.dev.microsoft.com
 __document identity setup__
 
 ## Hub
-The [Hub Project](https://github.com/ClinGen/clinbeacon/tree/master/hub) is responsible for performing fan-out queries across registered beacons. The hub project is also responsible for managing the tenants and beacons in the system.
+The [Hub Project](https://github.com/clearnet-io/queryhub) is responsible for performing fan-out queries across registered beacons. The hub project is also responsible for managing the tenants and beacons in the system.
 
 ## Case Vault
-The [Case Vault Project](https://github.com/ClinGen/clinbeacon/tree/master/casevault) is responsible for managing the data and performing queries for a tenant.
+The [Case Vault Project](https://github.com/clearnet-io/casevault) is responsible for managing the data and performing queries for a tenant.
 
 ## sample data
 The sample data directory currently contains a random collection of smaple VCF samples used for development.
