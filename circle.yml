@@ -10,7 +10,7 @@ dependencies:
   override:
     - cd src/ui && npm install --unsafe-perm
     - cd src && tsc -p ui || true
-    - cd docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
+    - docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 deployment:
   hub:
