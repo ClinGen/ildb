@@ -1,0 +1,10 @@
+*.pyc
+*.map
+*.log
+node_modules
+typings
+__pycache__
+
+# explicitly add files starting with a dot
+.*
+!/.gitignore

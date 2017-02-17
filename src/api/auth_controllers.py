@@ -9,6 +9,8 @@ from oic import rndstr
 from oic.oic import Client
 from oic.oic.message import AuthorizationResponse
 from lib.settings import Settings
+from cryptography.x509 import load_pem_x509_certificate
+from cryptography.hazmat.backends import default_backend
 import jwt
 import sys
 
@@ -21,6 +23,17 @@ def login():
     handle oidc reponse
     """
     client = Client(Settings.auth_client_id)
+
+    # TODO !!!! Validate 'tid' claim and the tenant signature.
+    # TODO Store the oid for the user and the name, once the user
+    # authenticates we should use this to authorize users
+    
+    # get token string from jkwi_uris
+    # 
+    #cert_obj = load_pem_x509_certificate(cert_str, default_backend())
+    #public_key = cert_obj.public_key()
+
+    #jwt.decode(token_string, public_key, algorithms=['RS256'])
 
     user_jwt = jwt.decode(request.form['id_token'], verify=False)
     """
@@ -40,11 +53,6 @@ def login():
     'iss': 'https://login.microsoftonline.com/358c5b34-4387-4b88-9dc6-7feaa77483de/v2.0'}
     """
 
-    # TODO !!!! Validate 'tid' claim and the tenant signature.
-    # TODO Store the oid for the user and the name, once the user
-    # authenticates we should use this to authorize users
-    print(request.form['id_token'])
-    print (user_jwt)
     # TODO Update token validation to retrieve certificate
     """
     auth_response = client.parse_response(AuthorizationResponse,
