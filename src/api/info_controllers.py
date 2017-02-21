@@ -7,7 +7,6 @@ from api.auth import requires_auth
 
 info_controllers = Blueprint('info_controllers', __name__)
 
-
 @info_controllers.route('/ping')
 def ping():
     """

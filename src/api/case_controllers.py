@@ -17,7 +17,6 @@ import sys
 
 case_controllers = Blueprint('case_controllers', __name__)
 
-
 @case_controllers.route('', methods=['GET'])
 @requires_auth
 def get_case_list():
@@ -93,7 +92,7 @@ def get_case_samples(id):
 
 
 @case_controllers.route('/<id>/sample', methods=['POST'])
-#@requires_auth
+@requires_auth
 def upload_case_samples(id):
     """
     Import multi-sample VCF file that mauy not be associated with a specific case
