@@ -41,7 +41,6 @@ export class SettingsComponent implements OnInit {
 
   uploadLogo() {
     return new Promise((resolve, reject) => {
-      alert('hey');
       let xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
@@ -60,11 +59,13 @@ export class SettingsComponent implements OnInit {
         //document.getElementById("progressBar").style.width = importProgress + "%";
       };
 
+      alert(this.imageUploadFile);
+
       xhr.open('POST', '/api/settings/logo', true);
 
       let formData = new FormData();
 
-      formData.append("file", this.imageUploadFile.name, this.imageUploadFile);
+      formData.append("file", this.imageUploadFile, this.imageUploadFile.name);
 
       xhr.send(formData);
     });

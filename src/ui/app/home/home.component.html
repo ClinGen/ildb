@@ -87,12 +87,13 @@
         <table class="table">
           <thead>
             <tr>
-            <td><strong>Query History (Last 20 Queries With Results)</strong></td>
+            <td><strong>Query History (Last 7 days)</strong></td>
+            <td>User</td>
             <td><strong>results</strong></td>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of queryLogs"><td><strong><a href="#">General SNP and Case Query</a></strong> - {{item.datetime}}<br/>Chrom:{{item.parameters.chrom}}, Position: {{item.parameters.position}}, Allele: {{item.parameters.allele}}</td><td>{{item.count}}</td></tr>
+            <tr *ngFor="let item of queryLogs"><td><strong><a href="#">General SNP and Case Query</a></strong> - {{item.datetime}}<br/>Chrom:{{item.parameters.chrom}}, Position: {{item.parameters.position}}, Allele: {{item.parameters.allele}}</td><td>{{item.parameters.user}}</td><td>{{item.count}}</td></tr>
           </tbody>
         </table>
         </div>

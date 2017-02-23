@@ -5,10 +5,12 @@ Case Vault Reference Data API Controllers
 from flask import Blueprint, jsonify, request, Response
 from api import log
 from api.auth import requires_auth
+from werkzeug.utils import secure_filename
 import os
 import base64
 import json
 import re
+import sys
 from PIL import Image
 
 settings_controllers = Blueprint('settings_controllers', __name__)
@@ -42,18 +44,17 @@ def get_endpoint_settings():
 @requires_auth
 def upload_logo():
 
-    # TODO: how do we correlate samples with cases and phenotype data?
-    # Store documents
     try:
         # check if the post request has the file part
+        
         if 'file' not in request.files:
+            log.info('file is not in files')
             return jsonify({'error': 'no file in file part'})
-
-        print(request.files)
 
         file = request.files['file']
         # if user does not select file, browser also
         # submit a empty part without filename
+
         if file.filename == '':
             flash('No file name provided')
             return jsonify({'error': 'no file name provided'})
@@ -61,12 +62,12 @@ def upload_logo():
         # this is used to ensure we can safely use the filename sent to us
         filename = secure_filename(file.filename)
 
-        file.save('/app/ui/tmp/' + filename)
+        file.save('/app/ui/tmp-' + filename)
 
-        im = Image.open('/app/ui/tmp/' + filename)
+        im = Image.open('/app/ui/tmp-' + filename)
         im.save('/app/ui/logo.png', 'PNG')
 
-        os.remove('/app/ui/tmp/' + filename)
+        os.remove('/app/ui/tmp-' + filename)
 
     except:
        log.error(sys.exc_info()[0])
