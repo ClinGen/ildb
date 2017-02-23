@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import request, abort
+from flask import request, abort, g
 import sys
 import jwt
 from api import log
@@ -18,6 +18,10 @@ def requires_auth(func):
 
             # TODO: read secret from configuration
             session_id = jwt.decode(session_id, 'secret', algorithms=['HS256'])
+
+            # add it to the request app context
+            g.userid = session_id["userid"]
+
             # TODO: Validate the claims and token expiration
         except:
             log.error('unable to decode session')
