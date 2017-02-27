@@ -8,6 +8,9 @@
     "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "outDir": "../.tmp"
   }
 }
