@@ -6,4 +6,5 @@ oic==0.9.4.0
 celery==4.0.2
 Pillow==4.0.0
 connexion==1.1.4
-gunicorn==19.6.0
+clearnetcore
+clearnetqueries

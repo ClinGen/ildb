@@ -7,7 +7,6 @@ from flask import Blueprint, jsonify, request
 from api import log
 import datetime
 import uuid
-import query
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, QueryLogsCollection
 from api.auth import requires_auth
 
@@ -16,7 +15,7 @@ query_controllers = Blueprint('query_controllers', __name__)
 @query_controllers.route('/stats')
 @requires_auth
 def stats():
-    
+    """ return query metrics """
     return jsonify({'lastSevenDays': QueryLogsCollection().num_query_count_since(7)})
 
 @query_controllers.route('/history')
@@ -69,5 +68,4 @@ def execute_query(id):
     })
 
     # return results
-
     return jsonify({"result": res, "requestId": request_id})

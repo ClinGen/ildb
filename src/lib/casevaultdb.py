@@ -7,7 +7,7 @@ import datetime
 import pymongo
 from bson.objectid import ObjectId
 import logging
-from .collection_base import CollectionBase
+from clearnetcore.collection_base import CollectionBase
 from datetime import datetime, timedelta
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
