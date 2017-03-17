@@ -5,7 +5,7 @@ import { CaseService } from './case.services';
 import * as _ from "lodash";
 
 @Component({
-  templateUrl: './case-edit.component.html',
+  templateUrl: 'case-edit.component.html',
   providers: [CaseService]
 })
 

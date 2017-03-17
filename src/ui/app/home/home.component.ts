@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './home.service';
 
 @Component({
-  templateUrl: './home.component.html',
+  templateUrl: 'home.component.html',
   providers:[HomeService]
 })
 

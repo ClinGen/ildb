@@ -4,7 +4,7 @@ import { AuthService } from './account/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   constructor(private cookieService: CookieService, private authService: AuthService) { }

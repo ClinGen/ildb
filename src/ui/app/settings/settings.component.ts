@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from './settings.service';
 
 @Component({
-  templateUrl: "./settings.component.html",
+  templateUrl: "settings.component.html",
   providers: [SettingsService]
 })
 
