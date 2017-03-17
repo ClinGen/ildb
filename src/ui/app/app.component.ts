@@ -3,8 +3,8 @@ import { CookieService } from 'angular2-cookie/core';
 import { AuthService } from './account/auth.service';
 
 @Component({
-  selector: 'my-app',
-  templateUrl: '/app/app.component.html'
+  selector: 'app-root',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   constructor(private cookieService: CookieService, private authService: AuthService) { }

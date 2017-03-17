@@ -3,7 +3,7 @@ import { ImportService } from './import.service';
 
 @Component({
   selector: 'vcf-import',
-  templateUrl: '/app/import/import.component.html',
+  templateUrl: './import.component.html',
   providers:[ImportService]
 })
 export class ImportComponent implements OnInit {

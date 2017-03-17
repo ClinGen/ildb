@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CaseService } from './case.services';
 
 @Component({
-  templateUrl:'/app/case/case.component.html',
+  templateUrl:'./case.component.html',
     providers:[CaseService]
 })
 

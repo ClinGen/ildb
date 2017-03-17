@@ -2,7 +2,7 @@
   "name": "casevault-client",
   "version": "1.0.0",
   "scripts": {
-    "start": "ng serve --live-reload false --host 0.0.0.0 --port 8080"
+    "start": "ng serve --host 0.0.0.0 --port 5001"
   },
   "license": "ISC",
   "dependencies": {
