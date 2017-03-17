@@ -12,7 +12,7 @@ open a terminal window in the casevault directory and type `bash up.sh`
 
 1. the first time may take a few minutes
 2. it may appear to hang at the end, after you see *Creating casevault_mongo_1*  hit the __enter__ key to get to the command prompt
-3. type `npm run setup` to install application pip modules
+3. type `npm install` to install application pip modules
 4. type `npm start` to run the application
 
 ### shutdown/cleanup

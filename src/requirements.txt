@@ -6,5 +6,4 @@ oic==0.9.4.0
 celery==4.0.2
 Pillow==4.0.0
 connexion==1.1.4
-clearnetcore
-clearnetqueries
+git+https://github.com/clearnet-io/backendlibs.git

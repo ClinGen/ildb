@@ -7,9 +7,16 @@
     "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib  --watch /app/query",
     "worker": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python -m worker\" -e py --watch /app/worker --watch /app/lib",
     "proxy": "browser-sync start --proxy localhost:8080 --port 5001 --files 'ui/**/*.html' --files 'ui/css' --files '.tmp' &",
+    "postinstall": "npm run setup",
     "setup": "npm run setup:client && npm run setup:server",
     "setup:server": "pip install -r requirements.txt",
     "setup:client": "cd ui && npm install --unsafe-perm"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "2.18.8",
+    "concurrently": "3.4.0",
+    "nodemon": "1.11.0",
+    "typescript": "2.2.1"
+  }
 }

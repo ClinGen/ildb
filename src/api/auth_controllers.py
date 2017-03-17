@@ -80,6 +80,8 @@ def login():
             abort(401)
             # TODO add the seed admin user to the authorization store
 
+    # Change this to use fernet
+    # https://cryptography.io/en/latest/fernet/
     # TODO Add expiration to the jwt and support a refresh
     encoded = jwt.encode(
         {'userid': user_jwt['preferred_username']}, 'secret', algorithm='HS256')
@@ -92,22 +94,6 @@ def login():
     # jwt.decode(encoded, 'secret', algorithms=['HS256'])
 
     return response
-
-@auth_controllers.route('/session', methods=['POST'])
-def get_session_tools():
-
-    data = request.data.decode('utf-8')
-
-    if request.data is None:
-        abort(401)
-    if data != Settings.shared_key:
-        abort(401)
-
-    # this uses a shared key and will be updated removed when a better solutions is implemented
-    encoded = jwt.encode(
-        {'userid': 'internal'}, 'secret', algorithm='HS256')
-
-    return encoded
 
 @auth_controllers.route('/getauthrequest', methods=['GET'])
 def make_authentication_request():
