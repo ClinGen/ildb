@@ -5,11 +5,9 @@ machine:
     version: 5.5.0
 
 dependencies:
-  pre:
-    - npm install -g typescript
   override:
     - cd src/ui && npm install --unsafe-perm
-    - cd src && tsc -p ui || true
+    - cd src/ui && npm run build
     - docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 test:
