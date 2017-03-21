@@ -2,9 +2,10 @@
   "name": "clearnet-casevault",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run worker\" \"npm run client\"  ",
+    "start": "concurrently \"npm run server\" \"npm run worker\" \"npm run client\" \"npm run proxy\"  ",
     "client": "cd ui && npm start",
     "server": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python run.py\" -e py --watch /app/api --watch /app/lib  --watch /app/query",
+    "proxy": "browser-sync start --proxy localhost:8080 --port 5001 --files 'ui/.bin' &",
     "worker": "/usr/bin/env $(cat dev.env) nodemon --exec \"/usr/local/bin/python -m worker\" -e py --watch /app/worker --watch /app/lib",
     "postinstall": "npm run setup",
     "setup": "npm run setup:client && npm run setup:server",
@@ -13,6 +14,7 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "2.18.8",
     "concurrently": "3.4.0",
     "nodemon": "1.11.0"
   }

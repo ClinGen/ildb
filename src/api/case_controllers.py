@@ -160,3 +160,13 @@ def get_case_stats():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ['vcf']
+
+@case_controllers.route('/plugins', methods=['GET'])
+@requires_auth
+def get_plugin():
+    """ Get a list and metadata for the plugins """
+
+@case_controllers.route('/plugins/bundle', methods=['GET'])
+@requires_auth
+def get_plugin_views():
+    """ Get a bundle of views for case plugins """

@@ -16,7 +16,6 @@ import sys
 
 auth_controllers = Blueprint('auth_controllers', __name__)
 
-
 @auth_controllers.route('/login', methods=['POST'])
 def login():
     """
