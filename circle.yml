@@ -7,7 +7,7 @@ machine:
 dependencies:
   override:
     - cd src/ui && npm install --unsafe-perm
-    - cd src/ui && shopt -s dotglob && npm run build
+    - cd src/ui && npm run build
     - docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
 test:
