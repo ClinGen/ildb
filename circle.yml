@@ -5,13 +5,9 @@ machine:
     version: 7.7.3
 
 dependencies:
-  pre:
-    - node -v
-    - curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-    - sudo apt-get install nodejs
-    - node -v
   override:
     - cd src/ui && npm install --unsafe-perm
+    - cd src/ui && cat .angular-cli
     - cd src/ui && npm run build
     - docker build -t clearnet/casevault:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
 
