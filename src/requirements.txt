@@ -7,3 +7,4 @@ celery==4.0.2
 Pillow==4.0.0
 connexion==1.1.4
 git+https://github.com/clearnet-io/backendlibs.git
+git+ssh://git@github.com/clearnet-io/querystore.git

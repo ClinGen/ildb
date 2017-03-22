@@ -22,7 +22,6 @@ class VcfFileCollection(CollectionBase):
     def __init__(self):
         super().__init__('vcf')
 
-
 class VcfSampleCollection(CollectionBase):
 
     def __init__(self):
