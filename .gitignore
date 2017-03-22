@@ -9,3 +9,4 @@ __pycache__
 .*
 !.angular-cli.json
 !.gitignore
+!.npmrc
