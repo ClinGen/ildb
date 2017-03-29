@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # check to see if docker is installed and correct version
 DOCKER_VER= docker version --format '{{.Client.Version}}'

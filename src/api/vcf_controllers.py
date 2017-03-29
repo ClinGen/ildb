@@ -16,7 +16,6 @@ from lib.settings import Settings
 
 vcf_controllers = Blueprint('vcf_controllers', __name__)
 
-
 @vcf_controllers.route('/files', methods=['GET'])
 @requires_auth
 def get_files_list():

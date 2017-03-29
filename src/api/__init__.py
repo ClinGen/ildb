@@ -6,6 +6,7 @@ import connexion
 import sys
 sys.path.append(path.abspath('../lib'))
 sys.path.append(path.abspath('../query'))
+sys.path.append(path.abspath('../case_plugins'))
 
 FORMAT = '%(levelname)-8s %(asctime)-15s %(message)s'
 logging.basicConfig(level=logging.INFO, format=FORMAT)

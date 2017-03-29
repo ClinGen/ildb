@@ -5,6 +5,7 @@ Case Vault Management API Controllers
 from flask import Blueprint, jsonify, request, flash
 from api import log
 from lib.casevaultdb import VcfSampleCollection, CaseCollection, VcfFileCollection
+from case_plugins import get_plugins
 from api.auth import requires_auth
 from werkzeug.utils import secure_filename
 import vcf
@@ -90,7 +91,6 @@ def get_case_samples(id):
 
     return jsonify(list)
 
-
 @case_controllers.route('/<id>/sample', methods=['POST'])
 @requires_auth
 def upload_case_samples(id):
@@ -167,6 +167,8 @@ def get_plugin():
     """ Get a list and metadata for the plugins """
 
 @case_controllers.route('/plugins/bundle', methods=['GET'])
-@requires_auth
+#@requires_auth
 def get_plugin_views():
     """ Get a bundle of views for case plugins """
+
+    return jsonify(get_plugins())
