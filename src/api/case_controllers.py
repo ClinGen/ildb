@@ -119,7 +119,7 @@ def upload_case_samples(id):
         filename = secure_filename(file.filename)
 
         # TODO: File Validation
-
+    
         file_id = VcfFileCollection().add(
             {'filename': filename,
                 'status': 'uploading',

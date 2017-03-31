@@ -13,7 +13,7 @@ export class CaseComponent implements OnInit {
   cases = [];
 
   constructor (
-    private router: Router,
+    public router: Router,
     private dataService: CaseService) {
   }
 

@@ -59,6 +59,15 @@ export class CaseService {
       .catch(this.handleError);
   }
 
+  getViewBundle(): Promise<any> {
+    let url = `${this.caseUrl}/plugins/bundle`;
+
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
   // add a new case to the case vault
   addCase(caseDoc: any): Promise<any> {
     return this.http.post(this.caseUrl, caseDoc)

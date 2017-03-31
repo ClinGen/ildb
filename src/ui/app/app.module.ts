@@ -25,6 +25,7 @@ import { CaseDetailsComponent } from './case/case-detail.component';
 import { SettingsComponent } from './settings/settings.component';
 
 import {CaseFilterPipe} from './case/case.filter';
+import { HtmlOutlet } from './case/html-outlet';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import {CaseFilterPipe} from './case/case.filter';
     CaseComponent,
     CaseDetailsComponent,
     SettingsComponent,
-    CaseFilterPipe
+    CaseFilterPipe,
+    HtmlOutlet
   ],
   bootstrap: [AppComponent],
   providers: [

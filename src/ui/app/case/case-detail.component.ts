@@ -15,7 +15,7 @@ export class CaseDetailsComponent implements OnInit {
   id = "";
   icdVersion = "10";
 
-  // New/Emptye case record
+  // New/Empty case record
   model = {
     id: "",
     caseId: "", //required string - autogenerate if not supplied
@@ -23,6 +23,7 @@ export class CaseDetailsComponent implements OnInit {
     state: "", //required string
     zip: "", //require string
     gender: null, // m/f required
+    country: "",
     sampleCollectionDate: null,
     clinicalIndications: null,
     diseasePanel: [],
@@ -32,34 +33,14 @@ export class CaseDetailsComponent implements OnInit {
     familyHistory: []
   }
 
-  selectedEthnicities = {};
-
-  getEthnicityKeys() {
-    return Object.keys(this.ethnicityOptions);
-  }
-
-  ethnicityOptions = {
-    "ne": "Northern European",
-    "se": "Southern European",
-    "fc": "French Canadian or Cajun",
-    "af": "African",
-    "afa": "African American",
-    "hi": "Hispanic",
-    "me": "Middle Eastern",
-    "na": "Native American",
-    "pi": "Pacific Islander",
-    "aj": "Ashkenazim Jewish",
-    "ea": "East Asian",
-    "sa": "South Asian",
-    "mi": "Mixed",
-    "ot": "Other/Unknown"
-  }
-
   personalHistory = {}
 
   familyHistory = {}
 
+  plugins = [];
+
   samples = [];
+  
   constructor(route: ActivatedRoute, private dataService: CaseService, private router: Router) {
     this.model.id = route.snapshot.params['id'];
 
@@ -82,20 +63,26 @@ export class CaseDetailsComponent implements OnInit {
 
   // VCF sample list
   loadSampleList() {
+    this.dataService.getViewBundle()
+      .then(results => this.plugins = results)
+      .catch(error => console.log(error));
+
     this.dataService.getCaseSamples(this.model.id)
       .then(results => this.samples = results)
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
 
     this.dataService.getById(this.model.id)
       .then(result => {
         if (result.clinicalIndications != null)
           result.clinicalIndications = result.clinicalIndications.join()
         
+        /*
         if (result.ethnicity) {
           for(var i = 0; i < result.ethnicity.length; i++) {
             this.selectedEthnicities[result.ethnicity[i]] = true;
           }
         }
+        */
 
         this.model = result;
       })
@@ -130,6 +117,7 @@ export class CaseDetailsComponent implements OnInit {
     if (doc.clinicalIndications != null)
       doc.clinicalIndications = doc.clinicalIndications.split(',');
 
+    /*
     let keys = Object.keys(this.selectedEthnicities);
     doc.ethnicity = [];
     for (var i = 0; i < keys.length; i++) {
@@ -138,6 +126,7 @@ export class CaseDetailsComponent implements OnInit {
         doc.ethnicity.push(keys[i])
       }
     }
+    */
 
     if (this.isNew) {
       this.dataService.addCase(doc)

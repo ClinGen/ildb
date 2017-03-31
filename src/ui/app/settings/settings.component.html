@@ -21,11 +21,7 @@
   </div>
   <div class="form-group">
     <label>Location</label>
-    <input disabled="true" class="form-control" [(ngModel)]="model.location" />
-  </div>
-  <div class="form-group">
-    <label>Domain</label>
-    <input disabled="true" class="form-control" [(ngModel)]="model.domain" />
+    <input disabled="true" class="form-control" [(ngModel)]="model.endpoint" />
   </div>
   <div>
     <input type="file" disabled="true" accept="json" (change)="fileChangeEvent($event)" placeholder="Upload"/><br/><br/>
