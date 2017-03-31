@@ -51,12 +51,23 @@ export class CasePanelComponent implements OnInit {
           "mi": "Mixed",
           "ot": "Other/Unknown"
         }
-
 }
 
 export function createComponentFactory(compiler: Compiler, metadata: Component): Promise<ComponentFactory<any>> {
 
-    const decoratedCmp = Component(metadata)(CasePanelComponent);
+    const cmpClass = class DynamicComponent implements OnInit {
+
+      constructor() {
+        console.log('constructed');
+      }
+
+      ngOnInit() {
+        console.log('initialized');
+      }
+
+    };
+
+    const decoratedCmp = Component(metadata)(cmpClass);
 
     @NgModule({ imports: [CommonModule, RouterModule, FormsModule], declarations: [decoratedCmp] })
     class DynamicHtmlModule { }
@@ -79,8 +90,6 @@ export class HtmlOutlet  implements OnChanges {
     const html = this.html;
     if (!html) return;
 
-    console.log(html);
-    
     if(this.cmpRef) {
       this.cmpRef.destroy();
       this.cmpRef = null;
@@ -96,7 +105,7 @@ export class HtmlOutlet  implements OnChanges {
         const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);   
         this.cmpRef = this.vcRef.createComponent(factory, 0, injector, []);
         //(<CasePanelComponent>this.cmpRef.instance).test = "hello";
-        console.log(this.cmpRef);
+        //console.log(this.cmpRef);
       });
   }
   
