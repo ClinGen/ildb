@@ -58,7 +58,7 @@ export function createComponentFactory(compiler: Compiler, metadata: Component):
 
     const decoratedCmp = Component(metadata)(CasePanelComponent);
 
-    @NgModule({ imports: [CommonModule, RouterModule, FormsModule], declarations: [decoratedCmp], entryComponents: [decoratedCmp] })
+    @NgModule({ imports: [CommonModule, RouterModule, FormsModule], declarations: [decoratedCmp] })
     class DynamicHtmlModule { }
 
     return compiler.compileModuleAndAllComponentsAsync(DynamicHtmlModule)
@@ -78,15 +78,16 @@ export class HtmlOutlet  implements OnChanges {
   ngOnChanges() {
     const html = this.html;
     if (!html) return;
+
+    console.log(html);
     
     if(this.cmpRef) {
       this.cmpRef.destroy();
+      this.cmpRef = null;
     }
-
-    //console.log(atob(this.html));
     
     const compMetadata = new Component({
-        selector: 'dynamic-html',
+        selector: 'case-panel',
         template: atob(this.html),
     });
 
@@ -94,7 +95,7 @@ export class HtmlOutlet  implements OnChanges {
       .then(factory => {
         const injector = ReflectiveInjector.fromResolvedProviders([], this.vcRef.parentInjector);   
         this.cmpRef = this.vcRef.createComponent(factory, 0, injector, []);
-        (<CasePanelComponent>this.cmpRef.instance).test = "hello";
+        //(<CasePanelComponent>this.cmpRef.instance).test = "hello";
         console.log(this.cmpRef);
       });
   }

@@ -78,6 +78,53 @@ will create a deployment in the resource group casevaultdemo in the westus data 
 
 The command will prompt for the admin username and SSH Key data. This can optionally be passed on the command line or through parameters file.
 
+## Extending case data
+Extending the case data is completed by creating a new plugin inside the `case_plugins` folder of the causevault project. Open the folder and create a fold using lower snake-case naming convention. Create the following files in the new folder, `backend.py`, `edit.html`, and `schema.yml`.
+
+backend.py is used to hook read and write events for the data on the backend.
+```python
+
+class BackendEvents(object):
+    def write(data):
+        """ saving case document mapping request data to database """
+        return data
+
+    def read(data):
+        """ mapping data from the database to output """
+        return data
+
+```
+
+edit.html is the UI form in the case details for entering and viewing data
+```html
+<section class="task-panel tasks-widget" style="margin-left:0;margin-right:0">
+<div class="panel-heading">
+  <div class="pull-left">
+    <h4><i class="fa fa-user"></i> Case information</h4>
+  </div>
+  <br>
+</div>
+<div class="panel-body">
+  <div class="form-group">
+    <label>Some Data</label>
+    <input class="form-control" [(ngModel)]="model.diseasePanel">
+  </div>
+</div>
+</section>
+
+```
+
+schema.yml represents the schema for the data in the API
+``` yml
+Title: Additional case information
+Version: 0.1
+Parameters:
+  gender:
+    type: string
+    description: Some String Data
+
+```
+
 __document azure deployment__
 
 ## Using CURL with the API
