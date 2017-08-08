@@ -1,0 +1,22 @@
+info:
+  title: Genetic Information
+  description: General Case Information
+  icon: "fa fa-user"
+  version: 0.1
+  sort: 1
+parameters:
+  gender:
+    type: string
+    description: Gender
+  sampleCollectionDate:
+    type: string
+    description: Sample Collection Date
+  clinicalIndications:
+    type: array
+    items:
+      type: string
+    description: Array of clinical indications example (ICD10:code)
+  diseasePanelName:
+    type: string
+    description: Disease Panel Name
+    

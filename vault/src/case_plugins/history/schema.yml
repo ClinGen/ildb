@@ -1,0 +1,10 @@
+info:
+  title: Cancer History
+  description: Cancer History
+  icon: "fa fa-user"
+  version: 0.1
+  sort: 2
+parameters:
+  gender:
+    type: boolean
+    description: Has personal history

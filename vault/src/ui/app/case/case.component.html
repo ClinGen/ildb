@@ -1,0 +1,40 @@
+<section class="task-panel tasks-widget">
+  <div class="panel-heading">
+    <div class="pull-left">
+      <h5><i class="fa fa-user"></i>Cases</h5>
+    </div>
+    <br>
+  </div>
+  <div class="panel-body">
+    <div>
+      <button type="button" (click)="this.router.navigate(['/case/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
+    </div>
+    <div class="task-content">
+      <table class="table" [mfData]="cases | caseFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="25">
+        <thead>
+          <tr>
+            <th>
+              <mfDefaultSorter by="caseId">Case Id</mfDefaultSorter>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of mf.data">
+            <td>{{item.caseId}}</td>
+            <td>
+              <button class="btn btn-primary fa fa-pencil" (click)="this.router.navigate(['/case/', item.id])"></button>
+              <button class="btn btn-danger fa fa-trash-o" (click)="delete(item.id)"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <br/>
+      <div>
+        <button type="button" (click)="this.router.navigate(['/case/new'])" class="btn btn-theme"><i class="fa fa-share-alt"></i> Add</button>
+      </div>
+    </div>
+  </div>
+</section>

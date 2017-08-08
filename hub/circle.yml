@@ -1,0 +1,26 @@
+machine:
+  services:
+    - docker
+  node:
+    version: 5.5.0
+
+dependencies:
+  pre:
+    - npm install -g typescript
+  override:
+    - cd src/ui && npm install --unsafe-perm
+    - cd src && tsc -p ui || true
+    - docker build -t clearnet/hub:2.$CIRCLE_BUILD_NUM -f build/app.dockerfile .
+
+test:
+  override:
+    - echo "update with real tests"
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
+      - docker push clearnet/hub:2.$CIRCLE_BUILD_NUM
+      - docker tag clearnet/hub:2.$CIRCLE_BUILD_NUM clearnet/hub:latest
+      - docker push clearnet/hub:latest

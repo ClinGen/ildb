@@ -1,0 +1,17 @@
+<div class="form-group">
+  <label>Gender</label><br/>
+  <input type="radio" [(ngModel)]="dataService.model.gender" name="gender" value="m"> Male <input type="radio" name="gender" value="f"> Female
+</div>
+<div class="form-group">
+  <label>Sample Collection Date</label>
+  <input class="form-control">
+</div>
+<div class="form-group">
+  <label>Clinical Indications (comma seperated list of ICD codes: 54321, 12345)</label><br/> Codes entered are: <input type="radio"
+    name="icdVersion" value="10"> ICD10 <input type="radio" name="icdVersion" value="9"> ICD9
+  <input class="form-control">
+</div>
+<div class="form-group">
+  <label>Disease Panel Name</label>
+  <input class="form-control">
+</div>

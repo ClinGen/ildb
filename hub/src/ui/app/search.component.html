@@ -1,0 +1,175 @@
+<section id="search-panel" class="bc-panel">
+  <div class="showback">
+    <h4><i class="fa fa-angle-right"></i> {{title}}</h4>
+    <!-- Single button -->
+    <div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-theme03 dropdown-toggle" data-toggle="dropdown">
+          {{selectedQuery.title}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li *ngFor="let item of queries" (click)="this.selectQuery(item.id)"><a href="#">{{item.title}}</a></li>
+        </ul>
+      </div>
+      <span>{{selectedQuery.description}}</span>
+    </div>
+    <span [hidden]="selectedQuery.id != 1">
+    <div class="row search-filters">
+      <div class="col-md-4">
+        <label>Chromosome</label>
+        <input [(ngModel)]="caseVaultQuery.chrom" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Position</label>
+        <input [(ngModel)]="caseVaultQuery.position" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Allele</label>
+        <input [(ngModel)]="caseVaultQuery.allele" class="form-control">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-md-6">
+        <label>In a specific population</label>
+        <select class="form-control">
+          <option value="any">Any</option>
+          <option value="ne">Northern European</option>
+          <option value="se">Southern European</option>
+          <option value="fc">French Canadian or Cajun</option>
+          <option value="af">African</option>
+          <option value="afa">African American</option>
+          <option value="hi">Hispanic</option>
+          <option value="me">Middle Eastern</option>
+          <option value="na">Native American</option>
+          <option value="pi">Pacific Islander</option>
+          <option value="aj">Ashkenazim Jewish</option>
+          <option value="ea">East Asian</option>
+          <option value="sa">South Asian</option>
+          <option value="mi">Mixed</option>
+          <option value="ot">Other/Unknown</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label>With clinical indications (Example ICD9:23532, ICD10:32523)</label>
+        <input [(ngModel)]="caseVaultQuery.clinicalIndications" class="form-control">
+      </div>
+      <div>&nbsp;</div>
+    </div>
+    </span>
+    <!-- query 2 -->
+    <span [hidden]="selectedQuery.id != 2">
+    <div class="row search-filters">
+      <div class="col-md-4">
+        <label>Chromosome</label>
+        <input [(ngModel)]="caseVaultQuery.chrom" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Position</label>
+        <input [(ngModel)]="caseVaultQuery.position" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Allele</label>
+        <input [(ngModel)]="caseVaultQuery.allele" class="form-control">
+      </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Window size +/-</label>
+        <input [(ngModel)]="caseVaultQuery.windowSize" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <label>ACMG Label</label>
+        <div>
+        <button type="button" class="btn btn-theme02 dropdown-toggle" data-toggle="dropdown">
+          Pathogenic <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Pathogenic</a></li>
+        </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <label>Annotation Database</label>
+        <div>
+        <button type="button" class="btn btn-theme02 dropdown-toggle" data-toggle="dropdown">
+          ClinVar <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">ClinVar</a></li>
+        </ul>
+        </div>
+      </div>
+      <div>&nbsp;</div>
+    </div>
+    </span>
+    <!-- query 3 -->
+    <span [hidden]="selectedQuery.id != 3">
+    <div class="row search-filters">
+      <div class="col-md-4">
+        <label>Chromosome</label>
+        <input [(ngModel)]="caseVaultQuery.chrom" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Position</label>
+        <input [(ngModel)]="caseVaultQuery.position" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Allele</label>
+        <input [(ngModel)]="caseVaultQuery.allele" class="form-control">
+      </div>
+    </div>
+    </span>
+    <!-- query 4 -->
+    <span [hidden]="selectedQuery.id != 4">
+    <div class="row search-filters">
+      <div class="col-md-4">
+        <label>Chromosome</label>
+        <input [(ngModel)]="caseVaultQuery.chrom" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Position</label>
+        <input [(ngModel)]="caseVaultQuery.position" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label>Allele</label>
+        <input [(ngModel)]="caseVaultQuery.allele" class="form-control">
+      </div>
+    </div>
+    </span>
+    <div class="row">
+      <div>&nbsp;</div>
+      <div class="col-md-12">
+        <button type="button" (click)="find()" class="btn btn-theme"><i class="fa fa-search"></i> Search</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bc-panel bcs-widget">
+  <div class="panel-heading">
+    <div class="pull-left">
+      <h5><i class="fa fa-search"></i> Search Results</h5>
+    </div>
+    <br>
+  </div>
+  <div class="panel-body">
+    <div class="bc-content">
+      <ul id="sortable" class="bc-list ui-sortable" *ngFor="let item of queryResults">
+        <li class="list-success">
+          <div class="bc-photo">
+            <img src="{{item.logo}}">
+          </div>
+          <div class="bc-title">
+            <span class="bc-title-sp">{{item.casevault}}</span><br>
+            <span class="bc-details-sp">{{item.description}}</span>
+          </div>
+          <div class="pull-right">
+            <span style="padding-right:10px"><button>Contact</button></span>
+            <span class="badge bg-success badge-block">{{item.result.count}}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+info:
+  title: Race Information
+  description: Race Information
+  icon: "fa fa-user"
+  version: 0.1
+  sort: 3
+parameters:
+  race:
+    type: array
+    items:
+      type: string
+    description: Race
+  ethnicity:
+    type: array
+    items:
+      type: string
+    description: Ethnicity

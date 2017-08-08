@@ -1,0 +1,43 @@
+<section id="container">
+  <header class="header black-bg">
+    <div class="sidebar-toggle-box">
+      <div class="fa fa-heartbeat tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+    </div>
+    <!--logo start-->
+    <a href="/" class="logo"><b>CLEARNET Case Vault</b></a>
+    <!--logo end-->
+    <div class="top-menu">
+      <ul class="nav pull-right top-menu">
+        <li class="user-display"><i class="fa fa-user" aria-hidden="true"></i>{{username()}}</li>
+        <li><button class="logout" (click)="logout()">Logout</button></li>
+      </ul>
+    </div>
+  </header>
+  <aside>
+    <div id="sidebar" class="nav-collapse ">
+      <!-- sidebar menu start-->
+      <ul class="sidebar-menu" id="nav-accordion">
+        <li class="sub-menu">
+          <a routerLink="/case">
+            <i class="fa fa-user"></i>
+            <span>Manage Cases</span>
+          </a>
+        </li>
+        <li class="sub-menu">
+          <a routerLink="/settings">
+            <i class="fa fa-cogs"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+      </ul>
+      <!-- sidebar menu end-->
+    </div>
+  </aside>
+  <section id="main-content" style="margin-left: 210px;">
+    <section class="wrapper">
+
+      <router-outlet></router-outlet>
+
+    </section>
+  </section>
+</section>

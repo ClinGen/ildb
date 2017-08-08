@@ -1,0 +1,37 @@
+{
+  "name": "clearnethub-client",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"npm run tsc:w\" ",
+    "postinstall": "typings install",
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "typings": "typings"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@angular/common": "4.1.0",
+    "@angular/compiler": "4.1.0",
+    "@angular/core": "4.1.0",
+    "@angular/forms": "4.1.0",
+    "@angular/http": "4.1.0",
+    "@angular/platform-browser": "4.1.0",
+    "@angular/platform-browser-dynamic": "4.1.0",
+    "@angular/router": "4.1.0",
+    "@angular/router-deprecated": "2.0.0-rc.2",
+    "@angular/upgrade": "4.1.0",
+    "angular2-cookie": "1.2.6",
+    "angular2-in-memory-web-api": "0.0.21",
+    "angular2-jwt": "0.2.3",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "5.3.0",
+    "systemjs": "0.20.12",
+    "zone.js": "0.8.9"
+  },
+  "devDependencies": {
+    "concurrently": "3.4.0",
+    "typescript": "2.3.1",
+    "typings": "2.1.1"
+  }
+}

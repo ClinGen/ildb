@@ -1,0 +1,48 @@
+<div class="panel-body">
+  <div class="task-content">
+    <ul id="sortable" class="task-list ui-sortable" *ngFor="let item of samples">
+      <li class="list-success">
+        <div class="task-title">
+          <span class="task-title-sp">{{item.id}}</span><br>
+        </div>
+      </li>
+    </ul>
+    <div>
+      <br/>
+      <div>
+        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fa fa-share-alt"></i> Import</button>              A new <a href="http://www.1000genomes.org/wiki/Analysis/Variant%20Call%20Format/vcf-variant-call-format-version-40/"
+          target="_blank"> Variant Call Format (VCF) or HGVS </a> File
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Upload Dialog -->
+<div id="myModal" class="modal fade" role="dialog" [hidden]="!showImportDialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Import VCF File</h4>
+      </div>
+      <div class="modal-body">
+        <div [hidden]="isUploading" class="form-group">
+          <label>Select a file to upload</label>
+          <input type="file" accept="vcf" (change)="fileChangeEvent($event)" placeholder="Upload file..." />
+        </div>
+        <div [hidden]="isUploading" class="form-group">
+          <label>Name</label>
+          <input class="form-control" [(ngModel)]="importFileName">
+        </div>
+        <div [hidden]="!isUploading" class="progress">
+          <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancel" type="button" class="btn btn-default" (click)="cancelImport()" data-dismiss="modal">Cancel</button>
+        <button [disabled]="isUploading" type="button" class="btn btn-default" (click)="import()">Import</button>
+      </div>
+    </div>
+  </div>
+</div>

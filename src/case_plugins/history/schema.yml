@@ -1,6 +1,0 @@
-Title: Cancer History
-Version: 0.1
-Parameters:
-  gender:
-    type: boolean
-    description: Has personal history
