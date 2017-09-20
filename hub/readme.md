@@ -1,4 +1,4 @@
-# ILDB server project
+# ILDB hub project
 
 ## requirements
 Docker is the only developer environment requirement
