@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/ClinGen/clinbeacon.svg?style=svg)](https://circleci.com/gh/ClinGen/clinbeacon)
 
-# CLEARNET Case Management Vault
+# ILDB Case Vault
 
 The Clinbeacon repository contains two different projects, a case vault that's responsible for managing data for a tenant and processing requests from a centralized service, the hub project which is used for manaing the tenants or beacons in the system.
 
