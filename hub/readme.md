@@ -1,4 +1,4 @@
-# clearnet server project
+# ILDB server project
 
 ## requirements
 Docker is the only developer environment requirement
